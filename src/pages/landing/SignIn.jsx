@@ -1,35 +1,81 @@
-import { ButtonCustom, InputCustom } from '../../components/ui'
-import { CiLock, CiMail } from 'react-icons/ci'
-import { Link } from 'react-router-dom'
+import InputLanding from "../../components/modal/InputLanding";
+import logo from "../../assets/9468810_4191982-removebg-preview 2.png";
+import icon from "../../assets/Group 60.png";
+import playstore from "../../assets/channels4_profile-removebg-preview.png"
+import { NavLink } from "react-router-dom";
+import { mdiEye, mdiEyeOff, mdiGooglePlay } from "@mdi/js";
+import { useState } from "react";
+import Icon from "@mdi/react";
 
 const SignIn = () => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
+
   return (
     <>
-      <div className='bg-[#008C74] h-[50vh] lg:h-[100vh] lg:-mt-[380px] lg:-skew-y-[30deg] w-full'></div>
-        <section className='absolute top-0 flex flex-col lg:flex-row lg:gap-x-20 items-center justify-evenly bottom-0 mt-5 gap-y-5  left-0 right-0'>
-          <div className='w-1/4 lg:mb-20'>
-            {/* <img src='' alt="Your Logo" /> */}
+      <main className="w-full h-screen lg:flex justify-evenly items-center bg-[#34A853] box-border py-5 md:py-16">
+        <div className="w-full lg:w-[400px] flex justify-center items-center">
+          <img src={logo} alt="Logo" className="md:w-[200px]" />
+          <h2 className="text-white text-[24px] md:text-[36px] font-semibold">
+            <span className="text-[#E2DA13]">Muslim</span>
+            <br /> Indonesia
+          </h2>
+        </div>
+        <div className="lg:w-[400px] lg:h-[620px] lg:flex flex-col justify-between items-center">
+          <div className="lg:w-full lg:h-[550px] lg:relative lg:border rounded-md">
+            <div className="w-full text-[#e2da13] flex flex-col justify-center items-center">
+              <h1 className="text-center text-[36px] md:text-[40px] font-semibold p-5 md:p-16 lg:p-7">
+                <span className="text-white">Welcome To</span> Login!
+              </h1>
+              <form className="w-full flex flex-col justify-center items-center gap-5">
+                <InputLanding type="text" placeholder="Email" />
+                <div className="w-[300px] md:w-[400px] lg:w-[300px] relative text-white">
+                  <InputLanding
+                    type={show ? "text" : "password"}
+                    placeholder="Password"
+                  />
+                  <label
+                    onClick={handleShow}
+                    className="absolute bottom-0 right-0"
+                  >
+                    {show ? (
+                      <Icon path={mdiEyeOff} size={1} />
+                    ) : (
+                      <Icon path={mdiEye} size={1} />
+                    )}
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  className="w-[210px] lg:w-[150px] h-[58px] lg:h-[48px] md:text-[20px] lg:text-[16px] bg-gradient-to-br from-[#40ec15] to-[#688f16] rounded-full text-white mt-5"
+                >
+                  Login
+                </button>
+              </form>
+              <p className="text-center text-white">or</p>
+              <p className="md:text-[20px] lg:text-[16px] flex gap-2">
+                Login with
+                <a href="">
+                  <img src={icon} alt="" className="w-8" />
+                </a>
+              </p>
+            </div>
+            <div className="w-full flex justify-between fixed lg:absolute bottom-3 px-3">
+              <p className="text-white md:text-[20px] lg:text-[16px]">Forgot the Password?</p>
+              <NavLink to="/register">
+                <p className="text-[#e2da13] md:text-[20px] lg:text-[16px]">Register</p>
+              </NavLink>
+            </div>
           </div>
-          <div className='max-w-[98%] md:w-[70%] lg:w-[40%]'>
-            <form className='p-5 bg-white rounded-xl text-center shadow-[0px_0px_9px_rgba(0,0,0,0.3)]'>
-              <h1 className='text-2xl md:text-[40px] font-[700] mb-5 mt-2 text-[#008C74]'>Sign In</h1>
-              <InputCustom type='email' placeholder={'Email'} className={'md:text-[26px] focus:ring-0 border-none outline-none w-full md:w-[90%] py-3 px-4'} classNameDiv={'border-b-[1.7px] border-[#999]'} icon={<CiMail className='text-xl md:text-[28px] text-[#999]'/>}/>
-              <InputCustom type='password' placeholder={'Kata Sandi'} className={'md:text-[26px] focus:ring-0 border-none outline-none w-full md:w-[90%] py-3 px-4'} classNameDiv={'border-b-[1.7px] border-[#999]'} icon={<CiLock className='text-xl md:text-[28px] text-[#999]'/>}/>
-              <div className='flex justify-between items-center mt-14'>
-              <span className='flex items-center gap-x-2 text-[12px] md:text-[17px] font-[600] text-[#008C74] ml-1'>
-              <InputCustom type={'checkbox'} className={'rounded-full'} id={'remember'}/>
-              <label htmlFor="remember">Remember Me</label></span>
-              <span className='text-[13px] md:text-[21px] text-[#008C74] mr-1'>
-                <Link to={'reset-password'}>Forgot Password?</Link>
-              </span></div>
-              <Link to={'main'}><ButtonCustom value={'Sign In'} className={'bg-[#008C74] rounded-[20px] text-[15px] md:text-[20px] lg:text-[23px] text-white font-[700] my-5 py-2 px-3 md:py-3'}/></Link>
-              <div className='h-[1.7px] w-full flex justify-center relative bg-[#008C74] before:absolute before:content-["OR"] before:bg-white before:text-[12px] before:w-10 before:-top-[10px] before:font-[600]'></div>
-            <Link to={'/register'}><ButtonCustom value={'Sign Up'} className={'border-[#008C74] border-2 text-[15px] md:text-[20px] lg:text-[23px] bg-white rounded-[20px] text-[#008C74] font-[700] my-5 py-2 px-3 md:py-3'}/></Link>
-            </form>
-          </div>
-        </section>
+          <button className="hidden lg:flex w-[150px] h-[50px] border-[2px] rounded-md">
+            <a href="*" className="flex justify-center items-center text-[10px] text-white"><Icon path={mdiGooglePlay} size={2} /> <span>Download it from <br/><span className="text-[16px] font-medium">Play Store</span></span></a>
+            </button>
+        </div>
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
