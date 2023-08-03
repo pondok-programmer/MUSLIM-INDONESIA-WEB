@@ -4,6 +4,7 @@ import { CiLock } from 'react-icons/ci'
 
 const PassReset = () => {
   const navigate = useNavigate()
+  
   return (
     <>
       <div className='bg-[#008C74] h-[50vh] lg:h-[100vh] lg:-mt-[380px] lg:-skew-y-[30deg] w-full'></div>

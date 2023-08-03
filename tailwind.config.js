@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "kryptonite": "#379237",
+        "sari": "#e2da13",
+      }
+    },
   },
   plugins: [
     require('tailwind-forms'),

@@ -13,4 +13,4 @@ return (
 )
 }
 
-export const useSteteContext= () => useContext(Context)
+export const useSteteContext = () => useContext(Context)

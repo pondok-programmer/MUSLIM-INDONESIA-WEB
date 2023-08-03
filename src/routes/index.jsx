@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { ResetPassword, SignIn, SignUp } from "../pages/landing"
+import { ResetPassword, SignIn, SignUp } from "../pages"
 import NotFound from "../pages/not-found/NotFound"
 // import Navbar from "../components/Navbar"
 
