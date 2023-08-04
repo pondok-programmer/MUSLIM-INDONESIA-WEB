@@ -3,14 +3,19 @@ import { CiLock, CiMail } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
 import googleIcon from "../../assets/icons/Group 60.svg"
 import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
+import { useContext } from 'react'
+import { Context } from '../../context/StateContext'
 
 const SignIn = () => {
+
+  const {masjidSource} = useContext(Context)
+
   return (      
     <div className='min-h-screen h-screen flex flex-col w-full text-white bg-kryptonite'>
       <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white md:gap-4 lg:flex-row lg:gap-0'>
         <section className='w-full h-[28vh] flex items-center justify-center lg:h-full lg:w-auto lg:flex-1'>
           <figure className='flex w-[64%] items-center justify-center gap-1 md:flex-col md:gap-0 lg:flex-col-reverse '>
-            <img src="src\assets\react.svg" alt="Your Logo" className='h-[18vh] aspect-square lg:h-[35vh]' />
+            <img src={masjidSource} alt="Your Logo" className='h-[18vh] aspect-square lg:h-[35vh]' />
             <h1 className='text-[3.7vh] max-w-min text-center font-medium flex-wrap leading-8 lg:leading-snug lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
           </figure>
         </section>
@@ -25,9 +30,9 @@ const SignIn = () => {
                 <InputCustom type='password' placeholder={'Kata Sandi'} className={'md:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2'} classNameDiv={'border-b-[1.7px] pt-3 border-[#fff]'} icon={<CiLock className='text-2xl md:text-[27px] text-white'/>}/>
               </div>
               <div className='w-full flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
-                <Link to={"/home"}>
-                  <ButtonCustom value={'Login'} className={' bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-4 md:text-[16px] '}/>
-                </Link>
+                  <Link to="/home" className={"h-full w-full flex justify-center items-center"}>
+                    <ButtonCustom value={'Login'} className={' bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-4 md:text-[16px] '}/>
+                  </Link>
                 <h4 className='font-bold'>or</h4>
                 <button className='flex text-sari items-center justify-center'>
                   <h4>Login with</h4>

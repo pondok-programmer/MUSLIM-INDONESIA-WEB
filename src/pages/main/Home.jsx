@@ -4,6 +4,8 @@ import masjidImage from "../../assets/example/masjid.png"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { BsArrowDown, BsArrowUp, BsBell, BsBellFill, BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
+import { useContext } from 'react'
+import { Context } from '../../context/StateContext';
 
 const Home = () => {
 
@@ -126,39 +128,13 @@ const settings = {
     },
   ],
 };
+const {masjidSource} = useContext(Context)
 
   return (
     <div className="min-h-screen h-auto flex flex-col w-full">
-      <button className='bell fixed bottom-10 bg-white text-lime-500 right-6 rounded-full p-3 z-10'>
-        <BsBell className="text-[28px]"/>
-      </button>
       <button className='rounded-full p-2 bg-kryptonite fixed bottom-8 left-[50%] z-10 -translate-x-[50%]'>
         <BsArrowDown className='text-white text-[26px]'/>
       </button>
-      <nav className="h-16 bg-kryptonite z-10 flex justify-between sticky top-0 text-white px-4">
-        <div className="h-full w-1/2 pt-2">
-          <figure className='flex gap-1.5'>
-            <img src="src\assets\react.svg" alt="" className='h-12'/>
-            <figcaption className='w-min'><span className="text-sari">Muslim</span> Indonesia</figcaption>
-          </figure>
-        </div>
-        <div className="flex h-full w-1/2 justify-between">
-          <ul className="h-full flex justify-center flex-1 [&_li]:flex-[0_18%] [&_li]:flex [&_li]:justify-center [&_li]:items-center">
-            <li className="h-full">
-              <a href="" className='hover:text-sari font-bold'>HOME</a>
-            </li>
-            <li className="h-full">
-              <a href="" className='hover:text-sari font-bold'>ABOUT US</a>
-            </li>
-            <li className="h-full">
-              <a href="" className='hover:text-sari font-bold'>EVENT</a>
-            </li>
-          </ul>
-          <div className="aspect-square flex h-full">
-            <button className='flex-1'><PiUserCircleFill className='h-full w-full text-[16px] p-2.5'/></button>
-          </div>
-        </div>
-      </nav>
       <header>
         <section className='text-white '>
           <div className='w-full flex bg-kryptonite justify-center flex-col items-center py-1'>
