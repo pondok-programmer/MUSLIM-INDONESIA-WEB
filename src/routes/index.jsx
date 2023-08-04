@@ -8,7 +8,7 @@ import { Context } from "../context/StateContext"
 import { PiUserCircleFill } from "react-icons/pi"
 
 const Routing = () => {
-    
+
     const {masjidSource} = useContext(Context)
 
     return (
@@ -42,7 +42,6 @@ const Routing = () => {
                 </div>
             </nav>
             <Routes>
-                <Route path='/' element={<SignIn/>} />
                 <Route path='/home' element={<Home/>} />
                 <Route path='/reset-password' element={<ResetPassword/>} />
                 <Route path='*' element={<NotFound/>} />
