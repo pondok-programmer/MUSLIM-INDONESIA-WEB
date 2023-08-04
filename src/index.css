@@ -2,7 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html{
+   scroll-behavior: smooth;
+}
+
 *{
    margin: 0;
    box-sizing: border-box;
+}
+
+.slick-track {
+   gap: 12px;
+   display: flex !important;
+}
+
+.slick-arrow::before{
+   color: black !important;
+}
+
+.bell{
+   box-shadow: -2px 2px 6px 1px black ;
 }

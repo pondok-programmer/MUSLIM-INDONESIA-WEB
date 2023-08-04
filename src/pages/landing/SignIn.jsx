@@ -25,7 +25,9 @@ const SignIn = () => {
                 <InputCustom type='password' placeholder={'Kata Sandi'} className={'md:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2'} classNameDiv={'border-b-[1.7px] pt-3 border-[#fff]'} icon={<CiLock className='text-2xl md:text-[27px] text-white'/>}/>
               </div>
               <div className='w-full flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
-                <ButtonCustom value={'Login'} className={' bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-4 md:text-[16px] '}/>
+                <Link to={"/home"}>
+                  <ButtonCustom value={'Login'} className={' bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-4 md:text-[16px] '}/>
+                </Link>
                 <h4 className='font-bold'>or</h4>
                 <button className='flex text-sari items-center justify-center'>
                   <h4>Login with</h4>
