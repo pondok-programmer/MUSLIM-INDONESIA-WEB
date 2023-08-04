@@ -8,7 +8,7 @@ import { useContext } from 'react'
 import { Context } from '../../context/StateContext'
 
 const SignUp = () => {
-
+  
   const {masjidSource} = useContext(Context)
 
   return (

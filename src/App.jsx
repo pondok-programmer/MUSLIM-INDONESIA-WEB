@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { SignIn, SignUp } from "./pages";
 
 const App = () => {
-
+  
   return (
     <StateContext>
       <BrowserRouter>

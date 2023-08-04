@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 
 export const Context = createContext("")
-
+    
 export const StateContext = ({children}) => {
     const [showModal, setShowModal] = useState(false)
     const [isShowPopup, setIsShowPopup] = useState(false)
