@@ -15,6 +15,7 @@ html{
 .slick-track {
    gap: 12px;
    display: flex !important;
+   
 }
 
 .slick-arrow::before{

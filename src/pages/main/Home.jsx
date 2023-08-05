@@ -8,45 +8,6 @@ import { useContext } from 'react'
 import { Context } from '../../context/StateContext';
 
 const Home = () => {
-  
-  var simple = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          variableWidth: true,
-          infinite: true,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          variableWidth: true,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          variableWidth: true,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
 
   const events = ["Kajian", "Event", "Lomba"]
 
@@ -109,92 +70,104 @@ const settings = {
       settings: {
         slidesToShow: 3,
         slidesToScroll: 3,
-        variableWidth: true,
         accessibility: true,
-        arrows: true,
+        arrows: false,
         infinite: false,
         dots: false
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 640,
       settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         accessibility: true,
-        arrows: true,
-        variableWidth: true,
+        // variableWidth: true,
+        arrows: false,
       }
     },
   ],
 };
+
 const {masjidSource} = useContext(Context)
 
   return (
-    <div className="min-h-screen h-auto flex flex-col w-full">
-      <button className='rounded-full p-2 bg-kryptonite fixed bottom-8 left-[50%] z-10 -translate-x-[50%]'>
+    <div className="min-h-screen h-auto flex flex-col w-full ">
+      <button className='rounded-full p-2 bg-kryptonite fixed bottom-8 left-[50%] z-10 -translate-x-[50%] ' onClick={()=>{window.scrollBy(0, window.innerHeight)}}>
         <BsArrowDown className='text-white text-[26px]'/>
       </button>
       <header>
-        <section className='text-white '>
-          <div className='w-full flex bg-kryptonite justify-center flex-col items-center py-1'>
-            <h1 className='text-[25px] font-bold'>Rabu, 26 Juli 2023</h1>
-            <h3 className='text-sari'>8 Muharam 1445 H</h3>
+        <section className='text-white bg-kryptonite'>
+          <div className='w-full flex bg-kryptonite justify-center flex-col items-center lg:py-1'>
+            <h1 className='sm:text-[23px] lg:text-[25px] font-bold'>Rabu, 26 Juli 2023</h1>
+            <h3 className='text-sari max-sm:text-[14px]'>8 Muharam 1445 H</h3>
           </div>
-          <div className='flex justify-center items-center bg-gradient-to-b from-kryptonite to-white from-[50%] to-[50%] py-3'>
-            <div className='w-[44vw] h-[54px] border flex border-gray-400 rounded-[10rem] overflow-hidden bg-white'>
-              <input type="search" name="" id="" className='flex-1 text-[18px] pl-3 text-black focus-visible:outline-none'/>
-              <PiMagnifyingGlass className='w-[60px] p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
+          <div className='items-center h-[10vh] relative'>
+            <div className='h-1/2 bg-kryptonite'></div>
+            <div className='w-[80vw] sm:w-[72vw] h-[40px] absolute top-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[54px] border flex border-gray-400 rounded-[10rem] overflow-hidden bg-white -translate-y-[50%] -translate-x-[50%]'>
+              <input type="search" name="" id="search-bar" className='flex-1 text-[18px] pl-3 text-black focus-visible:outline-none'/>
+              <label htmlFor="search-bar" >
+                <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] px-2 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
+              </label>
+            </div>  
+            <div className='h-1/2 bg-white'></div>
+          </div>
+          {/* <div className='flex justify-center items-center bg-gradient-to-b from-kryptonite to-white from-[50%] to-[50%] py-3'>
+            <div className='w-[72vw] h-[49px] lg:w-[44vw] sm:h-[52px] lg:h-[54px] border flex border-gray-400 rounded-[10rem] overflow-hidden bg-white'>
+              <input type="search" name="" id="search-bar" className='flex-1 text-[18px] pl-3 text-black focus-visible:outline-none'/>
+              <label htmlFor="search-bar" >
+                <PiMagnifyingGlass type='label' className='w-[60px] p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
+              </label>
             </div>
-          </div>
-          <div className='w-full flex items-center justify-center'>
-            <ul className='[&_li]:w-auto text-[15px] flex text-black gap-6'>
-              <li className='flex items-center'>Masjid <PiCaretDown className='px-0.5'/></li>
-              <li className='flex items-center'>Restoran <PiCaretDown className='px-0.5'/></li>
-              <li className='flex items-center'>TPQ <PiCaretDown className='px-0.5'/></li>
-            </ul>
-          </div>
+          </div> */}
         </section>
+        <div className='w-full flex items-center justify-center sm:justify-end px-4'>
+          <ul className='[&_li]:w-auto text-[14px] gap-3 pl-1 lg:text-[15px] flex text-black sm:gap-6'>
+            <li className='flex items-center'>Masjid <PiCaretDown className='px-0.5'/></li>
+            <li className='flex items-center'>Restoran <PiCaretDown className='px-0.5'/></li>
+            <li className='flex items-center'>TPQ <PiCaretDown className='px-0.5'/></li>
+          </ul>
+        </div>
       </header>
-      <main className='h-auto'>
-        <section className='flex h-[22vh] justify-center items-center '>
-          <div className='text-center'>
-            <h1 className='text-[26px]'>Assalamualaikum,</h1>
-            <h1 className='text-[28px]'>Selamat datang <span className='font-bold'>Rafi Zimran</span></h1>
-            <h1 className='text-[28px]'>di <span className='font-bold text-sari'>Muslim</span><span className='font-bold text-kryptonite'>Indonesia</span></h1>
+      <main className='h-auto '>
+        <section id='home' className='flex items-center sm:h-[15vh] lg:h-[22vh]'>
+          <div className='text-center w-full '>
+            <h1 className='lg:text-[26px] sm:text-[125%]'>Assalamualaikum,</h1>
+            <h1 className='lg:text-[28px] sm:text-[150%]'>Selamat datang <span className='font-bold'>Rafi Zimran</span></h1>
+            <h1 className='lg:text-[28px] sm:text-[150%]'>di <span className='font-bold text-sari'>Muslim</span><span className='font-bold text-kryptonite'>Indonesia</span></h1>
           </div>
         </section>
-        <section className='h-[49vh] '>
-          <div className='w-full h-[80%] flex gap-16 justify-center items-center'>
+        <section id='event' className='min-h-[49vh] sm:pt-[2vh] sm:pb-[12vh]'>
+          <div className='w-full h-[80%] flex gap-6 lg:gap-16 sm:gap-8 justify-center items-center flex-wrap'>
             {cards.map((index)=>{
               console.log(index.image);
               return(
-                <div className='aspect-[4/2.5] w-[380px] rounded-xl '>
+                <div className='aspect-[4/2.5] w-[270px] lg:w-[380px] sm:w-[320px] rounded-xl '>
                   <img src={index.image} alt="" className='h-full w-full'/>
                 </div>
               )
             })}
           </div>
         </section>
-        <section className='h-screen flex flex-col '>
+        <section id='about' className='h-screen flex flex-col max-sm:justify-center'>
           {events.map((acara)=>{
             return(
               <div className='w-full '>
-                <h1 className='font-bold text-[23px] text-left w-full px-5'>{acara}</h1>
-                <div className='bg-black bg-opacity-30'>
+                <h1 className='font-bold text-[19px] sm:text-[23px] text-left w-full px-5'>{acara}</h1>
+                <div className='bg-black bg-opacity-30 [&_.slick-track]:!gap-0'>
                   <Slider {...settings}>
                     {
-                      kajian.map((index)=>{
+                      kajian.map((element, index)=>{
                         return(
-                          <div className='!h-[24vh] text-[15px] !flex flex-col rounded-md overflow-hidden items-end justify-end my-1 '>
+                          <div className={`!h-[24vh] max-sm:!py-0.5 px-9 sm:text-[14px] lg:text-[15px] !flex flex-col rounded-md overflow-hidden items-end justify-end my-1`}>
                             <div className='flex-1 w-full h-12 flex justify-center overflow-hidden '>
                               <img src={masjidImage} alt="" className='w-full h-full'/>
                             </div>
                             <div className='bg-zinc-300 flex justify-between items-center p-2.5 w-full h-[19%]'>
-                              <p>{index.person}</p>
+                              <p>{element.person}</p>
                               <div className='flex items-center'>
                                 <PiCalendar className='mx-2 text-lime-700'/>
-                                <p> {index.date}</p>
+                                <p> {element.date}</p>
                               </div>
                             </div>
                           </div>
@@ -207,17 +180,32 @@ const {masjidSource} = useContext(Context)
             )
           })}
         </section>
-        <section className='h-[154vh] flex flex-col items-center justify-start text-center'>
-          <article className='h-[25vh] flex flex-col'>
-            <h1 className='text-[40px] text-kryptonite py-2 font-bold'>About Us</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium odit nemo accusantium, odio a?</p>  
+        <section className='sm:h-[160vh] lg:h-[154vh] flex flex-col items-center justify-start text-center '>
+          <article className='h-[] sm:h-[20vh] p-3.5 lg:h-[25vh] flex flex-col '>
+            <h1 className='text-[24px] sm:text-[27px] sm:h-[36%] lg:text-[40px] text-kryptonite font-bold'>About Us</h1>
+            <p className='flex-1'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium odit nemo accusantium, odio a?</p>  
           </article>
-          <article className='h-[24vh] flex flex-col bg-zinc-200'>
-            <h2 className='text-[34px] text-kryptonite'>Motivasi</h2>
+          <article className='p-3.5 sm:h-[22vh] lg:h-[24vh] flex flex-col bg-zinc-200'>
+            <h2 className='text-[23px] sm:text-[24px] lg:text-[34px] text-kryptonite'>Motivasi</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam quos animi dicta blanditiis aspernatur impedit reiciendis a sit. Atque nemo, perspiciatis dolorum id animi dolorem eveniet hic adipisci quas. Officia dicta optio cupiditate odit dolorum omnis sequi modi, architecto, tempore placeat ipsum quis maiores commodi porro nobis voluptatum adipisci recusandae!</p>
           </article>
-          <div className='h-[33vh] w-full flex p-10 justify-between '>
-            <div className='h-[29vh] aspect-[2.5/1] flex'>
+          <div className='p-10 sm:h-[54vh] lg:h-[33vh] w-full flex max-sm:flex-col max-sm:gap-10 sm:py-9 px-12 sm:justify-around lg:justify-between '>
+            {
+              [...Array(2)].map(()=>{
+                return(
+                  <section className='flex-col sm:aspect-[4/4.7] sm:h-[43vh] lg:h-[29vh] lg:aspect-[2.5/1] flex '>
+                    <div className='flex-1'>
+                      <img src={masjidImage} alt="" className='h-full w-full object-fill'/>
+                    </div>
+                    <article className='p-3 h-[90%] sm:h-[70%] sm:p-4 sm:w-full lg:w-[40%] flex flex-col bg-zinc-200 rounded-md'>
+                      <h2 className='text-kryptonite text-[18px] sm:text-[20px] lg:text-[20px] flex items-center justify-center h-[30%]'>Visi</h2>
+                      <p className='flex-1 max-lg:text-[15px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, repellat culpa consequatur incidunt autem quas ducimus illo in ex nemo.</p>
+                    </article>
+                  </section>
+                )
+              })
+            }
+            {/* <section className='h-[29vh] aspect-[2.5/1] flex'>
               <div className='flex-1'>
                 <img src={masjidImage} alt="" className='h-full'/>
               </div>
@@ -225,19 +213,10 @@ const {masjidSource} = useContext(Context)
                 <h2 className='text-kryptonite text-[20px] flex items-center justify-center h-[30%]'>Visi</h2>
                 <p className='flex-1 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, repellat culpa consequatur incidunt autem quas ducimus illo in ex nemo.</p>
               </article>
-            </div>
-            <div className='h-[29vh] aspect-[2.5/1] flex'>
-              <div className='flex-1'>
-                <img src={masjidImage} alt="" className='h-full'/>
-              </div>
-              <article className='w-[40%] flex flex-col bg-zinc-200 rounded-md'>
-                <h2 className='text-kryptonite text-[20px] flex items-center justify-center h-[30%]'>Visi</h2>
-                <p className='flex-1 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, repellat culpa consequatur incidunt autem quas ducimus illo in ex nemo.</p>
-              </article>
-            </div>
+            </section> */}
           </div>
-          <article className='flex flex-col items-center justify-center text-center h-[30vh]'>
-            <h3 className='text-kryptonite text-[25px]'>Prinsip</h3>
+          <article className='flex flex-col p-3.5 items-center justify-center text-center lg:h-[30vh]'>
+            <h3 className='text-kryptonite text-[24px] sm:text-[25px]'>Prinsip</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim aliquid at quas sint libero maxime. Dolores numquam aliquam non exercitationem ut similique natus accusantium dolorem pariatur sit, deserunt in dolore fuga? Voluptatem pariatur at amet, fuga esse soluta voluptates eligendi?</p>
           </article>
         </section>
@@ -263,7 +242,7 @@ const {masjidSource} = useContext(Context)
           </div>
         </div>
         <div className='text-white py-2'>
-          <h6 className='text-[14px]'>&copy Copyright Muslim Indonesia 2023</h6>
+          <h6 className='text-[14px]'> &copy Copyright Muslim Indonesia 2023</h6>
         </div>
       </footer>
     </div>
