@@ -27,10 +27,10 @@ const Navbar = () => {
               <a href="#event" className='hover:text-sari font-bold'>EVENT</a>
               </li>
           </ul>
-          <div className="aspect-square h-full ">
-              <button className='max-lg:hidden'><PiUserCircleFill className='h-full w-full text-[16px] sm:p-2.5'/></button>
+          <div className="aspect-square flex h-full ">
+              <button className='flex-1 max-lg:hidden'><PiUserCircleFill className='h-full w-full text-[16px] sm:p-2.5'/></button>
 
-              <button className="lg:hidden" onClick={()=>{document.getElementById("nav-menu").classList.toggle("!h-0")}}><AiOutlineMenu className='h-full w-full text-[10px] p-4'/></button>
+              <button className="flex-1 lg:hidden" onClick={()=>{document.getElementById("nav-menu").classList.toggle("!h-0")}}><AiOutlineMenu className='h-full w-full text-[10px] p-4'/></button>
           </div>
       </div>
       <div id="nav-menu" className="!h-0 w-full h-[14rem] z-10 sm:h-[16rem] absolute bottom-1 translate-y-[101%] overflow-hidden left-0 duration-500 ">
