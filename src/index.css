@@ -5,10 +5,15 @@
 
 html{
    scroll-behavior: smooth;
+   min-height: 100% !important;
 }
 
-.root{
-   height: full;
+body{
+   min-height: 100%;
+}
+
+#root{
+   min-height: 100%;
 }
 
 *{

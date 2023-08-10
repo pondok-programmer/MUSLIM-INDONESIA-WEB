@@ -7,6 +7,7 @@ import { useContext, useState } from 'react'
 import { Context } from '../../context/StateContext'
 import axios from 'axios'
 import { loginAPI } from '../../services/instances'
+import { instance } from '../../services/api/api'
 // import instance from '../../services/api/api'
 
 
@@ -20,7 +21,19 @@ const SignIn = () => {
   const handleLogin = (e) => {
     e.preventDefault()
 
-    loginAPI({email:email, password:password})
+    let data = new FormData();
+    data.append('email', email);
+    data.append('password', password);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: '/login',
+      data : data
+    };
+
+    instance
+    .request(config)
     .then((y)=>
     {
       console.log(y)
@@ -40,16 +53,16 @@ const SignIn = () => {
         <section className='w-full h-[28vh] flex items-center justify-center lg:h-full lg:w-auto lg:flex-1'>
           <figure className='flex w-[64%] items-center justify-center gap-1 sm:flex-col sm:gap-0 lg:flex-col-reverse '>
             <img src={masjidSource} alt="Your Logo" className='h-[18vh] aspect-square lg:h-[35vh]' />
-            <h1 className='text-[3.7vh] max-w-min text-center font-medium flex-wrap leading-8 lg:leading-snug lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
+            <h1 className='text-[3.7vh] max-w-min text-center font-medium flex-wrap leading-8 sm:leading-tight lg:leading-snug lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
           </figure>
         </section>
         <section className='w-[80%] sm:w-[70%] lg:w-[50%] lg:p-14 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
           <div className='lg:border-white lg:border lg:h-[85%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-md w-full'>
-            <div className=' flex h-24 justify-center items-center lg:h-[20%]'>
+            <div className=' flex h-24 justify-center items-center lg:py-[2%]'>
               <h1 className='text-[5.3vh] sm:text-[40px] font-[700] text-sari'>Login</h1>
             </div>
-            <form className='flex flex-col gap-8 p-3 sm:gap-14 lg:py-7 lg:gap-10 lg:flex-1 lg:px-12' onSubmit={(e)=>{handleLogin(e)}} autoComplete='on'>
-              <div className='flex flex-col gap-12 sm:gap-9'>
+            <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-around gap-8 lg:gap-0 lg:flex-1 lg:px-7'>
+              <div className='flex flex-col gap-10 sm:gap-9 lg:gap-0 lg:[&_>_div]:my-[2%]'>
                 <div className={`flex items-center border-b-[1.7px] pt-3 px-1 border-[#fff]`}>
                   <input type={'email'} autoComplete='on' placeholder={"Email Anda"} className={`sm:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[90%] pb-2 pt-2 bg-transparent text-[#fff]`} onChange={(e)=>{setEmail(e.target.value)}}/>
                 </div>
@@ -59,7 +72,7 @@ const SignIn = () => {
                 </div>
               </div>
               <div className='w-full flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
-                <input type="submit" value="Log in" className='w-[55%] bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-3.5 sm:text-[16px] cursor-pointer' autoComplete='on'/>
+                <input type="submit" value="Log in" className='w-[55%] bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-[4%] sm:text-[16px] cursor-pointer' autoComplete='on'/>
                 <h4 className='font-bold'>or</h4>
                 <button className='flex text-sari items-center justify-center'>
                   <h4>Login with</h4>
@@ -67,7 +80,7 @@ const SignIn = () => {
                 </button>
               </div>
             </form>
-            <div className=' px-4 pt-0.5 text-[15px] hidden w-full font-bold justify-between h-[5vh] items-center lg:flex'>
+            <div className=' px-4 pt-0.5 text-[15px] hidden w-full font-bold justify-between min-h-[10%] items-center lg:flex'>
               <div className='flex-1 '><Link to={"/forgot-password"}>Forgot Password?</Link></div>
               <Link to={"/register"}>
                 <div className='text-sari '>Register</div>

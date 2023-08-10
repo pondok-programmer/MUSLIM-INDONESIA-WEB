@@ -5,7 +5,7 @@ const Profile = () => {
    const tags = ["Nama", "Email", "No. Telepom"] 
 
   return (
-    <div className='max-h-screen h-full flex flex-col w-full md:py-14 text-white bg-kryptonite'>
+    <div className='min-h-[calc(68vh-0.6rem)] h-full flex flex-col w-full md:py-14 text-white bg-kryptonite'>
       <header className='text-center py-4'>
          <div>
             <h1 className='text-[30px] font-bold'>
