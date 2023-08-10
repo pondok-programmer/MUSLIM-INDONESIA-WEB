@@ -7,13 +7,17 @@ html{
    scroll-behavior: smooth;
 }
 
+.root{
+   height: full;
+}
+
 *{
    margin: 0;
    box-sizing: border-box;
 }
 
 .slick-track {
-   gap: 12px;
+   /* gap: 12px; */
    display: flex !important;
    
 }

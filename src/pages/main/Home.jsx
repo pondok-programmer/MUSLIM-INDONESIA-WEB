@@ -6,10 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 import { BsArrowDown, BsArrowUp, BsBell, BsBellFill, BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
 import { useContext } from 'react'
 import { Context } from '../../context/StateContext';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-  const events = ["Kajian", "Event", "Lomba"]
+  const events = ["Kajian", "Event", "TPQ"]
+
 
   const cards = [
     {
@@ -79,9 +81,10 @@ const settings = {
     {
       breakpoint: 640,
       settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToShow: 2,
+        slidesToScroll: 2,
         accessibility: true,
+        adaptiveHeight: true,
         // variableWidth: true,
         arrows: false,
       }
@@ -123,7 +126,7 @@ const {masjidSource} = useContext(Context)
         </section>
         <div className='w-full flex items-center justify-center sm:justify-end px-4'>
           <ul className='[&_li]:w-auto text-[14px] gap-3 pl-1 lg:text-[15px] flex text-black sm:gap-6'>
-            <li className='flex items-center'>Masjid <PiCaretDown className='px-0.5'/></li>
+            <li className='flex items-center'><Link to={"/masjid"}>Masjid</Link> <PiCaretDown className='px-0.5'/></li>
             <li className='flex items-center'>Restoran <PiCaretDown className='px-0.5'/></li>
             <li className='flex items-center'>TPQ <PiCaretDown className='px-0.5'/></li>
           </ul>
@@ -143,30 +146,32 @@ const {masjidSource} = useContext(Context)
               console.log(index.image);
               return(
                 <div className='aspect-[4/2.5] w-[270px] lg:w-[380px] sm:w-[320px] rounded-xl '>
-                  <img src={index.image} alt="" className='h-full w-full'/>
+                  <Link to={"/detail/masjid"}>
+                    <img src={index.image} alt="" className='h-full w-full'/>
+                  </Link>
                 </div>
               )
             })}
           </div>
         </section>
-        <section id='about' className='h-screen flex flex-col max-sm:justify-center'>
+        <section id='about' className='min-h-screen flex flex-col max-sm:justify-center'>
           {events.map((acara)=>{
             return(
               <div className='w-full '>
                 <h1 className='font-bold text-[19px] sm:text-[23px] text-left w-full px-5'>{acara}</h1>
-                <div className='bg-black bg-opacity-30 [&_.slick-track]:!gap-0'>
+                <div className='bg-black bg-opacity-30 sm:[&_.slick-track]: lg:[&_.slick-track]:gap-3'>
                   <Slider {...settings}>
                     {
                       kajian.map((element, index)=>{
                         return(
-                          <div className={`!h-[24vh] max-sm:!py-0.5 px-9 sm:text-[14px] lg:text-[15px] !flex flex-col rounded-md overflow-hidden items-end justify-end my-1`}>
+                          <div className={`h-[23vh] max-sm:!py-0.5 !px-[1vw] text-[13px] sm:text-[1.5vw] lg:text-[15px] !flex flex-col !rounded-md overflow-hidden items-end justify-end my-1`}>
                             <div className='flex-1 w-full h-12 flex justify-center overflow-hidden '>
                               <img src={masjidImage} alt="" className='w-full h-full'/>
                             </div>
-                            <div className='bg-zinc-300 flex justify-between items-center p-2.5 w-full h-[19%]'>
+                            <div className='bg-zinc-300 flex justify-between items-center p-2.5 w-full sm:text-[1.3vw] h-[19%]'>
                               <p>{element.person}</p>
                               <div className='flex items-center'>
-                                <PiCalendar className='mx-2 text-lime-700'/>
+                                <PiCalendar className=' mx-[0.4vw] text-lime-700'/>
                                 <p> {element.date}</p>
                               </div>
                             </div>
@@ -181,23 +186,24 @@ const {masjidSource} = useContext(Context)
           })}
         </section>
         <section className='sm:h-[160vh] lg:h-[154vh] flex flex-col items-center justify-start text-center '>
-          <article className='h-[] sm:h-[20vh] p-3.5 lg:h-[25vh] flex flex-col '>
-            <h1 className='text-[24px] sm:text-[27px] sm:h-[36%] lg:text-[40px] text-kryptonite font-bold'>About Us</h1>
+          <article className=' sm:h-[20vh] p-3.5 lg:h-[24vh] flex flex-col '>
+            <h1 className='text-[24px] sm:text-[27px] sm:h-[36%] lg:text-[38px] text-kryptonite font-bold'>About Us</h1>
             <p className='flex-1'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium odit nemo accusantium, odio a?</p>  
           </article>
           <article className='p-3.5 sm:h-[22vh] lg:h-[24vh] flex flex-col bg-zinc-200'>
-            <h2 className='text-[23px] sm:text-[24px] lg:text-[34px] text-kryptonite'>Motivasi</h2>
+            <h2 className='text-[23px] sm:text-[24px] lg:text-[33px] text-kryptonite'>Motivasi</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam quos animi dicta blanditiis aspernatur impedit reiciendis a sit. Atque nemo, perspiciatis dolorum id animi dolorem eveniet hic adipisci quas. Officia dicta optio cupiditate odit dolorum omnis sequi modi, architecto, tempore placeat ipsum quis maiores commodi porro nobis voluptatum adipisci recusandae!</p>
           </article>
-          <div className='p-10 sm:h-[54vh] lg:h-[33vh] w-full flex max-sm:flex-col max-sm:gap-10 sm:py-9 px-12 sm:justify-around lg:justify-between '>
+          <div className='p-10 sm:min-h-[54vh] lg:min-h-[33vh] w-full flex max-sm:flex-col max-sm:gap-10 sm:py-9 px-12 sm:justify-around lg:justify-evenly lg:px-8'>
             {
               [...Array(2)].map(()=>{
                 return(
-                  <section className='flex-col sm:aspect-[4/4.7] sm:h-[43vh] lg:h-[29vh] lg:aspect-[2.5/1] flex '>
-                    <div className='flex-1'>
-                      <img src={masjidImage} alt="" className='h-full w-full object-fill'/>
+                  // <section className='flex-col sm:aspect-[4/4.7] sm:h-[43vh] lg:max-w-[43vw] bg-red-600 lg:aspect-[3/1] flex lg:flex-row'>
+                  <section className='flex-col rounded-md sm:aspect-[4/4.7] sm:max-h-[42vh] sm:max-w-[44vw] lg:max-h-[35vh] lg:max-w-[44vw] lg:w-full overflow-hidden flex lg:flex-row'>
+                    <div className='flex-1 overflow-hidden'>
+                      <img src={masjidImage} alt="" className='h-full w-full object-cover'/>
                     </div>
-                    <article className='p-3 h-[90%] sm:h-[70%] sm:p-4 sm:w-full lg:w-[40%] flex flex-col bg-zinc-200 rounded-md'>
+                    <article className='p-3 h-[90%] sm:max-h-[55%] sm:p-4 sm:w-full lg:w-[40%] lg:h-full flex flex-col bg-zinc-200 '>
                       <h2 className='text-kryptonite text-[18px] sm:text-[20px] lg:text-[20px] flex items-center justify-center h-[30%]'>Visi</h2>
                       <p className='flex-1 max-lg:text-[15px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, repellat culpa consequatur incidunt autem quas ducimus illo in ex nemo.</p>
                     </article>
@@ -221,30 +227,7 @@ const {masjidSource} = useContext(Context)
           </article>
         </section>
       </main>
-      <footer className='h-[calc(33vh-4rem)] flex flex-col justify-between items-center w-full bg-kryptonite'>
-        <div className='w-full flex justify-center items-center from-white to-kryptonite from-[50%] to-[50%] bg-gradient-to-b'>
-          <button className='bg-yellow-500 rounded-full border-kryptonite border-4 ' onClick={()=>{scrollTo(top)}}><BsArrowUp className='text-[35px] text-lime-700 p-1'/></button>
-        </div>
-        <div className='relative w-full flex-1'>
-          <div className='absolute top-0 text-white right-8 w-auto h-auto text-center'>
-            <h2>CONTACT</h2>
-            <ul className='flex justify-center gap-3 [&_li]:text-[18px]'>
-              <li>
-                <a href=""><BsInstagram/></a>
-              </li>
-              <li>
-                <a href=""><BsWhatsapp/></a>
-              </li>
-              <li>
-                <a href=""><BsFacebook/></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className='text-white py-2'>
-          <h6 className='text-[14px]'> &copy Copyright Muslim Indonesia 2023</h6>
-        </div>
-      </footer>
+      
     </div>
   )
 }

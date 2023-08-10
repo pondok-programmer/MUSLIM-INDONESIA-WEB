@@ -6,36 +6,50 @@ import googleIcon from "../../assets/icons/Group 60.svg"
 import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
 import { useContext } from 'react'
 import { Context } from '../../context/StateContext'
+import { registerAPI } from '../../services/instances'
 
 const SignUp = () => {
   
-  const {masjidSource} = useContext(Context)
+  const {masjidSource, email, password, passwordConfirm, nomor, name, setEmail, setPassword, setPasswordConfirm, setNomor, setName} = useContext(Context)
+
+  const handleRegister = (e) => {
+    e.preventDefault()
+    
+    registerAPI(
+      {
+      email: email,
+      name: name,
+      password: password,   
+      passwordConfirm: passwordConfirm,   
+      nomor: nomor 
+    }).then()
+  }
 
   return (
     <div className='min-h-screen h-screen flex flex-col w-full text-white bg-kryptonite'>
-      <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white md:gap-1 lg:flex-row lg:gap-0'>
-        <section className='w-full h-[21vh] flex items-center justify-center md:h-[28vh] lg:h-full lg:w-auto lg:flex-1'>
-          <figure className='flex w-[64%] items-center justify-center gap-1 md:flex-col md:gap-0 lg:flex-col-reverse'>
+      <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white sm:gap-1 lg:flex-row lg:gap-0'>
+        <section className='w-full h-[21vh] flex items-center justify-center sm:h-[28vh] lg:h-full lg:w-auto lg:flex-1'>
+          <figure className='flex w-[64%] items-center justify-center gap-1 sm:flex-col sm:gap-0 lg:flex-col-reverse'>
             <img src={masjidSource} alt="Your Logo" className='h-[18vh] aspect-square lg:h-[35vh]' />
             <h1 className='text-[3.7vh] max-w-min text-center font-medium flex-wrap leading-8 lg:leading-snug lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
           </figure>
         </section>
-        <section className='w-[80%] md:w-[56%] lg:w-[50%] lg:p-14 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
+        <section className='w-[80%] sm:w-[70%] lg:w-[50%] lg:p-14 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
           <div className='lg:border-white lg:border lg:h-[85%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-md w-full '>
-            <div className=' flex h-24 justify-center items-center md:h-10 lg:h-16 lg:items-end'>
-              <h1 className='text-[5.3vh] md:text-[37px] font-[700] text-sari'>Register</h1>
+            <div className=' flex justify-center items-center sm:h-10 lg:h-16 lg:items-end'>
+              <h1 className='text-[5.3vh] sm:text-[37px] font-[700] text-sari'>Register</h1>
             </div>
-            <form className='flex flex-col gap-8 p-3 pt-0 md:gap-10 md:py-0 lg:py-0 lg:gap-6 lg:flex-1 lg:px-12 lg:justify-center '>
-              <div className='flex flex-col gap-1 md:gap-1 lg:gap-0 [&_input]:text-[20px]'>
-                <InputCustom placeholder={'Nama Pengguna'} className={'md:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} icon={<CiUser className='text-2xl md:text-[25px] p-0 m-0 text-white'/>}/>
-                <InputCustom placeholder={'User Name'} className={'md:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} icon={<CiUser className='text-2xl md:text-[25px] p-0 m-0 text-white'/>}/>
-                <InputCustom type='tel' placeholder={'No. Telepon'} className={'md:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} icon={<PiPhoneLight className='text-2xl md:text-[25px] p-0 m-0 text-white'/>}/>
-                <InputCustom type='email' placeholder={'Email'} className={'md:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} icon={<CiMail className='text-2xl md:text-[25px] p-0 m-0 text-white'/>}/>
-                <InputCustom type='password' placeholder={'Kata Sandi'} className={'md:text-[26px] text-[2.3vh] focus:ring-0 border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2'} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} icon={<PiLockKeyLight className='text-2xl md:text-[25px] text-white'/>}/>
-                <InputCustom type='password' placeholder={'Konfirmasi Kata Sandi'} className={'md:text-[26px] text-[2.3vh] focus:ring-0 border-none outline-none w-full md:w-[90%] pb-2 px-3 pt-2'} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} icon={<PiLockFill className='text-2xl md:text-[25px] text-white'/>}/>
+            <form onSubmit={(e)=>{handleRegister(e)}} className='flex flex-col gap-8 p-3 pt-0 sm:gap-6 sm:py-0 lg:py-0 lg:gap-6 lg:flex-1 lg:px-12 lg:justify-center'>
+              <div className='flex flex-col gap-1 sm:gap-0 lg:gap-0 [&_input]:px-1 max-lg:[&_>_div]:pt-3 max-lg:[&_input]:pb-1 max-lg:[&_input]:pt-0 [&_input]:text-[19px]'>
+                <InputCustom placeholder={'Nama Pengguna'} className={'sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'}/>
+                <InputCustom placeholder={'User Name'} className={'sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} />
+                <InputCustom type='tel' placeholder={'No. Telepon'} className={'sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} />
+                <InputCustom type='email' placeholder={'Email'} className={'sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} />
+                <InputCustom type='password' placeholder={'Kata Sandi'} className={'sm:text-[26px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2'} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} />
+                <InputCustom type='password' placeholder={'Konfirmasi Kata Sandi'} className={'sm:text-[26px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2'} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} />
               </div>
-              <div className='w-full flex flex-col items-center gap-0.5 md:gap-0 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%] md:[&_button]:w-[55%]'>
-                <ButtonCustom value={'Register'} className={' bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-4 md:text-[16px]'}/>
+              <div className='w-full flex flex-col items-center gap-0.5 sm:gap-0 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%] sm:[&_button]:w-[55%]'>
+                <input type="submit" value="Register" className='w-[55%] bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-3.5 sm:text-[16px] cursor-pointer' autoComplete='on'/>
                 <h4 className='font-bold'>or</h4>
                 <button className='flex text-sari items-center justify-center'>
                   <h4>Register with</h4>

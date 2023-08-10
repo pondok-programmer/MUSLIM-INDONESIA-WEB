@@ -1,6 +1,12 @@
 import SignIn from "./landing/SignIn";
 import SignUp from "./landing/SignUp";
-import ResetPassword from "./landing/ResetPassword"
-import Home from "./main/Home"
 
-export { SignIn,SignUp,ResetPassword,Home }
+import PassReset from "./landing/ResetPassword";
+import PassChange from "./landing/ChangePassword";
+
+import Home from "./main/Home"
+import Masjid from "./main/Masjid";
+import Profile from "./main/Profile";
+
+
+export { SignIn,SignUp,Home, Masjid, PassChange, PassReset, Profile }

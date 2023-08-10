@@ -1,27 +1,39 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 import { ButtonCustom, InputCustom } from '../../components/ui'
-import { CiLock } from 'react-icons/ci'
+import { CiLock, CiMail } from 'react-icons/ci'
+import { Context } from '../../context/StateContext'
 
 const PassReset = () => {
   const navigate = useNavigate()
   
+  const {masjidSource, showModal, setShowModal} = useContext(Context)
+
   return (
-    <>
-      <div className='bg-[#008C74] h-[50vh] lg:h-[100vh] lg:-mt-[380px] lg:-skew-y-[30deg] w-full'></div>
-        <section className='absolute top-0 flex flex-col lg:flex-row items-center justify-evenly bottom-0 h-[80vh] lg:h-screen left-0 right-0'>
-          <div className='w-full lg:mb-20 lg:w-fit'>
-              <h1 className='text-[30px] md:text-[40px] lg:text-[50px] font-[700] mb-5 mt-2 text-[#008C74] animate-pulse border-r-4 border-gray-4ZZ00 bg-gradient-to-l from-white to-white-100 w-fit mx-auto p-3'>Reset Password</h1>
+    <div className='max-h-screen h-full flex flex-col w-full py-8 md:py-14 text-white bg-kryptonite'>
+      <div className='p-6 sm:px-12 flex flex-col w-full h-screen max-h-full md:m-auto md:w-[80%] lg:w-[70%] max-w-3xl'>
+        <header className='max-sm:py-3 sm:py-5 md:text-center'>
+          <div onClick={()=>{setShowModal(!showModal);console.log(showModal);}}>
+            <h1 className='text-[34px] font-bold '>Confirm <span className='text-sari'>Email</span></h1>
           </div>
-          <div className='w-[90%] md:w-[70%] lg:w-1/2'>
-            <form className='p-5 bg-white rounded-xl text-center shadow-[0px_0px_9px_rgba(0,0,0,0.3)]' onSubmit={(e)=>e.preventDefault()}>
-                <h1 className='text-[20px] md:text-[30px] font-[700] mb-5 mt-2 text-[#008C74]'>Masukan Kata Sandi Baru</h1>
-              <InputCustom type={'password'} placeholder={'Kata sandi baru'} className={'md:text-[26px] focus:ring-0 border-none outline-none w-full md:w-[90%] py-3 px-4'} classNameDiv={'border-b-[1.7px] border-[#999]'} icon={<CiLock className='text-xl md:text-[28px] text-[#999]'/>}/>
-              <InputCustom type={'password'} placeholder={'Konfirmasi kata sandi baru'} className={'md:text-[26px] focus:ring-0 border-none outline-none w-full md:w-[90%] py-3 px-4'} classNameDiv={'border-b-[1.7px] border-[#999]'} icon={<CiLock className='text-xl md:text-[28px] text-[#999]'/>}/>
-              <ButtonCustom value={'Submit'} className={'border-[#008C74] border-2 bg-white rounded-[20px] text-[15px] md:text-[20px] lg:text-[23px] text-[#008C74] font-[700] my-5 py-2 px-3 md:py-3 duration-400 hover:bg-[#008C74] hover:text-white'} eventOnClick={()=> navigate(-1)}/>
-            </form>
-          </div>
-        </section>
-    </>
+        </header>
+        <main className=' md:px-8 md:py-6 md:border-2 md:border-white md:rounded-xl'>
+          <form className='[&_>_div]:py-2 w-full'>
+            <div className='max-sm:py-3 md:!py-10 md:text-center'>
+              <p className='text-[15px]'>Input your email address below and we'll send you a confirmation email to reset your password</p>
+            </div>
+            <div>
+              <input type="text" className='w-full h-9 rounded-md p-3 border-2 border-lime-500' placeholder='Email'/>
+            </div>
+            <div>
+              <Link to={"/forgot-password/reset"}>
+                <input type="submit" value="Submit" className='rounded-md font-bold via-lime-600 from-lime-400 bg-gradient-to-tr to-lime-700 w-full py-1.5'/>
+              </Link>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
   )
 }
 
