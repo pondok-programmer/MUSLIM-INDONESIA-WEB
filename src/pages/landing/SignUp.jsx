@@ -7,7 +7,6 @@ import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
 import { useContext, useState } from 'react'
 import axios from 'axios'
 import { Context } from '../../context/StateContext'
-import { registerAPI } from '../../services/instances'
 import { instance } from '../../services/api/api'
 
 const SignUp = () => {
