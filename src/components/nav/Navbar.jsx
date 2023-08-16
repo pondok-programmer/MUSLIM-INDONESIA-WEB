@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { AiOutlineMenu } from "react-icons/ai"
 import { PiUserCircleFill } from "react-icons/pi"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
   const masjidSource = "https://raw.githubusercontent.com/Faizzroi/MUSLIM-INDONESIA-WEB/8fa7b10db4712b9b0bbdd35568a80b4c7b527574/src/assets/react.svg"
@@ -52,13 +52,13 @@ const Navbar = () => {
       <div className="flex sm:h-full lg:w-1/2 w-full lg:justify-between justify-end">
           <ul className="h-full hidden lg:flex justify-center flex-1 [&_li]:flex-[0_9vw] [&_li]:text-[1.4vw] lg:[&_li]:text-[18px] [&_li]:flex [&_li]:justify-center [&_li]:items-center">
               <li className="h-full ">
-              <a href="/home" className=' hover:text-sari font-bold'>HOME</a>
+              <NavLink to="/home" className=' hover:text-sari font-bold'>HOME</NavLink>
               </li>
               <li className="h-full">
-              <a href="/about" className='hover:text-sari font-bold'>ABOUT US</a>
+              <NavLink to="/about" className='hover:text-sari font-bold'>ABOUT US</NavLink>
               </li>
               <li className="h-full">
-              <a href="/event" className='hover:text-sari font-bold'>EVENT</a>
+              <NavLink to="/event" className='hover:text-sari font-bold'>EVENT</NavLink>
               </li>
           </ul>
           <div className="aspect-square flex h-full ">
@@ -81,13 +81,13 @@ const Navbar = () => {
       <div id="nav-menu" className="!h-0 w-full h-[14rem] z-10 sm:h-[16rem] absolute bottom-1 translate-y-[101%] overflow-hidden left-0 duration-500 ">
           <ul className="h-full flex flex-col items-center bg-kryptonite [&_a]:justify-center [&_a]:flex [&_a]:items-center [&_a]:h-full [&_a]:w-full [&_a]:py-1 [&_li:hover]:text-sari [&_li]:flex-1 [&_li]:w-full [&_li:hover]:bg-lime-500 [&_li:hover]:bg-opacity-60 ">
               <li className="">
-                  <a href="/home" className='hover:text-sari font-bold' >HOME</a>
+                  <NavLink to="/home" className='hover:text-sari font-bold' >HOME</NavLink>
               </li>
               <li className="">
-                  <a href="/about" className='hover:text-sari font-bold'>ABOUT US</a>
+                  <NavLink to="/about" className='hover:text-sari font-bold'>ABOUT US</NavLink>
               </li>
               <li className="">
-                  <a href="/event" className='hover:text-sari font-bold'>EVENT</a>
+                  <NavLink to="/event" className='hover:text-sari font-bold'>EVENT</NavLink>
               </li>
               <li className="">
                   <Link to={"/user"} className="hover:text-sari font-bold">
