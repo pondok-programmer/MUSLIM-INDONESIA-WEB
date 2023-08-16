@@ -9,6 +9,33 @@ const PassChange = () => {
   
   const {masjidSource} = useContext(Context)
 
+  const handleNewPass = (e) => {
+    e.preventDefault()
+
+    // let data = new FormData();
+    // data.append('email', email);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: '/resetPassword',
+      data : data
+    };
+
+    instance
+    .request(config)
+    .then((y)=>
+    {
+      console.log(y)
+      redirect("/home")
+    })
+    .catch((y)=>
+    {
+      redirect("/home")
+      console.log(y)
+    })
+  }
+
   return (
     <div className='max-h-screen h-full flex flex-col w-full py-8 md:py-14 text-white bg-kryptonite'>
       <div className='p-6 sm:px-12 flex flex-col w-full h-screen max-h-full md:m-auto md:w-[80%] lg:w-[70%] max-w-3xl'>

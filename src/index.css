@@ -2,33 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html{
    scroll-behavior: smooth;
    min-height: 100% !important;
 }
 
-body{
-   min-height: 100%;
-}
-
-#root{
-   min-height: 100%;
-}
-
 *{
    margin: 0;
    box-sizing: border-box;
+   /* conten */
 }
 
 .slick-track {
    /* gap: 12px; */
    display: flex !important;
-   
+   width: max-content !important;
+   margin: auto !important;
 }
+/* 
+.slick-list::before {
+   position: absolute !important;
+   right: 0 !important;
+   padding: 0 !important;
+   height: 100% !important;
+   width: 8% !important;
+   backdrop-filter: blur(2px) !important;
+   z-index: 10 !important;
+} */
 
 .slick-arrow::before{
-   color: black !important;
+   color: #000000 !important;
 }
 
 .bell{

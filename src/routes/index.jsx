@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
-import { SignIn, SignUp, Home, Masjid, Profile } from "../pages"
+import { SignIn, SignUp, Home, Masjid, Profile, About, Events } from "../pages"
 import NotFound from "../pages/not-found/NotFound"
 import { BsArrowUp, BsBell, BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs"
 // import Navbar from "../components/Navbar"
@@ -25,6 +25,8 @@ const Routing = () => {
             <Routes>
                 <Route path='/home' element={<Home/>} />
                 <Route path='/masjid' element={<Masjid/>} />
+                <Route path='/about' element={<About/>} />
+                <Route path='/event' element={<Events/>} />
                 <Route path='/user' element={<Profile/>} />
                 <Route path='/detail/masjid' element={<DetailMasjid/>} />
                 <Route path='*' element={<NotFound/>} />
