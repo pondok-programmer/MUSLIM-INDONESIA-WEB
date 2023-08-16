@@ -6,7 +6,6 @@ import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
 import { useContext, useState } from 'react'
 import { Context } from '../../context/StateContext'
 import axios from 'axios'
-import { loginAPI } from '../../services/instances'
 import { instance } from '../../services/api/api'
 // import instance from '../../services/api/api'
 
