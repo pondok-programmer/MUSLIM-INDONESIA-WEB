@@ -1,20 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Context } from '../../context/StateContext'
+import { BsPencilSquare } from 'react-icons/bs'
 
 const Profile = () => {
 
-   const tags = ["Nama", "Email", "No. Telepom"] 
-
-   const redirect = useNavigate()
    const {masjidImage} = useContext(Context)
+   const redirect = useNavigate()
+   
+   const tags = [{Nama:"Roihan Faiz"}, {Email:"Faiz@gmail.com"}, {Telepon:"081249481"}] 
+   const [key, setKey] = useState("")
+   const [edit, setEdit] = useState(false)
+
+   const [name, setName] = useState("")
+   // const [email, setEmail] = useState("")
+   // const [nomor, setNomor] = useState("")
 
    const handleEdit = (e) => {
      e.preventDefault()
  
      let data = new FormData();
-     data.append('email', email);
- 
+     data.append('full_name', name);
+   //   data.append('email', email);
+   //   data.append('phone_number', nomor);
+
      let config = {
        method: 'post',
        maxBodyLength: Infinity,
@@ -60,7 +69,7 @@ const Profile = () => {
    }
 
   return (
-    <div className='min-h-[calc(68vh-0.6rem)] h-full flex flex-col w-full md:py-14 text-white '>
+    <div className='min-h-[calc(68vh-0.6rem)] h-full flex flex-col w-full text-white bg-white'>
       <header className='text-center py-4 bg-kryptonite'>
          <div>
             <h1 className='text-[31px] font-bold'>
@@ -68,8 +77,26 @@ const Profile = () => {
             </h1>
          </div>
       </header>
-      <main className='bg-white text-black'>
-         <section className='p-3'>
+      <main className='text-black'>
+         {tags.map((data, index)=>{
+            return(
+            <div className='first:pt-1.5' key={index}>
+               <div className='px-3 py-2 '>
+                  <div className='rounded-2xl bg-white py-1 px-2 shadow-[0_2px_5px_1px_grey] '>
+                     <div className=''>
+                        <h2 className='pt-1 px-1 font-bold text-[18px]'>{`${Object.keys(data)}`}</h2>
+                     </div>
+                     <div className='p-1 flex justify-between' >
+                        <span className={`border border-white ${(key == `${(Object.keys(data))}` && edit) && "hidden"}`}>{Object.values(data)}</span>
+                        <input id={`input-${Object.keys(data)}`} type="text" className={`outline-0 border rounded-xl border-black ${(key == `${(Object.keys(data))}` && edit) ? "" : "hidden"}`} defaultValue={`${Object.values(data)}`} autoFocus={true}/>
+                        <button onClick={(e)=>{setKey((key)=>{console.log(key == Object.keys(data).toString()); key == Object.keys(data).toString() ? setEdit(!edit) : setEdit(true) ; return (Object.keys(data))});console.log(document.getElementById(`input-${Object.keys(data)}`));}} className='cursor-pointer'><BsPencilSquare className='pointer-events-none'/></button>
+                     </div>
+                  </div>
+               </div>            
+            </div>
+               )
+         })}
+         {/* <section className='p-3 bg-red-600'>
             <div className='m-auto h-[120px] w-[90vw] flex overflow-hidden items-center rounded-3xl bg-kryptonite'>
                <div className='w-[30%] h-full flex items-center p-2'>
                   <figure className='rounded-full overflow-hidden aspect-square'>
@@ -90,15 +117,8 @@ const Profile = () => {
                   })}
                </dl>
             </div>
-         </section>
-         <div className='px-7 [&_dd]:px-3'>
-         </div>
+         </section> */}
       </main>
-      <section>
-         <div className=''>
-
-         </div>
-      </section>
     </div>
   )
 }

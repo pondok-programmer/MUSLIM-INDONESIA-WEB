@@ -10,7 +10,10 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-  let tanggal = Date(Date.now()).substring(0,16)
+  const date = new Date
+  let tanggal = date.toLocaleDateString("id-ID", {weekday:"long", day:"2-digit", month:"long", year:"numeric"})
+  let tanggalIslam = date.toLocaleDateString("id-ID-u-ca-islamic", {day:"2-digit", month:"long", year:"numeric"})
+  const {masjidSource} = useContext(Context)
 
   const cards = [
     {
@@ -34,10 +37,8 @@ const Home = () => {
 ]
 
 
-const {masjidSource} = useContext(Context)
-
   return (
-    <div id='home' className="min-h-screen h-full flex flex-col w-full ">
+    <div id='home' className="min-h-screen bg-white h-full flex flex-col w-full ">
       <button className='rounded-full p-2 bg-kryptonite fixed bottom-8 left-[50%] z-10 -translate-x-[50%] ' onClick={()=>{window.scrollBy(0, window.innerHeight)}}>
         <BsArrowDown className='text-white text-[26px]'/>
       </button>
@@ -45,7 +46,7 @@ const {masjidSource} = useContext(Context)
         <section className='text-white bg-kryptonite '>
           <div className='w-full flex bg-kryptonite justify-center flex-col items-center lg:py-1'>
             <h1 className='sm:text-[23px] lg:text-[25px] font-bold'>{tanggal}</h1>
-            <h3 className='text-sari max-sm:text-[14px]'>8 Muharam 1445 H</h3>
+            <h3 className='text-sari max-sm:text-[14px]'>{tanggalIslam}</h3>
           </div>
           {/* <div className='flex justify-center items-center bg-gradient-to-b from-kryptonite to-white from-[50%] to-[50%] py-3'>
             <div className='w-[72vw] h-[49px] lg:w-[44vw] sm:h-[52px] lg:h-[54px] border flex border-gray-400 rounded-[10rem] overflow-hidden bg-white'>
@@ -74,7 +75,7 @@ const {masjidSource} = useContext(Context)
           </div>
         </section>
       </header>
-      <main className='h-auto '>
+      <main className='h-auto bg-white'>
         <section className='flex items-center h-[90px] sm:h-[120px] lg:h-[160px]'>
           <div className='text-center w-full '>
             <h1 className='lg:text-[26px] sm:text-[125%]'>Assalamualaikum,</h1>

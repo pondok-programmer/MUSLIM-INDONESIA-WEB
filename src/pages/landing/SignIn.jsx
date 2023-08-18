@@ -5,9 +5,7 @@ import googleIcon from "../../assets/icons/Group 60.svg"
 import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
 import { useContext, useState } from 'react'
 import { Context } from '../../context/StateContext'
-import axios from 'axios'
 import { instance } from '../../services/api/api'
-// import instance from '../../services/api/api'
 
 
 const SignIn = () => {
@@ -50,7 +48,7 @@ const SignIn = () => {
     })
     .catch((error)=>
     {
-      // redirect("/home")
+      redirect("/home")
       console.log(error)
     })
   }
@@ -58,11 +56,9 @@ const SignIn = () => {
   const handleGoogle = (e) => {
     e.preventDefault()
 
-    // let data = new FormData();
-    // data.append('email', email);
 
     let config = {
-      method: 'post',
+      method: 'get',
       maxBodyLength: Infinity,
       url: '/login/google',
     //   data : data
@@ -73,11 +69,9 @@ const SignIn = () => {
     .then((y)=>
     {
       console.log(y)
-      redirect("/home")
     })
     .catch((y)=>
     {
-      redirect("/home")
       console.log(y)
     })
   }

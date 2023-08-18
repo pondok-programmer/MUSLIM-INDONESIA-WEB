@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ButtonCustom, InputCustom } from '../../components/ui'
 import { CiLock, CiMail } from 'react-icons/ci'
 import { Context } from '../../context/StateContext'
@@ -9,11 +9,15 @@ const PassChange = () => {
   
   const {masjidSource} = useContext(Context)
 
+  const [password, setPassword] = useState("")
+  const [passwordConfirm, setPasswordConfirm] = useState("")
+
   const handleNewPass = (e) => {
     e.preventDefault()
 
-    // let data = new FormData();
-    // data.append('email', email);
+    let data = new FormData();
+    data.append('password', password);
+    data.append('password_confirmation ', passwordConfirm);
 
     let config = {
       method: 'post',
@@ -24,15 +28,15 @@ const PassChange = () => {
 
     instance
     .request(config)
-    .then((y)=>
+    .then((response)=>
     {
-      console.log(y)
-      redirect("/home")
+      console.log(response)
+      redirect("/")
     })
-    .catch((y)=>
+    .catch((error)=>
     {
-      redirect("/home")
-      console.log(y)
+      redirect("/")
+      console.log(error)
     })
   }
 
@@ -50,11 +54,11 @@ const PassChange = () => {
           </div>
           <form className='[&_>_div]:py-2.5 '>
             <div className='flex flex-col gap-2'>
-              <input type="password" className='w-full h-9 rounded-md p-3 border-2 border-lime-500' placeholder='New Password'/>
-              <input type="password" className='w-full h-9 rounded-md p-3 border-2 border-lime-500' placeholder='Confirm New Password'/>
+              <input type="password" className='w-full h-9 rounded-md p-3 border-2 border-lime-500' placeholder='New Password' onChange={(e)=>{setPassword(e.target.value)}}/>
+              <input type="password" className='w-full h-9 rounded-md p-3 border-2 border-lime-500' placeholder='Confirm New Password' onChange={(e)=>{setPasswordConfirm(e.target.value)}}/>
             </div>
             <div>
-              <input type="submit" value="Submit" className='rounded-md font-bold via-lime-600 from-lime-400 bg-gradient-to-tr to-lime-700 w-full py-1.5'/>
+              <input type="submit" value="Submit" className='rounded-md font-bold via-lime-600 from-lime-400 bg-gradient-to-tr to-lime-700 w-full py-1.5' />
             </div>
           </form>
         </main>

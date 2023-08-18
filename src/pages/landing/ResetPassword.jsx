@@ -1,14 +1,18 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { Link, NavLink, redirect, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import { ButtonCustom, InputCustom } from '../../components/ui'
 import { CiLock, CiMail } from 'react-icons/ci'
 import { Context } from '../../context/StateContext'
+import { instance } from '../../services/api/api'
 
 const PassReset = () => {
   const navigate = useNavigate()
   
-  const {masjidSource, showModal, setShowModal, setEmail} = useContext(Context)
+  const {masjidSource, showModal, setShowModal} = useContext(Context)
 
+  const [email, setEmail] = useState("")
+  const redirect = useNavigate()
+  
   const handleResetRequest = (e) => {
     e.preventDefault()
 
@@ -27,11 +31,11 @@ const PassReset = () => {
     .then((y)=>
     {
       console.log(y)
-      redirect("/home")
+      redirect("/")
     })
     .catch((y)=>
     {
-      redirect("/home")
+      redirect("/")
       console.log(y)
     })
   }
@@ -47,13 +51,16 @@ const PassReset = () => {
         <main className=' md:px-8 md:py-6 md:border-2 md:border-white md:rounded-xl'>
           <form className='[&_>_div]:py-2 w-full' onSubmit={(e)=>{handleResetRequest(e)}}>
             <div className='max-sm:py-3 md:!py-10 md:text-center'>
+              <NavLink to={"/forgot-password/reset"}>
+
               <p className='text-[15px]'>Input your email address below and we'll send you a confirmation email to reset your password</p>
+              </NavLink>
             </div>
             <div>
-              <input type="text" className='w-full h-9 rounded-md p-3 border-2 border-lime-500' placeholder='Email'/>
+              <input type="text" className='w-full h-9 text-black rounded-md p-3 border-2 border-lime-500' placeholder='Email' autoComplete='email' onChange={(e)=>{setEmail(e.target.value)}}/>
             </div>
             <div>
-              <input type="submit" value="Submit" onChange={(e)=>{setEmail(e.target.value)}} className='rounded-md font-bold via-lime-600 from-lime-400 bg-gradient-to-tr to-lime-700 w-full py-1.5'/>
+              <input type="submit" value="Submit" onChange={(e)=>{setEmail(e.target.value)}} className='rounded-md font-bold cursor-pointer via-lime-600 from-lime-400 bg-gradient-to-tr to-lime-700 w-full py-1.5'/>
               {/* <Link to={"/forgot-password/reset"}>
               </Link> */}
             </div>

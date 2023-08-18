@@ -20,7 +20,6 @@ const SignUp = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [nomor, setNomor] = useState("")
   
-  
   const handleRegister = (e) => {
     e.preventDefault()
     let userName = email.split("@")[0]

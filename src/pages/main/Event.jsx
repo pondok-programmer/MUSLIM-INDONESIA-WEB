@@ -45,10 +45,10 @@ const kajian = [
      {
        breakpoint: 1024,
        settings: {
-         slidesToShow: 3,
-         slidesToScroll: 3,
+         slidesToShow: 2,
+         slidesToScroll: 2,
          accessibility: true,
-         // variableWidth: false,
+         variableWidth: false,
          arrows: false,
          infinite: false,
          dots: false
@@ -70,7 +70,7 @@ const kajian = [
 
   return (
     <div>
-      <section id='event' className='py-[6%] sm:py-[4%] lg:py-[1%] flex flex-col max-sm:justify-center []'>
+      <section id='event' className='py-[6%] sm:py-[4%] lg:py-[1%] flex flex-col max-sm:justify-center [] bg-white'>
          {events.map((acara, index)=>{
          return(
             <div key={index} className='w-full py-1.5'>
@@ -80,11 +80,11 @@ const kajian = [
                   {
                      kajian.map((element, index)=>{
                      return(
-                        <div key={index} className={`relative h-[260px] sm:h-[240px] lg:h-[260px] !flex flex-col !rounded-lg overflow-hidden items-end justify-end my-1`}>
-                           <div className='flex-1 lg:w-full flex justify-center overflow-hidden'>
+                        <div key={index} className={`relative h-[260px] lg:h-[260px] !flex flex-col !rounded-2xl overflow-hidden items-end justify-end my-1`}>
+                           <div className='flex-1 sm:w-full flex justify-center overflow-hidden'>
                               <img src={masjidImage} alt="" className='w-full h-full object-cover'/>
                            </div>
-                           <div className='bg-neutral-300 flex justify-between items-center p-[1vw] lg:p-2 w-full sm:text-[1.3vw] lg:text-[1.4vw] h-[19%] text-ellipsis'>
+                           <div className='bg-neutral-300 flex justify-between items-center p-[1vw] sm:px-[3%] lg:p-2 w-full sm:text-[2vw] lg:text-[1.4vw] h-[19%] text-ellipsis'>
                               <p className='text-ellipsis overflow-hidden whitespace-nowrap'>{element.person}</p>
                               <div className='flex items-center justify-end w-1/2 lg:text-[1.2vw]'>
                                  <PiCalendar className='mx-[3%] text-lime-700 relative bottom-0'/>
