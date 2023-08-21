@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { BsArrowDown, BsArrowUp, BsBell, BsBellFill, BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
 import { useContext } from 'react'
 import { Context } from '../../context/StateContext';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Home = () => {
 
@@ -60,17 +60,17 @@ const Home = () => {
         </section>
         <section className='bg-white relative'>
           <div className='w-[80vw] bg-white sm:w-[72vw] h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[54px] border flex border-gray-400 rounded-[10rem] overflow-hidden -translate-x-[50%]'>
-            <input type="search" name="" id="search-bar" className='flex-1 text-[18px] pl-3 text-black focus-visible:outline-none'/>
-            <label htmlFor="search-bar" >
-              <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] px-2 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
-            </label>
+            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none'/>
+            <button className='rounded-r-full'>
+              <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] pl-1 pr-2 py-1 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
+            </button>
           </div>
           <div className='h-[2.3rem]'></div>  
           <div className='w-full flex items-center justify-center sm:justify-end px-4'>
-            <ul className='[&_li]:w-auto text-[14px] gap-3 pl-1 lg:text-[15px] flex text-black sm:gap-6'>
-              <li className='flex items-center'><Link to={"/masjid"}>Masjid</Link> <PiCaretDown className='px-0.5'/></li>
-              <li className='flex items-center'>Restoran <PiCaretDown className='px-0.5'/></li>
-              <li className='flex items-center'>TPQ <PiCaretDown className='px-0.5'/></li>
+            <ul className=' text-[14px] gap-3 pl-1 lg:text-[15px] flex text-black sm:gap-6'>
+              <li className='flex items-center'><NavLink className={({isActive})=>isActive ? " rounded-2xl px-1 bg-gray-300" : "px-1"} to={"/masjid"}>Masjid</NavLink> <PiCaretDown className='px-0.5 text-[18px]'/></li>
+              <li className='flex items-center'><NavLink className={({isActive})=>isActive ? " rounded-2xl px-1 bg-gray-300" : "px-1"} to={"/resto"}>Restoran</NavLink> <PiCaretDown className='px-0.5 text-[18px]'/></li>
+              <li className='flex items-center'><NavLink className={({isActive})=>!isActive ? " rounded-2xl px-1 bg-gray-300" : "px-1"}>TPQ</NavLink> <PiCaretDown className='px-0.5 text-[18px]'/></li>
             </ul>
           </div>
         </section>
@@ -90,8 +90,8 @@ const Home = () => {
                 <li key={y} className='aspect-[4/2.5] relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] rounded-xl overflow-hidden'>
                   <img src={index.image} alt="" className='h-full w-full'/>
                   <Link to={"/detail/masjid"} id='images' className='absolute top-0 h-full w-full flex flex-col justify-between text-white opacity-80 [&:hover_div:first-child]:!translate-y-0 [&:hover_div:last-child]:!translate-y-0'>
-                    <div className='absolute w-full p-2 h-[32%] duration-500 ease-out from-[-30%] translate-y-[-100%] from-black bg-gradient-to-b'>
-                      <h4 className='lg:text-[17px]'>{index.nama}</h4>
+                    <div className='absolute w-full p-2 h-[32%] duration-500 ease-out translate-y-[-100%]'>
+                      <h4 className='lg:text-[20px] text-black font-bold'>{index.nama}</h4>
                       <h5 className='text-[14px] lg:text-[15px]'>{index.lokasi}</h5>
                     </div>
                     <div className='absolute w-full bottom-0 p-2 flex duration-500 ease-out items-end h-[65%] translate-y-[100%] from-[45%] from-black bg-gradient-to-t'>

@@ -18,6 +18,10 @@ body{
    background-color: rgb(55 146 55);
 }
 
+.colorful-button{
+   background: linear-gradient(155deg, rgb(115, 198, 19) 20%, rgb(63, 158, 34) 45%, rgb(63, 158, 34) 50%, rgb(4, 186, 71) 95%);
+}
+
 .slick-track {
    /* gap: 12px; */
    display: flex !important;

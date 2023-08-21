@@ -39,7 +39,7 @@ const kajian = [
    slidesToScroll: 3,
    arrows: true,
    accessibility: true,
-   variableWidth: true,
+   // variableWidth: true,
    adaptiveHeight: true,
    responsive: [
      {
@@ -61,7 +61,7 @@ const kajian = [
          slidesToScroll: 1,
          accessibility: true,
          adaptiveHeight: true,
-         variableWidth: false,
+         variableWidth: true,
          arrows: false,
        }
      },
@@ -70,7 +70,14 @@ const kajian = [
 
   return (
     <div>
-      <section id='event' className='py-[6%] sm:py-[4%] lg:py-[1%] flex flex-col max-sm:justify-center [] bg-white'>
+      <header className='text-center py-3 bg-kryptonite'>
+         <div>
+            <h1 className='text-[31px] text-white font-bold'>
+               Events
+            </h1>
+         </div>
+      </header>
+      <section id='event' className='py-[4%] sm:py-[4%] lg:py-[1%] flex flex-col max-sm:justify-center [] bg-white'>
          {events.map((acara, index)=>{
          return(
             <div key={index} className='w-full py-1.5'>

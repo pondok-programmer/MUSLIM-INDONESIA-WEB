@@ -102,7 +102,7 @@ const SignIn = () => {
                 </div>
               </div>
               <div className='w-full flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
-                <input type="submit" value="Log in" className='w-[55%] bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-[4%] sm:text-[16px] cursor-pointer' autoComplete='on'/>
+                <input type="submit" value="Log in" className='colorful-button w-[55%] rounded-full text-[14px] text-white font-[700] py-[4%] sm:text-[16px] cursor-pointer' autoComplete='on'/>
                 <h4 className='font-bold'>or</h4>
                 <div className='flex text-sari items-center justify-center' onClick={(e)=>{handleGoogle(e)}}>
                   <h4 className='cursor-pointer'>Login with</h4>
