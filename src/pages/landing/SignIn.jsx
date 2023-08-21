@@ -1,81 +1,141 @@
-import InputLanding from "../../components/modal/InputLanding";
-import logo from "../../assets/9468810_4191982-removebg-preview 2.png";
-import icon from "../../assets/Group 60.png";
-import playstore from "../../assets/channels4_profile-removebg-preview.png"
-import { NavLink } from "react-router-dom";
-import { mdiEye, mdiEyeOff, mdiGooglePlay } from "@mdi/js";
-import { useState } from "react";
-import Icon from "@mdi/react";
+import { ButtonCustom, InputCustom } from '../../components/ui'
+import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs'
+import { Link, useNavigate } from 'react-router-dom'
+import googleIcon from "../../assets/icons/Group 60.svg"
+import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
+import { useContext, useState } from 'react'
+import { Context } from '../../context/StateContext'
+import axios from 'axios'
+import { instance } from '../../services/api/api'
+// import instance from '../../services/api/api'
+
 
 const SignIn = () => {
-  const [show, setShow] = useState(false);
-  const handleShow = () => {
-    setShow(!show);
-  };
+  
+  // const {masjidSource, email, setEmail, password, setPassword} = useContext(Context)
+  const [isShow, setIsShow] = useState(false)
 
-  return (
-    <>
-      <main className="w-full h-screen lg:flex justify-evenly items-center bg-[#34A853] box-border py-5 md:py-16">
-        <div className="w-full lg:w-[400px] flex justify-center items-center">
-          <img src={logo} alt="Logo" className="md:w-[200px]" />
-          <h2 className="text-white text-[24px] md:text-[36px] font-semibold">
-            <span className="text-[#E2DA13]">Muslim</span>
-            <br /> Indonesia
-          </h2>
-        </div>
-        <div className="lg:w-[400px] lg:h-[620px] lg:flex flex-col justify-between items-center">
-          <div className="lg:w-full lg:h-[550px] lg:relative lg:border rounded-md">
-            <div className="w-full text-[#e2da13] flex flex-col justify-center items-center">
-              <h1 className="text-center text-[36px] md:text-[40px] font-semibold p-5 md:p-16 lg:p-7">
-                <span className="text-white">Welcome To</span> Login!
-              </h1>
-              <form className="w-full flex flex-col justify-center items-center gap-5">
-                <InputLanding type="text" placeholder="Email" />
-                <div className="w-[300px] md:w-[400px] lg:w-[300px] relative text-white">
-                  <InputLanding
-                    type={show ? "text" : "password"}
-                    placeholder="Password"
-                  />
-                  <label
-                    onClick={handleShow}
-                    className="absolute bottom-0 right-0"
-                  >
-                    {show ? (
-                      <Icon path={mdiEyeOff} size={1} />
-                    ) : (
-                      <Icon path={mdiEye} size={1} />
-                    )}
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  className="w-[210px] lg:w-[150px] h-[58px] lg:h-[48px] md:text-[20px] lg:text-[16px] bg-gradient-to-br from-[#40ec15] to-[#688f16] rounded-full text-white mt-5"
-                >
-                  Login
-                </button>
-              </form>
-              <p className="text-center text-white">or</p>
-              <p className="md:text-[20px] lg:text-[16px] flex gap-2">
-                Login with
-                <a href="">
-                  <img src={icon} alt="" className="w-8" />
-                </a>
-              </p>
+  const {masjidSource} = useContext(Context)
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  
+  const redirect = useNavigate()
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+
+    let data = new FormData();
+    data.append('email', email);
+    data.append('password', password);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'login',
+      data : {
+        email: email,
+        password: password
+      },
+    };
+
+    instance
+    .request(config)
+    .then((response)=>
+    {
+      console.log(response)
+      localStorage.setItem("role", response.data.role)
+      localStorage.setItem("token", response.data.token)
+      redirect("/home")
+    })
+    .catch((error)=>
+    {
+      // redirect("/home")
+      console.log(error)
+    })
+  }
+
+  const handleGoogle = (e) => {
+    e.preventDefault()
+
+    // let data = new FormData();
+    // data.append('email', email);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: '/login/google',
+    //   data : data
+    };
+
+    instance
+    .request(config)
+    .then((y)=>
+    {
+      console.log(y)
+      redirect("/home")
+    })
+    .catch((y)=>
+    {
+      redirect("/home")
+      console.log(y)
+    })
+  }
+  
+  return (      
+    <div className='min-h-screen h-screen flex flex-col w-full text-white bg-kryptonite'>
+      <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white sm:gap-4 lg:flex-row lg:gap-0'>
+        <section className='w-full h-[28vh] flex items-center justify-center lg:h-full lg:w-auto lg:flex-1'>
+          <figure className='flex w-[64%] items-center justify-center gap-1 sm:flex-col sm:gap-0 lg:flex-col-reverse '>
+            <img src={masjidSource} alt="Your Logo" className='h-[18vh] aspect-square lg:h-[35vh]' />
+            <h1 className='text-[3.7vh] max-w-min text-center font-medium flex-wrap leading-8 sm:leading-tight lg:leading-snug lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
+          </figure>
+        </section>
+        <section className='w-[80%] sm:w-[70%] lg:w-[50%] lg:p-14 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
+          <div className='lg:border-white lg:border lg:h-[85%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-md w-full'>
+            <div className=' flex h-24 justify-center items-center lg:py-[2%]' >
+              <h1 className='text-[5.3vh] sm:text-[40px] font-[700] text-sari content-["makan"]'>Login</h1>
             </div>
-            <div className="w-full flex justify-between fixed lg:absolute bottom-3 px-3">
-              <p className="text-white md:text-[20px] lg:text-[16px]">Forgot the Password?</p>
-              <NavLink to="/register">
-                <p className="text-[#e2da13] md:text-[20px] lg:text-[16px]">Register</p>
-              </NavLink>
+            <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-around gap-8 lg:gap-0 lg:flex-1 lg:px-7'>
+              <div className='flex flex-col gap-10 sm:gap-9 lg:gap-0 lg:[&_>_div]:my-[3%]'>
+                <div className={`flex items-center border-b-[1.7px] relative px-1 border-[#fff]`}> 
+                  {/* <span className={`absolute top-[15.7%] pointer-events-none text-[14px] text-[24px] left-[1.3%] ${(e)=>{console.log(e);}}`}>Email</span> */}
+                  <input type={'email'} autoComplete='email' placeholder='Email' className={`sm:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[90%] pb-2 pt-2 bg-transparent text-[#fff] `} onChange={(e)=>{setEmail(e.target.value)}}/>
+                </div>
+                <div className={`flex items-center border-b-[1.7px] px-1 border-[#fff]`}>
+                  <input type={'password'} autoComplete='on' placeholder={"Kata Sandi"} className={`sm:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[90%] pb-2 px-1 pt-2 bg-transparent text-[#fff]`} onChange={(e)=>{setPassword(e.target.value)}}/>
+                  {isShow ? <BsEyeSlashFill  className='text-2xl md:text-[25px] text-[#fff] cursor-pointer' onClick={()=>setIsShow(!isShow)}/> : <BsEyeFill  className='text-2xl md:text-[25px] text-[#fff] cursor-pointer' onClick={()=>setIsShow(!isShow)}/>}
+                </div>
+              </div>
+              <div className='w-full flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
+                <input type="submit" value="Log in" className='w-[55%] bg-gradient-to-br from-lime-400 to-lime-700 rounded-3xl text-[14px] text-white font-[700] py-[4%] sm:text-[16px] cursor-pointer' autoComplete='on'/>
+                <h4 className='font-bold'>or</h4>
+                <div className='flex text-sari items-center justify-center' onClick={(e)=>{handleGoogle(e)}}>
+                  <h4 className='cursor-pointer'>Login with</h4>
+                  <img src={googleIcon} alt="" className='pl-2 cursor-pointer'/>
+                </div>
+              </div>
+            </form>
+            <div className=' px-4 pt-0.5 text-[15px] hidden w-full font-bold justify-between min-h-[10%] items-center lg:flex'>
+              <div className='flex-1 '><Link to={"/forgot-password"}>Forgot Password?</Link></div>
+              <Link to={"/register"}>
+                <div className='text-sari '>Register</div>
+              </Link>
             </div>
           </div>
-          <button className="hidden lg:flex w-[150px] h-[50px] border-[2px] rounded-md">
-            <a href="*" className="flex justify-center items-center text-[10px] text-white"><Icon path={mdiGooglePlay} size={2} /> <span>Download it from <br/><span className="text-[16px] font-medium">Play Store</span></span></a>
-            </button>
-        </div>
+          <Link className='hidden lg:flex'>
+            <img src={googlePlayButton} alt="" />
+          </Link>
+        </section>
       </main>
-    </>
-  );
-};
+      <footer className=' px-4 pt-0.5 text-[15px] w-full flex font-bold justify-between h-[6vh] lg:hidden'>
+        <div className='flex-1 '><Link to={"/forgot-password"}>Forgot Password?</Link></div>
+        <Link to={"/register"}>
+          <div className='text-sari '>Register</div>
+        </Link>
+      </footer>
+    </div>
+  )
+}
 
 export default SignIn;

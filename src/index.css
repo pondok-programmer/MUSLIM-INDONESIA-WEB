@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html{
+   scroll-behavior: smooth;
+   min-height: 100% !important;
+}
+
+*{
+   margin: 0;
+   box-sizing: border-box;
+   /* conten */
+}
+
+.slick-track {
+   /* gap: 12px; */
+   display: flex !important;
+   width: max-content !important;
+   margin: auto !important;
+}
+/* 
+.slick-list::before {
+   position: absolute !important;
+   right: 0 !important;
+   padding: 0 !important;
+   height: 100% !important;
+   width: 8% !important;
+   backdrop-filter: blur(2px) !important;
+   z-index: 10 !important;
+} */
+
+.slick-arrow::before{
+   color: #000000 !important;
+}
+
+.bell{
+   box-shadow: -2px 2px 6px 1px black ;
+}
