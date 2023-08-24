@@ -31,10 +31,7 @@ const SignIn = () => {
       method: 'post',
       maxBodyLength: Infinity,
       url: 'login',
-      data : {
-        email: email,
-        password: password
-      },
+      data : data
     };
 
     instance
@@ -44,11 +41,12 @@ const SignIn = () => {
       console.log(response)
       localStorage.setItem("role", response.data.role)
       localStorage.setItem("token", response.data.token)
+      localStorage.setItem("id", response.data.id)
+      localStorage.setItem("name", response.data.full_name)
       redirect("/home")
     })
     .catch((error)=>
     {
-      redirect("/home")
       console.log(error)
     })
   }
@@ -68,15 +66,17 @@ const SignIn = () => {
     .request(config)
     .then((y)=>
     {
+      redirect("/home")
       console.log(y)
     })
     .catch((y)=>
     {
+      redirect("/home")
       console.log(y)
     })
   }
   
-  return (      
+  return (
     <div className='min-h-screen h-screen flex flex-col w-full text-white bg-kryptonite'>
       <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white sm:gap-4 lg:flex-row lg:gap-0'>
         <section className='w-full h-[28vh] flex items-center justify-center lg:h-full lg:w-auto lg:flex-1'>
@@ -92,7 +92,7 @@ const SignIn = () => {
             </div>
             <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-around gap-8 lg:gap-0 lg:flex-1 lg:px-7'>
               <div className='flex flex-col gap-10 sm:gap-9 lg:gap-0 lg:[&_>_div]:my-[3%]'>
-                <div className={`flex items-center border-b-[1.7px] relative px-1 border-[#fff]`}> 
+                <div className={`flex items-center border-b-[1.7px] px-1 border-[#fff]`}> 
                   {/* <span className={`absolute top-[15.7%] pointer-events-none text-[14px] text-[24px] left-[1.3%] ${(e)=>{console.log(e);}}`}>Email</span> */}
                   <input type={'email'} autoComplete='email' placeholder='Email' className={`sm:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[90%] pb-2 pt-2 bg-transparent text-[#fff] `} onChange={(e)=>{setEmail(e.target.value)}}/>
                 </div>

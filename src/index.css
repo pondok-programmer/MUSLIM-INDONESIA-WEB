@@ -10,12 +10,35 @@ html{
 
 *{
    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
+   font-family: 'Poppins', sans-serif;
+   box-sizing: border-box;
 }
 
-body{
-   background-color: rgb(55 146 55);
+body {
+   /* background-color: rgb(55 146 55); */
+}
+
+body > div > div{
+   background: url(assets\o3213298138_5127481.png);
+      background-repeat: no-repeat;
+      background-size: 100vw;
+   /* background: #379237cc !important; */
+}
+
+@media (max-width: 1024px) {
+   body > div > div{
+      background-size: 150vh;
+      background-repeat: no-repeat;
+      background-position-x: 38%;
+   }
+}
+
+::-webkit-file-upload-button {
+   display: none;
+}
+
+::file-selector-button{
+   display: none;
 }
 
 .colorful-button{

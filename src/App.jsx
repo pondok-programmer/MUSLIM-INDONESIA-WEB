@@ -14,6 +14,7 @@ const App = () => {
   return (
       <BrowserRouter>
         {showModal && <Modal/>}
+        {/* <div id="background" className="absolute w-full h-full top-0 bg-red-600 bg-opacity-70"></div> */}
         <Routes>
           <Route path='/' element={<SignIn/>} />
           <Route path='/register' element={<SignUp/>} />
@@ -22,7 +23,9 @@ const App = () => {
               <Route path="/" element={<PassReset/>}/>
               <Route path="/reset" element={<PassChange/>}/>
             </Routes>} />
-          <Route path='/*' element={<Routing/>} />
+          <Route path='/*' element={
+          <Routing/>
+          } />
         </Routes>
       </BrowserRouter>
   )

@@ -43,9 +43,9 @@ const About = () => {
             </article>
          </section> */}
          </div>
-         <article className='flex flex-col p-3.5 sm:py-0 items-center justify-center text-center lg:h-[100px]'>
-            <h3 className='text-kryptonite text-[24px] sm:text-[25px]'>Prinsip</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim aliquid at quas sint libero maxime. Dolores numquam aliquam non exercitationem ut similique natus accusantium dolorem pariatur sit, deserunt in dolore fuga? Voluptatem pariatur at amet, fuga esse soluta voluptates eligendi?</p>
+         <article className='p-3.5 sm:h-max lg:h-[15%] flex flex-col'>
+            <h3 className='text-kryptonite text-[23px] sm:text-[24px] lg:text-[33px]'>Prinsip</h3>
+            <p className='sm:py-[1%]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim aliquid at quas sint libero maxime. Dolores numquam aliquam non exercitationem ut similique natus accusantium dolorem pariatur sit, deserunt in dolore fuga? Voluptatem pariatur at amet, fuga esse soluta voluptates eligendi?</p>
          </article>
       </section>
     </div>

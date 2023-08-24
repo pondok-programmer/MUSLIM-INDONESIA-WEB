@@ -70,19 +70,19 @@ const SignUp = () => {
             <form onSubmit={(e)=>{handleRegister(e)}} className='flex flex-col justify-around gap-8 lg:gap-2 lg:flex-1 lg:px-7 lg:text-[14px]' autoComplete={toString("on")}>
               <div className='flex flex-col sm:gap-5 [&_>_div]:!pt-[3%] lg:[&_>_div]:!pt-0 lg:gap-0 [&_input]:px-1 max-lg:[&_>_div]:pt-3 max-lg:[&_input]:pb-1 max-lg:[&_input]:pt-0 [&_input]:text-[19px] [&_>_div]:mt-1.5 '>
                 <div className={`border-b-[1.7px] pt-2 border-[#fff]`} onFocus={(e)=>{console.log(e.target)}}>
-                  <input type={'text'} autoComplete='on' placeholder='Nama' className={`flex items-center sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none bg-kryptonite w-full sm:w-[93%] pb-2 px-3 pt-2 `} onChange={(e)=>{setName(e.target.value)}}/>
+                  <input type={'text'} autoComplete='on' placeholder='Nama' className={`flex items-center sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none bg-inherit w-full sm:w-[93%] pb-2 px-3 pt-2 `} onChange={(e)=>{setName(e.target.value)}}/>
                 </div>
                 <div className={`border-b-[1.7px] pt-2 border-[#fff]`} onFocus={(e)=>{console.log(e.target)}}>
-                  <input type={'email'} autoComplete='email' placeholder='Email' className={`sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none bg-kryptonite w-full sm:w-[93%] pb-2 px-3 pt-2 `} onChange={(e)=>{setEmail(e.target.value)}}/>
+                  <input type={'email'} autoComplete='email' placeholder='Email' className={`sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none bg-inherit w-full sm:w-[93%] pb-2 px-3 pt-2 `} onChange={(e)=>{setEmail(e.target.value)}}/>
                 </div>
                 <div className={`border-b-[1.7px] pt-2 border-[#fff]`} onFocus={(e)=>{console.log(e.target)}}>
-                  <input type={'tel'} autoComplete='on' placeholder='No. telepon' className={`sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none bg-kryptonite w-full sm:w-[93%] pb-2 px-3 pt-2 `} onChange={(e)=>{setNomor(e.target.value)}}/>
+                  <input type={'tel'} autoComplete='on' placeholder='No. telepon' className={`sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none bg-inherit w-full sm:w-[93%] pb-2 px-3 pt-2 `} onChange={(e)=>{setNomor(e.target.value)}}/>
                 </div>
                 <div className={`border-b-[1.7px] pt-2 border-[#fff]`} onFocus={(e)=>{console.log(e.target)}}>
-                  <input type={'password'} autoComplete='on' placeholder='Password' className={`sm:text-[26px] text-[2.3vh] focus:ring-0 border-none bg-kryptonite outline-none w-full sm:w-[93%] pb-2 px-3 pt-2`} onChange={(e)=>{setPassword(e.target.value)}}/>
+                  <input type={'password'} autoComplete='on' placeholder='Password' className={`sm:text-[26px] text-[2.3vh] focus:ring-0 border-none bg-inherit outline-none w-full sm:w-[93%] pb-2 px-3 pt-2`} onChange={(e)=>{setPassword(e.target.value)}}/>
                 </div>
                 <div className={`border-b-[1.7px] pt-2 border-[#fff]`} onFocus={(e)=>{console.log(e.target)}}>
-                  <input type={'password'} autoComplete='on' placeholder='Konfirmasi Password' className={`sm:text-[26px] text-[2.3vh] focus:ring-0 border-none bg-kryptonite outline-none w-full sm:w-[93%] pb-2 px-3 pt-2`} onChange={(e)=>{setPasswordConfirm(e.target.value)}}/>
+                  <input type={'password'} autoComplete='on' placeholder='Konfirmasi Password' className={`sm:text-[26px] text-[2.3vh] focus:ring-0 border-none bg-inherit outline-none w-full sm:w-[93%] pb-2 px-3 pt-2`} onChange={(e)=>{setPasswordConfirm(e.target.value)}}/>
                 </div>
                 {/* <InputCustom placeholder={'Nama Pengguna'} className={'sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full sm:w-[93%] pb-2 px-3 !pt-0 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} onChange={(e)=>{setName(e.target.value)}}/> */}
                 {/* <InputCustom placeholder={'User Name'} className={'sm:text-[26px] focus:ring-0 text-[2.3vh] border-none outline-none w-full sm:w-[93%] pb-2 px-3 pt-2 '} classNameDiv={'border-b-[1.7px] pt-2 border-[#fff]'} /> */}

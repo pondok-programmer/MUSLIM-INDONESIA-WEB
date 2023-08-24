@@ -78,10 +78,10 @@ const Navbar = () => {
             <button className="flex-1 lg:hidden" onClick={()=>{setmobileMenu(!mobileMenu)}} tabIndex={(window.innerWidth > 1024) ? -1 : ""}><AiOutlineMenu className='h-full w-full text-[10px] p-4' /></button>
           </div>
       </div>
-      <section id="profile-pop-up" className={`absolute ${!profilePopup && `!min-w-0 !max-w-0 !w-0  !h-0 !opacity-0`} h-[43.3vh] px-3 py-1 duration-300 opacity-100 !aspect-[2/2.4] w-[19vw] max-w-[280px] min-w-[220px] overflow-hidden bg-white shadow-[0px_4px_13px_-2px_black] top-[92%] rounded-2xl right-[2.1%] flex flex-col text-black border-2 border-lime-600 outline outline-white`}>
+      <section id="profile-pop-up" className={`absolute ${!profilePopup && `!min-w-0 !max-w-0 !w-0  !h-0 !opacity-0`} h-[43.3vh] px-3 py-1 duration-300 opacity-100 !aspect-[2/2.4] w-[19vw] max-w-[280px] min-w-[220px] overflow-hidden bg-white shadow-[0px_4px_13px_-2px_black] top-[92%] rounded-2xl right-[2.1%] flex flex-col text-black border-2 border-kryptonite outline outline-white`}>
         <div className="h-[40%] w-full ">
           <div className=" h-full py-2 items-center flex flex-col">
-            <figure className="h-full flex rounded-full items-center aspect-square overflow-hidden">
+            <figure className="h-full border-[3px] border-lime-800 flex rounded-full items-center aspect-square overflow-hidden">
               <img src={masjidImage} alt="profile-picture" className="h-full w-full object-cover" />
             </figure>
             <div className="pt-1 text-[17px]">
@@ -89,15 +89,15 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 flex flex-col gap-[9%] text-[15px] px-2 py-4">
+        <div className="flex-1 flex flex-col gap-[6%] text-[15px] px-1 py-4">
           <div className="">
-            <span className="hover:bg-gray-300 rounded-xl px-1 cursor-pointer flex items-center"><PiUserCircle className="text-[18px]"/> &#0; Pengaturan Profile</span>
+            <Link to={"/user"} className="hover:bg-lime-600 hover:bg-opacity-30 rounded-2xl py-1 px-1.5 cursor-pointer flex items-center whitespace-nowrap"><PiUserCircle className="text-[18px]"/> &#0; Pengaturan Profile</Link>
           </div>
           <div>
-            <span className="hover:bg-gray-300 rounded-xl px-1 cursor-pointer flex items-center"><BiBookmark className="text-[17px]"/> &#0; Bookmark</span>
+            <Link className="hover:bg-lime-600 hover:bg-opacity-30 rounded-2xl py-1 px-1.5 cursor-pointer flex items-center whitespace-nowrap"><BiBookmark className="text-[17px]"/> &#0; Bookmark</Link>
           </div>
         </div>
-        <hr className="h-[1.5px] bg-kryptonite bg-opacity-90"/>
+        <hr className="h-[1.5px] bg-kryptonite bg-opacity-60"/>
         <div className="h-[16%] py-2 px-3.5 text-red-700">
           <button className="flex items-center">Keluar &#0;<BiExit/></button>
         </div>
