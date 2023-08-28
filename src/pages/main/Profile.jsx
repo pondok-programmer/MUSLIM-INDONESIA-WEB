@@ -28,6 +28,7 @@ const Profile = () => {
    const [userName, setUserName] = useState("")
    const [telepon, setTelepon] = useState("")
    const [preview, setPreview] = useState(null);
+   const [defaultPreview, setDefaultPreview] = useState(null);
    const [image, setImage] = useState(null);
 
    const kajian = [
@@ -74,8 +75,11 @@ const Profile = () => {
      let config = {
        method: 'post',
        maxBodyLength: Infinity,
-       url: `/edit-profile/${"rafi"}`,
-       data : data
+       url: `/edit-profile/${localStorage.getItem("username")}`,
+       data : data,
+       headers: {
+         Authorization: `Bearer ${localStorage.getItem("token")}`
+       }
      };
  
      instance
@@ -116,10 +120,11 @@ const Profile = () => {
    useEffect(() => {
    
      return () => {
+
       let config = {
          method: 'post',
          maxBodyLength: Infinity,
-         url: `/read-profile/faiz123`,
+         url: `/read-profile/${localStorage.getItem("username")}`,
          headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           },
@@ -132,12 +137,17 @@ const Profile = () => {
       .request(config)
       .then((response)=>
       {
+         localStorage.setItem("name", response.data.users.full_name)
+         localStorage.setItem("username", response.data.users.username)
+         localStorage.setItem("photo", response.data.users.photo)
+
         console.log(response)
         setData(response.data?.users) 
         setName(response.data?.users.full_name)
         setEmail(response.data?.users.email)
         setTelepon(response.data?.users.phone_number)
         setPreview(response.data?.users.photo)
+        setDefaultPreview(response.data?.users.photo)
         setUserName(response.data?.users.username)
 
         fetch(response.data?.users.photo).then((result)=>
@@ -151,7 +161,7 @@ const Profile = () => {
       })
      }
    }, [])
-
+   
   return (
     <div className=' h-full flex flex-col w-full text-white bg-kryptonite'>
       <header className='text-center py-3 bg-kryptonite'>
@@ -193,7 +203,7 @@ const Profile = () => {
          <div className='h-[160px] flex justify-center items-center p-3 pb-0'>
             <div className=' h-full w-[100%] rounded-2xl flex flex-col gap-[3%] justify-between items-center'>
                <figure className='overflow-hidden border-4 border-white h-full aspect-square shadow-[0_3px_5px_0px_grey] rounded-2xl'>
-                  <img src={preview} alt="" className='h-full w-full object-cover' />
+                  <img src={preview ? preview : masjidImage} alt="" className='h-full w-full object-cover' />
                </figure>
                <div className='py-[1%]'>
                   <button onClick={(e)=>{pickImage(e)}} className='flex items-center text-white bg-lime-700 shadow-lg border rounded-full px-1.5'>
@@ -205,29 +215,29 @@ const Profile = () => {
          </div>
          <form action="" onSubmit={(e)=>{handleEdit(e)}}>
             {
-               Object.entries(tags).map((tag, index)=>{
-                  return(
-                     <div className=' last:pb-1.5 lg:last:p-0 md:hidden' key={index}>
-                        <div className='px-3 py-2 lg:py-1 lg:px-0'>
-                           <div className='rounded-2xl bg-white py-1.5 px-2 shadow-[0_2px_5px_1px_grey] lg:shadow-none'>
-                              <div className='flex justify-between'>
-                                 <label className='pt-1 px-1 font-bold text-[18px]'>{`${tag[1]}`}</label>
-                              </div>
-                              <div className='p-1 flex justify-between items-center' >
-                                 <span className={`border border-white ${(key == `${tag[1]}` && edit) && "hidden"}`}>{data[tag[0]]}</span>
-                                 {tag[1] == "Nama" && <>
-                                 <input id={`input-${tag[1]}`} type="text" className={`outline-0 border rounded-xl border-black min-w-[50%] ${(key == `${(tag[1])}` && edit) ? "" : "hidden"}`} defaultValue={`${name}`} autoFocus={true}/>
-                                 <button onClick={(e)=>{e.preventDefault();setKey((key)=>{key == tag[1].toString() ? setEdit(!edit) : setEdit(true) ; return (tag[1])})}} className='cursor-pointer'>{(key == `${(tag[1])}` && edit)? <BsXCircle className='pointer-events-none '/> : <BsPencilSquare className='pointer-events-none'/>}</button>
-                                 </> 
-                                 }
-                              </div>
+            Object.entries(tags).map((tag, index)=>{
+               return(
+                  <div className=' last:pb-1.5 lg:last:p-0 md:hidden' key={index}>
+                     <div className='px-3 py-2 lg:py-1 lg:px-0'>
+                        <div className='rounded-2xl bg-white py-1.5 px-2 shadow-[0_2px_5px_1px_grey] lg:shadow-none'>
+                           <div className='flex justify-between'>
+                              <label className='pt-1 px-1 font-bold text-[18px]'>{`${tag[1]}`}</label>
                            </div>
-                        </div>            
-                     </div>
-                        )
+                           <div className='p-1 flex justify-between items-center' >
+                              <span className={`border border-white ${(key == `${tag[1]}` && edit) && "hidden"}`}>{data[tag[0]]}</span>
+                              {tag[1] == "Nama" && <>
+                              <input id={`input-${tag[1]}`} type="text" className={`outline-0 border rounded-xl border-black min-w-[50%] ${(key == `${(tag[1])}` && edit) ? "" : "hidden"}`} defaultValue={`${name}`} autoFocus={true}/>
+                              <button onClick={(e)=>{e.preventDefault();setKey((key)=>{key == tag[1].toString() ? setEdit(!edit) : setEdit(true) ; return (tag[1])})}} className='cursor-pointer'>{(key == `${(tag[1])}` && edit)? <BsXCircle className='pointer-events-none '/> : <BsPencilSquare className='pointer-events-none'/>}</button>
+                              </> 
+                              }
+                           </div>
+                        </div>
+                     </div>            
+                  </div>
+                  )
                })
             }
-            <button type='submit' className={`${!edit && "hidden"} fixed bottom-[14%] z-20 right-1/2 translate-x-1/2 w-[130px] max-w-[160px] py-[1.5%] rounded-full bg-sari font-bold text-kryptonite border-white border-2 outline outline-sari outline-2`}>Simpan</button>
+            <button type='submit' className={`${(edit) ? "" : (preview != defaultPreview) ? "" : "hidden"} fixed bottom-[14%] z-20 right-1/2 translate-x-1/2 w-[130px] max-w-[160px] py-[1.5%] rounded-full bg-sari font-bold text-kryptonite border-white border-2 outline outline-sari outline-2`}>Simpan</button> 
          </form>
          {/* <section className='p-3 bg-red-600'>
             <div className='m-auto h-[120px] w-[90vw] flex overflow-hidden items-center rounded-3xl bg-kryptonite'>

@@ -23,10 +23,10 @@ const Routing = () => {
             <Navbar></Navbar>
             <Routes>
                 <Route path='/home' element={<Home/>} />
-                <Route path='/masjid' element={<Masjid/>} />
+                <Route path='/masjid' element={<Home/>} />
                 <Route path='/about' element={<About/>} />
                 <Route path='/event' element={<Events/>} />
-                <Route path='/user' element={<Profile/>} />
+                <Route path='/user/:username' element={<Profile/>} />
                 <Route path='/detail/masjid' element={<DetailMasjid/>} />
                 <Route path='*' element={<NotFound/>} />
             </Routes>

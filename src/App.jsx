@@ -1,5 +1,5 @@
 import Routing from "./routes"
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import {useEffect} from 'react'
@@ -9,7 +9,7 @@ import { SignIn, SignUp, PassChange, PassReset } from "./pages";
 import Modal from "./components/modal/Modal";
 
 const App = () => {
-  const {showModal} = useContext(Context)
+  const {showModal, globalTarget, setGlobalTarget} = useContext(Context)
 
   return (
       <BrowserRouter>

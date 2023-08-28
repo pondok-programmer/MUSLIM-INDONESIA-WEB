@@ -1,4 +1,3 @@
-import { ButtonCustom, InputCustom } from '../../components/ui'
 import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 import googleIcon from "../../assets/icons/Group 60.svg"
@@ -6,22 +5,28 @@ import googlePlayButton from "../../assets/icons/Rectangle 343.svg"
 import { useContext, useState } from 'react'
 import { Context } from '../../context/StateContext'
 import { instance } from '../../services/api/api'
+import { BiLoaderAlt } from 'react-icons/bi'
+import InputLogin from '../../components/ui/InputLogin'
 
 
 const SignIn = () => {
   
-  // const {masjidSource, email, setEmail, password, setPassword} = useContext(Context)
-  const [isShow, setIsShow] = useState(false)
 
   const {masjidSource} = useContext(Context)
 
+  const [responseText, setResponseText] = useState("")
+  const [loading, setLoading] = useState(false)
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
   
   const redirect = useNavigate()
 
   const handleLogin = (e) => {
+    setLoading(true)
     e.preventDefault()
+    setResponseText("")
 
     let data = new FormData();
     data.append('email', email);
@@ -42,12 +47,17 @@ const SignIn = () => {
       localStorage.setItem("role", response.data.role)
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("id", response.data.id)
-      localStorage.setItem("name", response.data.full_name)
+      localStorage.setItem("name", response.data.fullname)
+      localStorage.setItem("username", response.data.username)
+      localStorage.setItem("photo", response.data.photo)
+      setLoading(false)
       redirect("/home")
     })
     .catch((error)=>
     {
+      setLoading(false)
       console.log(error)
+      setResponseText(error.response.data.message)
     })
   }
 
@@ -86,23 +96,20 @@ const SignIn = () => {
           </figure>
         </section>
         <section className='w-[80%] sm:w-[70%] lg:w-[50%] lg:p-14 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
-          <div className='lg:border-white lg:border lg:h-[85%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-md w-full'>
-            <div className=' flex h-24 justify-center items-center lg:py-[2%]' >
-              <h1 className='text-[5.3vh] sm:text-[40px] font-[700] text-sari content-["makan"]'>Login</h1>
+          <div className=' lg:border-white lg:border-opacity-75 lg:border-2 lg:h-[85%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-lg w-full'>
+            <div className=' flex h-[25%] justify-center items-center lg:py-[0%]' >
+              <h1 id='login-logo' className='text-[5.3vh] sm:text-[40px] lg:text-[47px] font-[700] text-sari'>Login</h1>
             </div>
-            <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-around gap-8 lg:gap-0 lg:flex-1 lg:px-7'>
-              <div className='flex flex-col gap-10 sm:gap-9 lg:gap-0 lg:[&_>_div]:my-[3%]'>
-                <div className={`flex items-center border-b-[1.7px] px-1 border-[#fff]`}> 
-                  {/* <span className={`absolute top-[15.7%] pointer-events-none text-[14px] text-[24px] left-[1.3%] ${(e)=>{console.log(e);}}`}>Email</span> */}
-                  <input type={'email'} autoComplete='email' placeholder='Email' className={`sm:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[90%] pb-2 pt-2 bg-transparent text-[#fff] `} onChange={(e)=>{setEmail(e.target.value)}}/>
-                </div>
-                <div className={`flex items-center border-b-[1.7px] px-1 border-[#fff]`}>
-                  <input type={'password'} autoComplete='on' placeholder={"Kata Sandi"} className={`sm:text-[24px] text-[2.3vh] focus:ring-0 border-none outline-none w-full sm:w-[90%] pb-2 px-1 pt-2 bg-transparent text-[#fff]`} onChange={(e)=>{setPassword(e.target.value)}}/>
-                  {isShow ? <BsEyeSlashFill  className='text-2xl md:text-[25px] text-[#fff] cursor-pointer' onClick={()=>setIsShow(!isShow)}/> : <BsEyeFill  className='text-2xl md:text-[25px] text-[#fff] cursor-pointer' onClick={()=>setIsShow(!isShow)}/>}
-                </div>
+            <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-evenly gap-8 lg:gap-0 lg:flex-1 lg:px-12'>
+              <div className='flex flex-col gap-10 sm:gap-9 lg:gap-0 lg:pb-6 lg:[&_>_div]:my-[3%]'>
+                <InputLogin type={"email"} modifierFunction={setEmail} text={"Email"}/>
+                <InputLogin type={"password"} modifierFunction={setPassword} text={"Kata Sandi"}/>
               </div>
-              <div className='w-full flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
-                <input type="submit" value="Log in" className='colorful-button w-[55%] rounded-full text-[14px] text-white font-[700] py-[4%] sm:text-[16px] cursor-pointer' autoComplete='on'/>
+              <div className='w-full relative flex flex-col items-center gap-1 lg:gap-0 [&_button]:rounded-3xl [&_button]:w-[60%]'>
+                <span className='absolute -top-[18%] left-1/2 text-xs w-max overflow-visible text-sari -translate-x-1/2'>{responseText}</span>
+                <button type="submit" className='colorful-button w-[55%] rounded-full text-[14px] text-white font-[700] py-[4%] sm:text-[16px] cursor-pointer'>
+                  {!loading ? "Masuk" : <BiLoaderAlt className='m-auto text-[24px] animate-spin'/>}
+                </button>
                 <h4 className='font-bold'>or</h4>
                 <div className='flex text-sari items-center justify-center' onClick={(e)=>{handleGoogle(e)}}>
                   <h4 className='cursor-pointer'>Login with</h4>

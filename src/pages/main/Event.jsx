@@ -55,6 +55,17 @@ const kajian = [
        }
      },
      {
+       breakpoint: 840,
+       settings: {
+         slidesToShow: 1,
+         slidesToScroll: 1,
+         accessibility: true,
+         adaptiveHeight: true,
+         variableWidth: true,
+         arrows: false,
+       }
+     },
+     {
        breakpoint: 640,
        settings: {
          slidesToShow: 1,
