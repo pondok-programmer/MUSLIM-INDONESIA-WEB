@@ -11,7 +11,7 @@ const ListDropdown = ({label, text, list, tag ,setTag}) => {
 
   return (
   <li className='flex items-center'>
-    <NavLink className={()=> window.location.hash == `#${label}` ? " px-1.5 rounded-2xl bg-lime-800 text-white border-2 border-transparent  hover:border-2 hover:border-lime-800 " : "px-1.5 border-2 border-transparent hover:border-b-lime-800"} to={window.location.hash == `#${label}`? "/home" : `#${label}`} onClick={()=>{ tag != `${label}` ? setTag(`${label}`) : setTag("")}} >{text}</NavLink>
+    <NavLink className={()=> window.location.hash == `#${label}` ? " border-b-lime-800 border-white px-1.5 border-b-2 text-lime-800" : "px-1.5 border-b-2 border-transparent hover:border-b-lime-800"} to={window.location.hash == `#${label}`? "/home" : `#${label}`} onClick={()=>{ tag != `${label}` ? setTag(`${label}`) : setTag("")}} >{text}</NavLink>
     <div className={`relative ${dropDown && "z-50"}`}>
       <button ref={elementDropDown} onClick={()=>{list[0] && setDropDown(!dropDown)}}>
         <PiCaretDown className='pointer-events-none'/>

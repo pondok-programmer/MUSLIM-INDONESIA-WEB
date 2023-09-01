@@ -110,19 +110,14 @@ const kajian = [
                   {
                      kajian.map((element, index)=>{
                      return(
-                        <div key={index} className={`relative h-[260px] lg:h-[260px] !flex flex-col !rounded-2xl overflow-hidden flex-nowrap flex-grow items-end justify-center my-1 px-2 py-2 bg-zinc-300`}>
-                           <div className='flex-[0.12] font-bold w-full text-ellipsis overflow-hidden whitespace-nowrap'>
-                              Meneladani Rosul dalam kehidupan
+                        <div key={index} className={`relative h-[260px] lg:h-[260px] !flex flex-col !rounded-2xl overflow-hidden items-end justify-end my-1`}>
+                           <div className='flex-1 sm:w-full flex justify-center overflow-hidden'>
+                              <img src={masjidImage} alt="" className='w-full h-full object-cover'/>
                            </div>
-                           <div className='flex-1 flex items-center w-full shrink overflow-hidden rounded-xl'>
-                              <figure className='w-full py-0.5'>
-                                 <img src={masjidImage} alt="" className='w-full object-cover h-[100%]' />
-                              </figure>
-                           </div>
-                           <div className='flex-shrink flex-col items-start justify-between  w-full'>
-                              <span className='px-[0.5%] text-ellipsis overflow-hidden whitespace-nowrap text-[15px]'>{element.person}</span>
-                              <div className='flex items-center justify-start max-lg:text-[11px] lg:text-[1.3vw] w-full'>
-                                 <PiCalendar className='mx-[0.8%] text-lime-700 relative bottom-0'/>
+                           <div className='bg-neutral-300 flex justify-between items-center p-[1vw] sm:px-[3%] lg:p-2 w-full sm:text-[2vw] lg:text-[1.4vw] h-[19%] text-ellipsis'>
+                              <p className='text-ellipsis overflow-hidden whitespace-nowrap'>{element.person}</p>
+                              <div className='flex items-center justify-end w-1/2 lg:text-[1.2vw]'>
+                                 <PiCalendar className='mx-[3%] text-lime-700 relative bottom-0'/>
                                  <p className='text-ellipsis overflow-hidden whitespace-nowrap'> {element.date}</p>
                               </div>
                            </div>
@@ -132,6 +127,28 @@ const kajian = [
                   }
                </Slider>
                </div>
+               {/* <div className='bg-black bg-opacity-5 gap-[1vw] lg:[&_.slick-list]:!h-max lg:[&_.slick-track]:!w-max lg:[&_.slick-track]:!m-auto [&_.slick-track]:!w-max [&_.slick-track]:!m-auto [&_.slick-track]:!gap-[1vw] lg:[&_.slick-track]:!gap-[3vw]'>
+               <Slider {...settings}>
+                  {
+                     kajian.map((element, index)=>{
+                     return(
+                        <div key={index} className={`!aspect-[3.9/3] lg:!min-w-[270px] !w-[45vw] max-sm:!py-0.5 text-[13px] sm:text-[1.5vw] lg:text-[15px] !flex flex-col !rounded-lg overflow-hidden items-end justify-end my-1`}>
+                           <div className='flex-1 w-full h-12 flex justify-center overflow-hidden '>
+                           <img src={masjidImage} alt="" className='w-full h-full'/>
+                           </div>
+                           <div className='bg-neutral-300 flex justify-between items-center p-[1vw] lg:p-2 w-full sm:text-[1.3vw] lg:text-[1.1vw] h-[19%] text-ellipsis'>
+                           <p className='text-ellipsis overflow-hidden whitespace-nowrap'>{element.person}</p>
+                           <div className='flex items-center justify-end w-1/2 lg:text-[0.9vw]'>
+                              <PiCalendar className='mx-[3%] text-lime-700 relative bottom-0'/>
+                              <p className='text-ellipsis overflow-hidden whitespace-nowrap'> {element.date}</p>
+                           </div>
+                           </div>
+                        </div>
+                     )
+                     })
+                  }
+               </Slider>
+               </div> */}
             </div>
          )
          })}

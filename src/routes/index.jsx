@@ -10,6 +10,7 @@ import { AiOutlineMenu } from "react-icons/ai"
 // import Masjid from "../pages/main/Masjid"
 import DetailMasjid from "../pages/details/DetailMasjid"
 import Navbar from "../components/nav/Navbar"
+import Admin from "../pages/main/Admin"
 
 const Routing = () => {
 
@@ -23,7 +24,7 @@ const Routing = () => {
             <Navbar></Navbar>
             <Routes>
                 <Route path='/home' element={<Home/>} />
-                <Route path='/masjid' element={<Home/>} />
+                <Route path='/admin' element={<Admin/>} />
                 <Route path='/about' element={<About/>} />
                 <Route path='/event' element={<Events/>} />
                 <Route path='/user/:username' element={<Profile/>} />

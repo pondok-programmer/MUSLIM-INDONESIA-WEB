@@ -10,6 +10,7 @@ import Modal from "./components/modal/Modal";
 
 const App = () => {
   const {showModal, globalTarget, setGlobalTarget} = useContext(Context)
+  const token = localStorage.getItem("token")
 
   return (
       <BrowserRouter>
