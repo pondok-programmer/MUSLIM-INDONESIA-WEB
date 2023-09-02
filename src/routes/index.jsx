@@ -21,9 +21,9 @@ const Routing = () => {
             <button className='bell fixed bottom-10 bg-white text-lime-700 right-6 rounded-full p-3 z-10'>
                 <BsBell className="text-[28px]"/>
             </button>
-            <Navbar></Navbar>
+            <Navbar/>
             <Routes>
-                <Route path='/home' element={<Home/>} />
+                <Route path='/' element={<Home/>} />
                 <Route path='/admin' element={<Admin/>} />
                 <Route path='/about' element={<About/>} />
                 <Route path='/event' element={<Events/>} />

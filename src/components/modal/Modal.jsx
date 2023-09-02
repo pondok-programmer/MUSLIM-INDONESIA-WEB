@@ -4,6 +4,7 @@ import ButtonCustom from '../ui/ButtonCustom'
 import { BsHandThumbsUp } from 'react-icons/bs'
 import { Context } from '../../context/StateContext'
 import LogoutModal from './LogoutModal'
+import LoginModal from './LoginModal'
 
 
 const Modal = ({Usage}) => {
@@ -16,6 +17,12 @@ const Modal = ({Usage}) => {
     <>
       <LogoutModal/> 
     </>
+    )
+  } else if (showModal == "login") {
+    return (
+      <>
+        <LoginModal/>
+      </>
     )
   }
 }

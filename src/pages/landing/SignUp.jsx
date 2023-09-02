@@ -121,7 +121,7 @@ const SignUp = () => {
         </section>
       </main>
       <footer className='px-4 pt-0.5 text-[15px] w-full flex font-bold justify-between h-[45px] lg:hidden'>
-        <div className=''>Already have an Account? <Link to={"/"} className='text-sari font-bold'>Login</Link></div>
+        <div className=''>Already have an Account? <Link to={"/login"} className='text-sari font-bold'>Login</Link></div>
       </footer>
     </div>
   )

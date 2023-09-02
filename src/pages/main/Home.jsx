@@ -16,7 +16,7 @@ const Home = () => {
   let tanggal = date.toLocaleDateString("id-ID", {weekday:"long", day:"2-digit", month:"long", year:"numeric"}).split(",")
   let tanggalIslam = date.toLocaleDateString("id-ID-u-ca-islamic", {day:"2-digit", month:"long", year:"numeric"})
 
-  const {masjidSource} = useContext(Context)
+  const {masjidSource, showModal, setShowModal} = useContext(Context)
   const [notif, setNotif] = useState(false)
   const namaUser = localStorage.getItem("name")
   const [userInfo, setUserInfo] = useState([])
@@ -113,7 +113,8 @@ useEffect(() => {
    {
      console.log(response)
      setUserInfo(response.data.login)
-     setBaseData(response.data.user.reverse())
+     Array
+     setBaseData(response.data.user?.reverse())
      setData(response.data.user.reverse())
    })
    .catch((error)=>
@@ -122,6 +123,8 @@ useEffect(() => {
    })
   }
 }, [])
+
+const token = localStorage.getItem("token")
 
   return (
     <div id='home' className="h-full flex flex-col w-full ">
@@ -151,7 +154,11 @@ useEffect(() => {
         </section>
         <section className='bg-white'>
           <div className='w-[80vw]  sm:w-[72vw] h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[45px] border flex border-gray-400 rounded-[10rem] overflow-hidden -translate-x-[50%] '>
-            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searc}}/>
+            {token ? 
+            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e)}} />
+            :
+            <input disabled type="search" name="" id="search-bar" className='flex-1 text-[15px] disabled:bg-white lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onFocus={()=>{setShowModal("login")}}/>
+            }
             <button className='rounded-r-full bg-white'>
               <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] pl-1 pr-2 py-1 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
             </button>

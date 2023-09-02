@@ -1,16 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useContext } from 'react'
+import ButtonCustom from '../ui/ButtonCustom'
+import { BsHandThumbsUp } from 'react-icons/bs'
 import { Context } from '../../context/StateContext'
 
 
-const LogoutModal = ({title,content,btnCancel,bgClose,classnameBtn,setIsShowPopup,linkTo}) => {
+const LoginModal = ({title,content,btnCancel,bgClose,classnameBtn,setIsShowPopup,linkTo}) => {
 
   const {showModal, setShowModal} = useContext(Context)
   const navigate = useNavigate()
-  console.log(showModal);
 
   return (
-  <div className='fixed top-0 w-full z-[99] h-screen !bg-[url("")] !bg-black/30 backdrop-blur-[1px]' onClick={()=>{setShowModal(false);window.location.reload()}}>
+  <div className='fixed top-0 w-full z-[99] h-screen !bg-[url("")] !bg-black/30 backdrop-blur-[1px]' onClick={()=>{setShowModal(false);navigate("/")}}>
     <section className='rounded-2xl w-fit max-w-[400px] h-fit p-10 flex flex-col justify-center items-center absolute left-0 right-0 top-0 bottom-0 bg-white m-auto z-50 overflow-auto'>
       <section className='text-center'>
         <article className='py-4'>
@@ -29,4 +30,4 @@ const LogoutModal = ({title,content,btnCancel,bgClose,classnameBtn,setIsShowPopu
   )
 }
 
-export default LogoutModal
+export default LoginModal

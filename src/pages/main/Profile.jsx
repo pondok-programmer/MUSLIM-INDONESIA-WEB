@@ -109,11 +109,11 @@ const Profile = () => {
      .then((y)=>
      {
        console.log(y)
-       redirect("/home")
+       redirect("/")
      })
      .catch((y)=>
      {
-       redirect("/home")
+       redirect("/")
        console.log(y)
      })
    }

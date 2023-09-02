@@ -63,6 +63,12 @@ body > div > div{
    background: linear-gradient(155deg, rgb(115, 198, 19) 20%, rgb(63, 158, 34) 45%, rgb(63, 158, 34) 50%, rgb(4, 186, 71) 95%);
 }
 
+#change-type:after{
+   content: var("Lokasi");
+   position: absolute;
+   top: 0;
+}
+
 .quick-notification{
    animation: notification 900ms cubic-bezier(0.765, 1, 0.6, 0.8), disappear 1.5s 3.5s ease forwards;
    animation-iteration-count: 1 ;
@@ -96,6 +102,13 @@ body > div > div{
       opacity: 0;
    }
 }
+
+#inputs-coniner input{
+   box-shadow: inset 0px 1.5px 3px 1.5px rgba(0, 0, 0, 0.345);
+   border-radius: 10px;
+   padding: 5px 6px;
+}
+
 .slick-track {
    /* gap: 12px; */
    display: flex !important;
