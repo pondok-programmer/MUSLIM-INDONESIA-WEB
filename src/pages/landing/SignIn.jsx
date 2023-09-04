@@ -12,6 +12,7 @@ const SignIn = () => {
   
 
   const {masjidSource, setToken} = useContext(Context)
+  const [hMax, setHMax] = useState(Math.max(document.documentElement.clientHeight, window.innerHeight || 0))
 
   const [responseText, setResponseText] = useState("")
   const [loading, setLoading] = useState(false)
@@ -89,7 +90,7 @@ const SignIn = () => {
   let h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
   
   return (
-    <div className='min-h-screen h-screen flex max-lg:p-2 flex-col w-full text-white bg-kryptonite'>
+    <div className='min-h-screen lg:h-screen h-full flex flex-col w-full text-white bg-kryptonite' style={{height:`${hMax}px`}}>
       <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white sm:gap-4 lg:flex-row lg:gap-0'>
         <section className='w-full flex items-center justify-center lg:h-full lg:w-auto lg:flex-[0.97]' style={{minHeight:`${h*(0.25)}px`}}>
           <figure className='flex w-[64%] items-center justify-center gap-1 sm:flex-col sm:gap-0 lg:flex-col-reverse'>
@@ -98,7 +99,7 @@ const SignIn = () => {
           </figure>
         </section>
         <section className='w-[80%] sm:w-[70%] flex-[0.87] lg:w-[50%] flex items-center justify-center lg:flex-col lg:flex-1 lg:h-full lg:gap-3' style={{minHeight:`${h*(0.5)}px`}}>
-          <div className=' lg:border-white lg:border-opacity-75 backdrop-blur-[2px] lg:border-2 lg:h-[75%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-lg w-full'>
+          <div className=' lg:border-white lg:border-opacity-75 lg:backdrop-blur-[2px] lg:border-2 lg:h-[75%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-lg w-full'>
             <div className=' flex h-[25%] justify-center items-center max-lg:justify-start max-lg:py-[1.5%] lg:py-[0%]' >
               <h1 id='login-logo' className='text-[40px] sm:text-[37px] lg:text-[41px] font-[700] relative top-[12%] text-sari'>Login</h1>
             </div>

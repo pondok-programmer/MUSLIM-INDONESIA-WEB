@@ -14,6 +14,7 @@ const SignUp = () => {
   const redirect = useNavigate()
 
   const [responseText, setResponseText] = useState("")
+  const [hMax, setHMax] = useState(Math.max(document.documentElement.clientHeight, window.innerHeight || 0))
   const [loading, setLoading] = useState(false)
   const [notif, setNotif] = useState(false)
   const [maxH, setMaxH] = useState(Math.max(document.documentElement.clientHeight, window.innerHeight || 0))
@@ -65,9 +66,8 @@ const SignUp = () => {
     })
   }
 
-
   return (
-    <div className='min-h-screen lg:h-screen h-full flex flex-col w-full text-white bg-kryptonite'>
+    <div className='min-h-screen lg:h-screen h-full flex flex-col w-full text-white bg-kryptonite' style={{height:`${hMax}px`}}>
       {notif &&
         <div className={`absolute quick-notification bottom-[10vh] peer right-1/2 translate-x-1/2 lg:text-[11px] px-[1%] bg-black/60 opacity-80 text-white rounded-2xl`}>Registrasi Gagal</div>
       }
@@ -79,13 +79,13 @@ const SignUp = () => {
           </figure>
         </section>
         <section className='w-full lg:w-[80%] h-[70%] flex-1 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
-          <div className={`lg:border-white lg:border-2 w-[76%] sm:w-[75%] backdrop-blur-[2px] lg:border-opacity-75 lg:!min-h-[85%] lg:w-[54vh] lg:rounded-md flex flex-col`} style={{minHeight:`${maxH*(0.6)}px`}}>
+          <div className={`lg:border-white h-full lg:border-2 w-[76%] sm:w-[75%] lg:backdrop-blur-[2px] lg:border-opacity-75 lg:!min-h-[85%] lg:w-[54vh] lg:rounded-md flex flex-col`} style={{minHeight:`${maxH*(0.6)}px`}}>
             <div className='flex justify-center max-lg:justify-start flex-[0.23] items-end max-lg:pb-[1%] lg:h-[18%]'>
               <h1 className='text-[32px] sm:text-[37px] lg:text-[41px] font-[700]  text-sari'>Register</h1> 
             </div>
-            <form onSubmit={(e)=>{handleRegister(e)}} className='flex flex-col justify-between gap-8 sm:gap-0 sm:flex-[0.4] lg:gap-0 lg:flex-1 lg:text-[14px] lg:px-10 ' autoComplete={toString("on")}>
+            <form onSubmit={(e)=>{handleRegister(e)}} className='flex flex-col overflow-auto justify-between gap-8 sm:gap-0 sm:flex-[0.4] lg:gap-0 lg:flex-1 lg:text-[14px] lg:px-10 ' autoComplete={toString("on")}>
               <div className='overflow-auto overflow-x-hidden lg:h-[68%] w-[100%] mx-auto'>
-                <div className='flex flex-col gap-4 sm:gap-5 lg:py-[10%] lg:pb-[5%] [&_>_div]:!pt-[3%] lg:[&_>_div]:!pt-0 lg:h-full lg:gap-4 [&_input]:px-1 max-lg:[&_>_div]:pt-3 max-lg:[&_input]:pb-1 max-lg:[&_input]:pt-0 justify-evenly'>
+                <div className='flex flex-col gap-4 sm:gap-5 py-[4%] lg:py-[10%] lg:pb-[5%] [&_>_div]:!pt-[3%] lg:[&_>_div]:!pt-0 lg:h-full lg:gap-4 [&_input]:px-1 max-lg:[&_>_div]:pt-3 max-lg:[&_input]:pb-1 max-lg:[&_input]:pt-0 justify-evenly'>
                   <InputRegister type={"text"} modifierFunction={setName} text={"Nama"}/>
                   <InputRegister type={"email"} modifierFunction={setEmail} text={"Email"}/>
                   <InputRegister type={"tel"} modifierFunction={setNomor} text={"No. Telepon"}/>
