@@ -176,7 +176,7 @@ useEffect(() => {
               <label className="border-4 cursor-pointer border-slate-600/50 border-dashed w-full h-full flex items-center justify-center opacity-80 rounded-2xl">
                 tambah gambar <span className=""> +</span>
               </label> 
-              :
+              : 
               <img src={preview} alt="" className='h-full border-4 rounded-2xl border-white w-full object-cover' />
               }
             </button>

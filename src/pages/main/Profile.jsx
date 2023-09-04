@@ -174,34 +174,6 @@ const Profile = () => {
          </div>
       </header>
       <main className='text-black md:pt-[3.5%] flex-1 bg-white md:flex justify-evenly overflow-auto'>
-         {/* <div className='hidden flex-col'>
-            <div className=' w-full bg-gray-500 py-4'>
-               <div className='w-full flex flex-col items-center justify-evenly bg-orange-600 h-[160px] '>
-                  <figure className=' rounded-lg h-[80%] aspect-square overflow-hidden'>
-                     <img src={masjidImage} alt="" className='h-full w-full object-cover'/>
-                  </figure>
-                  <span>Roihan Faiz</span>
-               </div>
-               <div className='flex flex-col items-center bg-pink-500 justify-evenly '>
-                  <span>Email</span>
-                  <span>0816481921</span>
-               </div>
-               <div>
-                  <button></button>
-               </div>
-            </div>
-            <div className='bg-rose-400'>
-               <div className='mx-auto w-max flex flex-wrap gap-4'>
-               {kajian.map((data, index)=>{
-                  return(
-                     <div className='h-[100px] w-[200px]' key={index}>
-
-                     </div>
-                  )
-               })}
-               </div>
-            </div>
-         </div> */}
          <div className='h-[160px] md:w-max md:h-[190px] md:gap-2 flex flex-col justify-center items-center p-3 md:p-0 pb-0 px-10'>
             <div className=' h-[100%] md:px-[0.1%] md:w-fit md:p-2 md:bg-zinc-200 rounded-2xl flex flex-col gap-[3%] justify-between items-center'>
                <span className={`hidden md:flex font-bold`}>{data.full_name}</span>

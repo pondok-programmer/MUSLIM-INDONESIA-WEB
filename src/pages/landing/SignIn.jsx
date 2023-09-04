@@ -97,9 +97,9 @@ const SignIn = () => {
           </figure>
         </section>
         <section className='w-[80%] sm:w-[70%] lg:w-[50%] flex items-center justify-center lg:flex-col lg:flex-1 lg:h-full lg:gap-3' style={{minHeight:`${h*(0.5)}px`}}>
-          <div className=' lg:border-white lg:border-opacity-75 lg:border-2 lg:h-[75%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-lg w-full'>
+          <div className=' lg:border-white lg:border-opacity-75 backdrop-blur-[2px] lg:border-2 lg:h-[75%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-lg w-full'>
             <div className=' flex h-[25%] justify-center items-center max-lg:py-[1.5%] lg:py-[0%]' >
-              <h1 id='login-logo' className='text-[32px] sm:text-[37px] lg:text-[37px] font-[700] relative top-[12%] text-sari'>Login</h1>
+              <h1 id='login-logo' className='text-[32px] sm:text-[37px] lg:text-[41px] font-[700] relative top-[12%] text-sari'>Login</h1>
             </div>
             <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-evenly gap-8 lg:gap-0 lg:flex-1 lg:px-12'>
               <div className='flex flex-col gap-10 sm:gap-12 lg:gap-5 lg:pb-6 lg:[&_>_div]:my-[3%]'>
@@ -107,26 +107,26 @@ const SignIn = () => {
                 <InputLogin type={"password"} modifierFunction={setPassword} text={"Kata Sandi"}/>
               </div>
               <div className='w-full relative flex flex-col items-center gap-0.5 sm:gap-0.5 lg:gap-0 [&_button]:rounded-3xl max-lg:py-[2%] lg:h-[25%]'>
-                <span className='absolute -top-[18%] left-1/2 text-xs w-max overflow-visible text-sari -translate-x-1/2'>{responseText}</span>
-                <button type="submit" className='w-[60%] sm:w-[50%] sm:py-[3%] colorful-button rounded-3xl text-[14px] lg:text-[13px] text-white font-[700] py-[4%] flex items-center justify-center sm:text-[16px] cursor-pointer min-h-[35px] min-w-[115px]'>
+                <span className='absolute top-0 left-1/2 text-xs w-max overflow-visible text-sari -translate-x-1/2 translate-y-[-110%]'>{responseText}</span>
+                <button type="submit" className='w-[60%] sm:w-[50%] sm:py-[3%] colorful-button rounded-3xl text-[14px] lg:text-[15px] text-white font-[700] py-[4%] flex items-center justify-center sm:text-[16px] cursor-pointer min-h-[35px] min-w-[115px]'>
                   {!loading ? "Masuk" : <BiLoaderAlt className='m-auto text-[24px] animate-spin'/>}
                 </button>
                 <h4 className='font-bold lg:text-[13px]'>or</h4>
                 <div className='flex text-sari items-center justify-center' onClick={(e)=>{handleGoogle(e)}}>
-                  <h4 className='cursor-pointer lg:text-[13px]'>Login with</h4>
+                  <h4 className='cursor-pointer lg:text-[14px]'>Login with</h4>
                   <img src={googleIcon} alt="" className='pl-2 cursor-pointer lg:h-[4vh]'/>
                 </div>
               </div>
             </form>
-            <div className=' px-4 pt-0.5 text-[15px] hidden w-full font-bold justify-between min-h-[10%] items-center lg:flex'>
-              <div className='flex-1 lg:text-[11px]'><Link to={"/forgot-password"}>Forgot Password?</Link></div>
+            <div className=' px-4 pt-0.5 text-[13px] hidden w-full font-bold justify-between min-h-[10%] items-center lg:flex'>
+              <div className='flex-1'><Link to={"/forgot-password"}>Forgot Password?</Link></div>
               <Link to={"/register"}>
-                <div className='text-sari lg:text-[11px]'>Register</div>
+                <div className='text-sari'>Register</div>
               </Link>
             </div>
           </div>
           <Link className='hidden lg:flex h-auto'>
-            <img src={googlePlayButton} alt=""  className='h-[17vh] max-h-[43px]'/>
+            <img src={googlePlayButton} alt=""  className='h-[7vh] max-h-[53px]'/>
           </Link>
         </section>
       </main>

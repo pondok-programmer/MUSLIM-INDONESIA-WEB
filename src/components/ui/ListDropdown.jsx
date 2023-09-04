@@ -1,12 +1,11 @@
 import React, { useContext, useRef, useState } from 'react'
 import { PiCaretDown } from 'react-icons/pi';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Context } from '../../context/StateContext';
 
-const ListDropdown = ({label, text, list, tag ,setTag}) => {
+const ListDropdown = ({label, text, list, tag ,setTag, translate}) => {
   const elementDropDown = useRef(null)
   const [dropDown, setDropDown] = useState(false)
-  const {globalTarget, setGlobalTarget} = useContext(Context)
   
   return (
   <li className='flex items-center'>
@@ -15,11 +14,15 @@ const ListDropdown = ({label, text, list, tag ,setTag}) => {
       <button ref={elementDropDown} onClick={()=>{list[0] && setDropDown(!dropDown)}}>
         <PiCaretDown className='pointer-events-none'/>
       </button>
-      <ul className={`absolute w-[25vw] ${!dropDown ? "max-h-0" : "!max-h-[45vh]"} overflow-y-hidden !duration-300 ease-in-out -bottom-0.5 right-0 translate-x-[43%] translate-y-full min-w-[180px] bg-white shadow-[0px_2px_5px_-1px_black]`} >
+      <ul className={`absolute w-[25vw] ${!dropDown ? "max-h-0" : "!max-h-[45vh]"} overflow-y-hidden !duration-300 ease-in-out -bottom-0.5 right-0 translate-x-[43%] ${translate} translate-y-full min-w-[180px] bg-white shadow-[0px_2px_5px_-1px_black]`} >
         {list.map((x, y)=>{
           
           return(
-            <li className='p-2 py-3 lg:p-3 cursor-pointer border-b text-ellipsis overflow-hidden whitespace-nowrap hover:whitespace-normal border-gray-700 last:border-b-0 ' key={y}>{x.place_name}</li>
+            <li className='cursor-pointer border-b text-ellipsis overflow-hidden whitespace-nowrap hover:whitespace-normal border-gray-700 last:border-b-0 ' key={y}>
+              <Link className='p-2 py-3 lg:p-3 block' to={`https://www.google.com/maps/@${x.lat},${x.long},19z?entry=ttu`} target='_blank'>
+                {x.place_name}
+              </Link>
+            </li>
           )
         })}
         

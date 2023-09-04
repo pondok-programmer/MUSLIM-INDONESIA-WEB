@@ -110,7 +110,7 @@ const kajian = [
                   {
                      kajian.map((element, index)=>{
                      return(
-                        <div key={index} className={`relative h-[260px] lg:h-[260px] !flex flex-col !rounded-2xl overflow-hidden flex-nowrap flex-grow items-end justify-center my-1 px-2 py-2 bg-zinc-300`}>
+                        <div key={index} className={`relative !flex flex-col !rounded-2xl overflow-hidden flex-nowrap flex-grow items-end justify-center my-1 px-2 py-2 bg-zinc-300 !aspect-[3/2.2]`}>
                            <div className='flex-[0.12] font-bold w-full text-ellipsis overflow-hidden whitespace-nowrap'>
                               Meneladani Rosul dalam kehidupan
                            </div>
@@ -120,8 +120,8 @@ const kajian = [
                               </figure>
                            </div>
                            <div className='flex-shrink flex-col items-start justify-between  w-full'>
-                              <span className='px-[0.5%] text-ellipsis overflow-hidden whitespace-nowrap text-[15px]'>{element.person}</span>
-                              <div className='flex items-center justify-start max-lg:text-[11px] lg:text-[1.3vw] w-full'>
+                              <span className='px-[0.5%] text-ellipsis overflow-hidden whitespace-nowrap'>{element.person}</span>
+                              <div className='flex items-center justify-start max-lg:text-[11px] lg:text-[12px] w-full'>
                                  <PiCalendar className='mx-[0.8%] text-lime-700 relative bottom-0'/>
                                  <p className='text-ellipsis overflow-hidden whitespace-nowrap'> {element.date}</p>
                               </div>

@@ -79,13 +79,13 @@ const SignUp = () => {
           </figure>
         </section>
         <section className='w-full lg:w-[80%] h-[70%] flex-1 lg:h-full flex items-center justify-center lg:flex-col lg:gap-3'>
-          <div className={`lg:border-white lg:border-2 w-[80%] sm:w-[75%] lg:border-opacity-75 lg:!min-h-[85%] lg:w-[54vh] lg:rounded-md flex flex-col`} style={{minHeight:`${maxH*(0.6)}px`}}>
-            <div className='flex justify-center flex-[0.3] items-center max-lg:pb-[1%] lg:h-[18%]'>
-              <h1 className='text-[32px] sm:text-[37px] font-[700] relative top-[12%] text-sari'>Register</h1> 
+          <div className={`lg:border-white lg:border-2 w-[80%] sm:w-[75%] backdrop-blur-[2px] lg:border-opacity-75 lg:!min-h-[85%] lg:w-[54vh] lg:rounded-md flex flex-col`} style={{minHeight:`${maxH*(0.6)}px`}}>
+            <div className='flex justify-center flex-[0.23] items-end max-lg:pb-[1%] lg:h-[18%]'>
+              <h1 className='text-[32px] sm:text-[37px] lg:text-[41px] font-[700]  text-sari'>Register</h1> 
             </div>
             <form onSubmit={(e)=>{handleRegister(e)}} className='flex flex-col justify-between gap-8 sm:gap-0 sm:flex-[0.4] lg:gap-0 lg:flex-1 lg:text-[14px] lg:px-10 ' autoComplete={toString("on")}>
-              <div className='overflow-auto overflow-x-hidden lg:max-h-[73%]'>
-                <div className='flex flex-col gap-2 sm:gap-5 [&_>_div]:!pt-[3%] lg:[&_>_div]:!pt-0 lg:gap-1 [&_input]:px-1 max-lg:[&_>_div]:pt-3 max-lg:[&_input]:pb-1 max-lg:[&_input]:pt-0 [&_input]:!text-[19px] [&_>_div]:mt-1.5 justify-evenly'>
+              <div className='overflow-auto overflow-x-hidden lg:h-[68%] w-[91%] mx-auto'>
+                <div className='flex flex-col gap-2 sm:gap-5 lg:py-[10%] lg:pb-[5%] [&_>_div]:!pt-[3%] lg:[&_>_div]:!pt-0 lg:h-full lg:gap-4 [&_input]:px-1 max-lg:[&_>_div]:pt-3 max-lg:[&_input]:pb-1 max-lg:[&_input]:pt-0 justify-evenly'>
                   <InputRegister type={"text"} modifierFunction={setName} text={"Nama"}/>
                   <InputRegister type={"email"} modifierFunction={setEmail} text={"Email"}/>
                   <InputRegister type={"tel"} modifierFunction={setNomor} text={"No. Telepon"}/>
@@ -101,22 +101,22 @@ const SignUp = () => {
               </div>
               <div className='w-full relative flex flex-col items-center gap-0.5 sm:gap-0.5 lg:gap-0 [&_button]:rounded-3xl max-lg:py-[2%] lg:h-[25%]'>
                 {/* <span className='absolute -top-[18%] left-1/2 text-xs w-max overflow-visible text-sari -translate-x-1/2'>{responseText}</span> */}
-                <button type="submit" className='w-[60%] sm:w-[50%] sm:py-[3%] colorful-button rounded-3xl text-[14px] lg:text-[13px] text-white font-[700] py-[4%] flex items-center justify-center sm:text-[16px] cursor-pointer min-h-[35px] min-w-[115px]' autoComplete='on'>
+                <button type="submit" className='w-[60%] sm:w-[50%] sm:py-[3%] colorful-button rounded-3xl text-[14px] lg:text-[15px] text-white font-[700] py-[4%] flex items-center justify-center sm:text-[16px] cursor-pointer min-h-[35px] min-w-[115px]' autoComplete='on'>
                   {loading ? <BiLoaderAlt className='animate-spin mx-auto text-[20px]'/> : "Register"}
                 </button>
                 <h4 className='font-bold max-h-min lg:text-[13px]'>or</h4>
                 <div className='flex text-sari items-center justify-center'>
-                  <h4 className='text-[12px]'>Register with</h4>
+                  <h4 className='text-[14px]'>Register with</h4>
                   <img src={googleIcon} alt="" className='px-2 lg:h-[4.3vh] max-h-[26px]'/>
                 </div>
               </div>
             </form>
             <div className=' px-4 pt-0.5 text-[15px] hidden w-full font-bold justify-between h-[5vh] items-center lg:flex'>
-              <div className='text-[10px]'>Already have an Account? <Link to={"/"} className='text-sari font-bold'>Login</Link></div>
+              <div className='text-[13px]'>Already have an Account? <Link to={"/login"} className='text-sari font-bold'>Login</Link></div>
             </div>
           </div>
           <button className='hidden text lg:flex'>
-            <img src={googlePlayButton} alt="" className='h-[8vh] max-h-[43px]'/>
+            <img src={googlePlayButton} alt="" className='h-[7vh] max-h-[53px]'/>
           </button>
         </section>
       </main>

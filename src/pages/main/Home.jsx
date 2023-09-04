@@ -72,8 +72,7 @@ const handleBookmark = (id) => {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `/create-bookmark/${localStorage.getItem("username")}/${id}`,
-    data : data,
+    url: `create-bookmark/${localStorage.getItem("id")}/${id}`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`
     }
@@ -113,7 +112,6 @@ useEffect(() => {
    {
      console.log(response)
      setUserInfo(response.data.login)
-     Array
      setBaseData(response.data.user?.reverse())
      setData(response.data.user.reverse())
    })
@@ -136,11 +134,11 @@ const token = localStorage.getItem("token")
       </button>
       <header>
         <section className='text-white bg-kryptonite '>
-          <div className='w-full flex bg-kryptonite justify-center flex-col items-center lg:py-1'>
+          <div className='w-full flex bg-kryptonite justify-center flex-col items-center lg:py-3'>
             <Link to={"/admin"}>
-            <h1 className='sm:text-[23px] lg:text-[23px] font-bold'>{tanggal}</h1>
+            <h1 className='sm:text-[23px] lg:text-[25px] font-bold'>{tanggal}</h1>
             </Link>
-            <h3 className='text-sari max-sm:text-[14px]'>{tanggalIslam}</h3>
+            <h3 className='text-sari max-sm:text-[14px] lg:text-[17px]'>{tanggalIslam}</h3>
           </div>
           {/* <div className='flex justify-center items-center bg-gradient-to-b from-kryptonite to-white from-[50%] to-[50%] py-3'>
             <div className='w-[72vw] h-[49px] lg:w-[44vw] sm:h-[52px] lg:h-[54px] border flex border-gray-400 rounded-[10rem] overflow-hidden bg-white'>
@@ -153,22 +151,18 @@ const token = localStorage.getItem("token")
           <div className='h-[2.3rem]'></div>
         </section>
         <section className='bg-white'>
-          <div className='w-[80vw]  sm:w-[72vw] h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[45px] border flex border-gray-400 rounded-[10rem] overflow-hidden -translate-x-[50%] '>
-            {token ? 
-            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e)}} />
-            :
-            <input disabled type="search" name="" id="search-bar" className='flex-1 text-[15px] disabled:bg-white lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onFocus={()=>{setShowModal("login")}}/>
-            }
+          <div className='w-[80vw]  sm:w-[72vw] h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[50px] border flex border-gray-400 rounded-[10rem] overflow-hidden -translate-x-[50%] '>
+            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e)}} autoComplete={!token ? "off" : "on"} onFocus={()=>{!token && setShowModal("login")}} value={!token ? "" : undefined}/>
             <button className='rounded-r-full bg-white'>
               <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] pl-1 pr-2 py-1 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
             </button>
           </div>
           <div className='h-[2.3rem]'></div>
           <div className='w-full flex items-center justify-center sm:justify-end px-4'>
-            <ul className=' text-[14px] gap-3 pl-1 lg:text-[14px] flex text-black sm:gap-6 [&_li_a]:font-bold hover:[&_button]:outline hover:[&_button]:outline-1 hover:[&_button]:rounded-md [&_ul]:z-20'>
+            <ul className=' text-[14px] gap-3 pl-1 lg:text-[16px] flex text-black sm:gap-6 [&_li_a]:font-bold hover:[&_button]:outline hover:[&_button]:outline-1 hover:[&_button]:rounded-md [&_ul]:z-20'>
               <ListDropdown label="masjid" text="Masjid" list={dataMasjid} tag={tag} setTag={setTag}/>
-              <ListDropdown label="restoran" text="Restoran" list={dataResto} tag={tag} setTag={setTag}/>
-              <ListDropdown label="tpq" text="TPQ" list={dataTpq} tag={tag} setTag={setTag}/>
+              <ListDropdown label="restoran" text="Restoran" list={dataResto} tag={tag} setTag={setTag} translate={"!translate-x-[20%]"}/>
+              <ListDropdown label="tpq" text="TPQ" list={dataTpq} tag={tag} setTag={setTag} translate={"!translate-x-[0%]"}/>
             </ul>
           </div>
         </section>
@@ -176,18 +170,26 @@ const token = localStorage.getItem("token")
       <main className='h-auto bg-white pb-[4%] min-h-[calc(50vh-0.1rem)]'>
         <section className='flex items-center h-[90px] sm:h-[120px] lg:h-auto lg:py-[2%]'>
           <div className='text-center w-full leading-snug'>
-            <h1 className='lg:text-[24px] sm:text-[24px]'>Assalamualaikum,</h1>
-            <h1 className='lg:text-[25px] sm:text-[25px]'>Selamat datang <span className='font-bold text-[18px] sm:text-[26px] lg:text-[26px]'>{namaUser}</span></h1>
-            <h1 className='lg:text-[25px] sm:text-[150%]'>di <span className='font-bold text-sari'>Muslim</span><span className='font-bold text-kryptonite'> Indonesia</span></h1>
+            {token ? 
+            <>
+              <h1 className='lg:text-[26px] sm:text-[24px]'>Assalamualaikum,</h1>
+              <h1 className='lg:text-[28px] sm:text-[25px]'>Selamat datang <span className='font-bold text-[18px] sm:text-[26px] lg:text-[26px]'>{namaUser}</span></h1>
+              <h1 className='lg:text-[28px] sm:text-[150%]'>di <span className='font-bold text-sari'>Muslim</span><span className='font-bold text-kryptonite'> Indonesia</span></h1>
+            </> 
+            : 
+            <>
+              <h1 className='lg:text-[26px] sm:text-[24px]'>Assalamualaikum,</h1>
+              <h1 className='lg:text-[28px] sm:text-[25px]'>Selamat datang di <span className='font-bold text-sari'>Muslim</span><span className='font-bold text-kryptonite'> Indonesia</span></h1>
+            </> }
           </div>
         </section> 
         <section className='sm:min-h-[500px] max-sm:py-3 flex items-center lg:min-h-[280px] py-[3%] lg:pt-[1%] lg:pb-[10%]'>
           <ul className='w-full h-[80%] flex gap-6 lg:gap-16 sm:gap-8 justify-center items-center flex-wrap'>
             {(window.location.hash == "#masjid" ? dataMasjid : window.location.hash == "#restoran" ? dataResto : window.location.hash == "#tpq" ? dataTpq : data ).map((card, y)=>{
               return(
-                <li key={y} className={`aspect-[4/2.5] relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] rounded-xl`}>
+                <li key={y} className={`aspect-[4/2.5] relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] shadow-[1px_2px_3px_0px] shadow-black/70 rounded-xl`}>
                   <img src={card.photo} alt="" className='h-full w-full rounded-xl '/>
-                  <Link to={"/detail/masjid"} id='images' className='overflow-hidden absolute top-0 h-full w-full flex flex-col justify-between rounded-xl text-white opacity-80 [&:hover_div:first-child]:!translate-y-0 after:bg-black after:bg-opacity-0 after:w-full after:h-full after:absolute after:top-0 after:backdrop-blur-2xl hover:after:bg-opacity-80 after:duration-500 [&:hover_div:last-child]:!translate-y-0'>
+                  <Link target='_blank' to={`https://www.google.com/maps/@${card.lat},${card.long},19z?entry=ttu`} id='images' className='overflow-hidden absolute top-0 h-full w-full flex flex-col justify-between rounded-xl text-white opacity-80 [&:hover_div:first-child]:!translate-y-0 after:bg-black after:bg-opacity-0 after:w-full after:h-full after:absolute after:top-0 after:backdrop-blur-2xl hover:after:bg-opacity-80 after:duration-500 [&:hover_div:last-child]:!translate-y-0'>
                     <div className='absolute max-w-[78%] overflow-hidden max-h-[35%] z-20 p-2 h-[32%] bg-gradient-to-b duration-500 ease-out translate-y-[-100%]'>
                       <h4 className='lg:text-[20px] text-sari font-bold'>{card.place_name}</h4>
                       <h5 className='text-[14px] lg:text-[15px]'>{card.regency}</h5>

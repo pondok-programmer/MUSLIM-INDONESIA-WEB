@@ -11,6 +11,8 @@ const Navbar = () => {
   const {showModal, setShowModal} = useContext(Context)
   const redirect = useNavigate()
 
+  const token = localStorage.getItem("token")
+
   const [hover, setHover] = useState(false)
   const [mobileMenu, setmobileMenu] = useState(false)
   const {masjidImage} = useContext(Context)
@@ -39,7 +41,7 @@ const Navbar = () => {
    {
     console.log(response);
     setShowModal("logout")
-    // localStorage.clear()
+    localStorage.clear()
    })
    .catch((error)=>
    {
@@ -49,17 +51,17 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="h-14 sm:h-[3.5rem] w-full lg:h-[3rem] bg-kryptonite z-40 flex justify-between sticky top-0 text-white sm:px-0.5 lg:px-2.5">
+    <nav className="h-14 sm:h-[3.5rem] w-full lg:h-[3.5rem] bg-kryptonite z-40 flex justify-between sticky top-0 text-white sm:px-0.5 lg:px-2.5">
       <div className="h-full w-1/2 flex items-center">
           <Link to={"/"}>
-              <figure className='flex gap-0.5 sm:gap-1.5'>
-                  <img src={masjidSource} alt="" className='h-12 max-sm:h-11 lg:py-0.5'/>
+              <figure className='flex gap-0.5 sm:gap-1.5 lg:gap-1'>
+                  <img src={masjidSource} alt="" className='h-12 max-sm:h-11 lg:py-0'/>
                   <figcaption className='w-min flex items-center flex-wrap'><span className="text-sari">Muslim</span> Indonesia</figcaption>
               </figure>
           </Link>
       </div>
       <div className="flex sm:h-full lg:w-1/2 w-full lg:justify-between justify-end">
-          <ul className="h-full hidden lg:flex justify-center flex-1 [&_li]:flex-[0_9vw] [&_li]:text-[1.4vw] lg:[&_li]:text-[16px] [&_a]:flex [&_a]:justify-center [&_a]:items-center">
+          <ul className="h-full hidden lg:flex justify-center flex-1 [&_li]:flex-[0_9vw] [&_li]:text-[1.4vw] lg:[&_li]:text-[17px] [&_a]:flex [&_a]:justify-center [&_a]:items-center">
               <li className="h-full">
                 <NavLink to="/" className=' hover:text-sari h-full w-full font-bold' tabIndex={(window.innerWidth < 1024) ? -1 : ""}>HOME</NavLink>
               </li>
@@ -70,11 +72,17 @@ const Navbar = () => {
                 <NavLink to="/event" className='hover:text-sari h-full font-bold' tabIndex={(window.innerWidth < 1024) ? -1 : ""}>EVENT</NavLink>
               </li>
           </ul>
-          <div className="aspect-square flex h-full max-lg:py-[2px]">
+          <div className={`flex h-full items-center max-lg:py-[2px] ${!token ? "w-auto" : "aspect-square "}`}>
             {(window.innerWidth > 1024) && 
             <>  
-            <button className='flex-1 max-lg:hidden relative' onClick={()=>{setProfilePopup(!profilePopup)}} tabIndex={(window.innerWidth < 1024) ? -1 : ""}>
+            <button className={`max-lg:hidden relative ${!token ? "font-bold h-max" : "flex-1"}`} onClick={()=>{token && setProfilePopup(!profilePopup)}} tabIndex={(window.innerWidth < 1024) ? -1 : ""}>
+              {token ? 
               <PiUserCircleFill className='h-full w-full text-[16px] sm:p-1.5'/>
+              :
+              <Link to={"/login"} className="h-full w-full bg-lime-500 px-[18px] rounded-3xl py-[6%]">
+                Login
+              </Link>
+              }
             </button>
             <section id="profile-pop-up" className={`absolute ${!profilePopup && `!min-w-0 !max-w-0 !w-0  !h-0 !opacity-0`} h-[47.3vh] min-h-max px-3 py-1 duration-300 opacity-100 !aspect-[2/2.4] w-[19vw] max-w-[280px] min-w-[220px] overflow-hidden bg-white shadow-[0px_4px_13px_-2px_black] top-[92%] rounded-2xl right-[2.1%] flex flex-col text-black border-2 border-kryptonite outline outline-white`}>
               {localStorage.getItem("token") ?
