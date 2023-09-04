@@ -1,26 +1,31 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Context } from '../../context/StateContext'
-import { BsPencilSquare, BsPlusSquareDotted, BsX, BsXCircle } from 'react-icons/bs'
+import { BsBookmark, BsBookmarkFill, BsPencilSquare, BsPlusSquareDotted, BsX, BsXCircle } from 'react-icons/bs'
 import { instance } from '../../services/api/api'
+import { BiBookmark } from 'react-icons/bi'
 
 const Profile = () => {
 
-   const {masjidImage} = useContext(Context)
    const reference = useRef(null)
    const redirect = useNavigate()
+   
+   const {masjidImage} = useContext(Context)
    const tags = {full_name: "Nama", username: "Username", email:"Email", phone_number:"No. Telpon"}
    
-    const [data, setData] = useState({
+   const [data, setData] = useState({
       "full_name": "nama",
       "username": "username",
       "email": "email@mail.com",
       "photo": " ",
       "phone_number": "00000000000"
-  })
+   })
+
+   const [marked, setMarked] = useState([])
   
    const [key, setKey] = useState("")
    const [edit, setEdit] = useState(false)
+   const [bookmark, setBookmark] = useState(false)
 
    const [name, setName] = useState("")
    const [email, setEmail] = useState("")
@@ -144,6 +149,7 @@ const Profile = () => {
 
         console.log(response)
         setData(response.data?.users) 
+        setMarked(response.data?.marked)
         setName(response.data?.users.full_name)
         setEmail(response.data?.users.email)
         setTelepon(response.data?.users.phone_number)
@@ -174,10 +180,10 @@ const Profile = () => {
          </div>
       </header>
       <main className='text-black md:pt-[3.5%] flex-1 bg-white md:flex justify-evenly overflow-auto'>
-         <div className='h-[160px] md:w-max md:h-[190px] md:gap-2 flex flex-col justify-center items-center p-3 md:p-0 pb-0 px-10'>
-            <div className=' h-[100%] md:px-[0.1%] md:w-fit md:p-2 md:bg-zinc-200 rounded-2xl flex flex-col gap-[3%] justify-between items-center'>
+         <div className='h-[160px] md:w-[200px] md:min-h-[260px] md:gap-4 flex flex-col justify-start items-center p-3 md:p-0 pb-0 px-10'>
+            <div className=' h-[100%] md:h-max md:px-[0.1%] md:w-full md:p-2 md:gap-1.5 md:bg-zinc-200 rounded-2xl flex flex-col justify-between items-center'>
                <span className={`hidden md:flex font-bold`}>{data.full_name}</span>
-               <figure className='overflow-hidden border-4 border-white h-full aspect-square shadow-[0_3px_5px_0px_grey] rounded-2xl'>
+               <figure className='overflow-hidden border-4 w-[68%] border-white aspect-square shadow-[0_3px_5px_0px_grey] rounded-2xl'>
                   <img src={preview ? preview : masjidImage} alt="" className='h-full w-full object-cover' />
                </figure>
                <div className='py-[1%]'>
@@ -187,12 +193,14 @@ const Profile = () => {
                   <input ref={reference} onChange={(e)=>{imageChangeHandler(e)}} type="file" name="" id="" className='hidden' />
                </div>
             </div>
-            {/* <div className='w-full flex justify-center'>
-               <button className=' rounded-2xl bg-red-600 ring-1 ring-red-600 border border-white text-white px-[4%]'>
-                  Hapus Akun
+            <div className='w-full flex justify-center '>
+               <button className='flex w-max whitespace-nowrap px-[4%] items-center rounded-2xl shadow-[0_1.5px_3px_2px_black] font-bold ring-2 ring-white border border-black/90 text-black'
+               onClick={()=>{setBookmark(!bookmark)}}>
+                  My Bookmark <span className='mx-[2.5%] rounded-full'><BsBookmark/></span>
                </button>
-            </div> */}
+            </div>
          </div>
+         {!bookmark ? 
          <form action="" onSubmit={(e)=>{handleEdit(e)}} className='md:w-[70%] lg:w-[77%] '>
             {
             Object.entries(tags).map((tag, index)=>{
@@ -224,6 +232,31 @@ const Profile = () => {
                <button type='submit' onClick={()=>{setEdit(false)}} disabled={(edit) ? false : (preview != defaultPreview) ? false : true} className={`z-20 mx-auto disabled:bg-gray-400/80 disabled:outline-gray-400/80 disabled:text-gray-200 w-[130px] max-w-[160px] max-h-[50px] py-[1%] rounded-full bg-sari font-bold text-kryptonite border-white border-2 outline outline-sari outline-2`}>Simpan</button> 
             </div>
          </form>
+         :
+         <div className='md:w-[70%] lg:w-[77%] '>
+            {marked.map(()=>{
+               return(
+                  <div key={index} className={`relative !flex flex-col !rounded-2xl overflow-hidden flex-nowrap flex-grow items-end justify-center my-1 px-2 py-2 bg-zinc-300 !aspect-[3/2.2]`}>
+                     <div className='flex-[0.12] font-bold w-full text-ellipsis overflow-hidden whitespace-nowrap'>
+                        Meneladani Rosul dalam kehidupan
+                     </div>
+                     <div className='flex-1 flex items-center w-full shrink overflow-hidden rounded-xl'>
+                        <figure className='w-full py-0.5'>
+                           <img src={masjidImage} alt="" className='w-full object-cover h-[100%]' />
+                        </figure>
+                     </div>
+                     <div className='flex-shrink flex-col items-start justify-between  w-full'>
+                        <span className='px-[0.5%] text-ellipsis overflow-hidden whitespace-nowrap'>{element.person}</span>
+                        <div className='flex items-center justify-start max-lg:text-[11px] lg:text-[12px] w-full'>
+                           <PiCalendar className='mx-[0.8%] text-lime-700 relative bottom-0'/>
+                           <p className='text-ellipsis overflow-hidden whitespace-nowrap'> {element.date}</p>
+                        </div>
+                     </div>
+                  </div>
+               )
+            })}
+         </div>
+         }
          {/* <section className='p-3 bg-red-600'>
             <div className='m-auto h-[120px] w-[90vw] flex overflow-hidden items-center rounded-3xl bg-kryptonite'>
             <div className='w-[30%] h-full flex items-center p-2'>

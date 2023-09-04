@@ -5,16 +5,8 @@ export const Context = createContext("")
     
 export const StateContext = ({children}) => {
     
-    // const [email, setEmail] = useState("")
-    const [defaultName, setDefaultName] = useState("")
-    const [defaultUserName, setDefaultUserName] = useState("")
-    const [defaultPhoto, setDefaultPhoto] = useState("")
-    const [token, setToken] = useState("")
-    const [role, setRole] = useState("")
-    const [globalTarget, setGlobalTarget] = useState(null)
-    const [password, setPassword] = useState("")
-    const [passwordConfirm, setPasswordConfirm] = useState("")
     const [nomor, setNomor] = useState("")
+    const [token, setToken] = useState("")
 
     const [showModal, setShowModal] = useState(false)
     const [isShowPopup, setIsShowPopup] = useState(false)
@@ -24,7 +16,7 @@ export const StateContext = ({children}) => {
     const masjidImage = "\/src\/assets\/example\/masjid.png"
 
 return (
-    <Context.Provider value={{showModal,setShowModal,isShowPopup,setIsShowPopup, masjidSource,masjidImage, password, setPassword, passwordConfirm, setPasswordConfirm, nomor, setNomor, globalTarget, setGlobalTarget, maskStatus, setMaskStatus}}>
+    <Context.Provider value={{showModal,setShowModal,isShowPopup,setIsShowPopup, masjidSource, masjidImage, nomor, setNomor, maskStatus, setMaskStatus, token, setToken}}>
         {children}
     </Context.Provider>
 )

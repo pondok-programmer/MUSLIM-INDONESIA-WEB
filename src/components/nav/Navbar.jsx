@@ -135,8 +135,14 @@ const Navbar = () => {
 
             {(window.innerWidth < 1024) &&
             <>
-            <button className="flex-1 lg:hidden" onClick={()=>{setmobileMenu(!mobileMenu)}}>  <AiOutlineMenu className='h-full w-full text-[10px] p-4' />
+            {token ?
+            <button className="flex-1 lg:hidden" onClick={()=>{setmobileMenu(!mobileMenu)}}>  
+              <AiOutlineMenu className='h-full w-full text-[10px] p-4' />
             </button>
+            :
+            <Link to={"/login"} className="w-full bg-lime-500 px-[18px] mr-2 rounded-3xl py-[5%]">
+              Login
+            </Link>}
             <div id="nav-menu" className={`w-full h-[14rem] sm:h-[16rem] absolute bottom-1 translate-y-[99.8%] overflow-hidden left-0 duration-500 ${!mobileMenu ? `!h-0` : "py-1"}`}>
               <ul className="h-full flex flex-col items-center bg-kryptonite [&_a]:justify-center [&_a]:flex [&_a]:items-center [&_a]:h-full [&_a]:w-full [&_a:hover]:text-sari [&_li]:flex-1 [&_li]:w-full [&_a:hover]:bg-lime-500 [&_a:hover]:bg-opacity-60 " >
                 <li className="">

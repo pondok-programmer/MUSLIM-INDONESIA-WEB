@@ -11,7 +11,7 @@ import InputLogin from '../../components/ui/InputLogin'
 const SignIn = () => {
   
 
-  const {masjidSource} = useContext(Context)
+  const {masjidSource, setToken} = useContext(Context)
 
   const [responseText, setResponseText] = useState("")
   const [loading, setLoading] = useState(false)
@@ -45,6 +45,7 @@ const SignIn = () => {
       console.log(response)
       localStorage.setItem("role", response.data.role)
       localStorage.setItem("token", response.data.token)
+      setToken(response.data.token)
       localStorage.setItem("id", response.data.UserData.id)
       localStorage.setItem("name", response.data.UserData.full_name)
       localStorage.setItem("username", response.data.UserData.username)
@@ -93,22 +94,22 @@ const SignIn = () => {
         <section className='w-full flex items-center justify-center lg:h-full lg:w-auto lg:flex-[0.97]' style={{minHeight:`${h*(0.25)}px`}}>
           <figure className='flex w-[64%] items-center justify-center gap-1 sm:flex-col sm:gap-0 lg:flex-col-reverse'>
             <img src={masjidSource} alt="Your Logo" className='h-[140px] sm:h-[170px] aspect-square lg:h-[35vh]' />
-            <h1 className='text-[30px] sm:text-[36px] max-w-min text-center font-medium flex-wrap  lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
+            <h1 className='text-[30px] sm:text-[36px] max-w-min text-center font-medium flex-wrap lg:text-[4.5vh]'><span className='text-sari'>Muslim</span> Indonesia</h1>
           </figure>
         </section>
-        <section className='w-[80%] sm:w-[70%] lg:w-[50%] flex items-center justify-center lg:flex-col lg:flex-1 lg:h-full lg:gap-3' style={{minHeight:`${h*(0.5)}px`}}>
+        <section className='w-[80%] sm:w-[70%] flex-[0.87] lg:w-[50%] flex items-center justify-center lg:flex-col lg:flex-1 lg:h-full lg:gap-3' style={{minHeight:`${h*(0.5)}px`}}>
           <div className=' lg:border-white lg:border-opacity-75 backdrop-blur-[2px] lg:border-2 lg:h-[75%] lg:w-[54vh] lg:flex lg:flex-col lg:rounded-lg w-full'>
-            <div className=' flex h-[25%] justify-center items-center max-lg:py-[1.5%] lg:py-[0%]' >
-              <h1 id='login-logo' className='text-[32px] sm:text-[37px] lg:text-[41px] font-[700] relative top-[12%] text-sari'>Login</h1>
+            <div className=' flex h-[25%] justify-center items-center max-lg:justify-start max-lg:py-[1.5%] lg:py-[0%]' >
+              <h1 id='login-logo' className='text-[40px] sm:text-[37px] lg:text-[41px] font-[700] relative top-[12%] text-sari'>Login</h1>
             </div>
             <form onSubmit={(e)=>{handleLogin(e)}} autoComplete='on' className='flex flex-col justify-evenly gap-8 lg:gap-0 lg:flex-1 lg:px-12'>
-              <div className='flex flex-col gap-10 sm:gap-12 lg:gap-5 lg:pb-6 lg:[&_>_div]:my-[3%]'>
+              <div className='flex flex-col gap-6 sm:gap-12 lg:gap-5 lg:pb-6 lg:[&_>_div]:my-[3%]'>
                 <InputLogin type={"email"} modifierFunction={setEmail} text={"Email"}/>
                 <InputLogin type={"password"} modifierFunction={setPassword} text={"Kata Sandi"}/>
               </div>
               <div className='w-full relative flex flex-col items-center gap-0.5 sm:gap-0.5 lg:gap-0 [&_button]:rounded-3xl max-lg:py-[2%] lg:h-[25%]'>
                 <span className='absolute top-0 left-1/2 text-xs w-max overflow-visible text-sari -translate-x-1/2 translate-y-[-110%]'>{responseText}</span>
-                <button type="submit" className='w-[60%] sm:w-[50%] sm:py-[3%] colorful-button rounded-3xl text-[14px] lg:text-[15px] text-white font-[700] py-[4%] flex items-center justify-center sm:text-[16px] cursor-pointer min-h-[35px] min-w-[115px]'>
+                <button type="submit" className='w-[100%] sm:w-[50%] sm:py-[3%] colorful-button rounded-3xl max-md:!rounded-xl text-[14px] lg:text-[15px] text-white font-[700] py-[4%] flex items-center justify-center sm:text-[16px] cursor-pointer min-h-[35px] min-w-[115px]'>
                   {!loading ? "Masuk" : <BiLoaderAlt className='m-auto text-[24px] animate-spin'/>}
                 </button>
                 <h4 className='font-bold lg:text-[13px]'>or</h4>

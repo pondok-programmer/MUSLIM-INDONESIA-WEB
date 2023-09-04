@@ -1,7 +1,5 @@
 import { PiMagnifyingGlass }  from 'react-icons/pi'
 import masjidImage from "../../assets/example/masjid.png"
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 import { BsArrowDown} from 'react-icons/bs';
 import { BiSolidBookmark, BiSolidBookmarkPlus } from 'react-icons/bi';
 import { useContext, useEffect, useState } from 'react'
@@ -16,7 +14,7 @@ const Home = () => {
   let tanggal = date.toLocaleDateString("id-ID", {weekday:"long", day:"2-digit", month:"long", year:"numeric"}).split(",")
   let tanggalIslam = date.toLocaleDateString("id-ID-u-ca-islamic", {day:"2-digit", month:"long", year:"numeric"})
 
-  const {masjidSource, showModal, setShowModal} = useContext(Context)
+  const {setShowModal} = useContext(Context)
   const [notif, setNotif] = useState(false)
   const namaUser = localStorage.getItem("name")
   const [userInfo, setUserInfo] = useState([])
@@ -42,9 +40,9 @@ const Home = () => {
   }
 ])
 const [tag, setTag] = useState("")
-let dataMasjid = data.filter((content)=>content.categories == "Masjid")
-let dataResto = data.filter((content)=>content.categories == "Restoran")
-let dataTpq = data.filter((content)=>content.categories == "TPQ")
+let dataMasjid = data.filter((content)=>content.categories?.toLowerCase() == "masjid")
+let dataResto = data.filter((content)=>content.categories?.toLowerCase() == "restoran")
+let dataTpq = data.filter((content)=>content.categories?.toLowerCase() == "tpq")
 const [masjid, setMasjid] = useState([])
 const [restoran, setRestoran] = useState([])
 const [tpq, setTpq] = useState([])
@@ -54,15 +52,21 @@ const searchHandler = (input) => {
   let filtered = baseData.filter((card)=>
   {
     for (const key in card) {
-      return card[key].includes(input)
+      if (card[key].toString().toLowerCase().includes(input.toLowerCase())) {
+        return true
+      }
     } 
   })
-
-  if (!filtered) {
+  
+  console.log(filtered == '');
+  if (filtered != '') {
+    console.log(1);
     setData(filtered)
   } else if (data == baseData) {
+    console.log(2);
     return false
   } else {
+    console.log(3);
     setData(baseData)
   }
 }
@@ -72,10 +76,10 @@ const handleBookmark = (id) => {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `create-bookmark/${localStorage.getItem("id")}/${id}`,
+    url: `create-bookmark/${id}`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`
-    }
+    },
   };
 
   instance
@@ -152,7 +156,7 @@ const token = localStorage.getItem("token")
         </section>
         <section className='bg-white'>
           <div className='w-[80vw]  sm:w-[72vw] h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[50px] border flex border-gray-400 rounded-[10rem] overflow-hidden -translate-x-[50%] '>
-            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e)}} autoComplete={!token ? "off" : "on"} onFocus={()=>{!token && setShowModal("login")}} value={!token ? "" : undefined}/>
+            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e.target.value)}} autoComplete={!token ? "off" : "on"} onFocus={()=>{!token && setShowModal("login")}} value={!token ? "" : undefined}/>
             <button className='rounded-r-full bg-white'>
               <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] pl-1 pr-2 py-1 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
             </button>
@@ -183,13 +187,13 @@ const token = localStorage.getItem("token")
             </> }
           </div>
         </section> 
-        <section className='sm:min-h-[500px] max-sm:py-3 flex items-center lg:min-h-[280px] py-[3%] lg:pt-[1%] lg:pb-[10%]'>
-          <ul className='w-full h-[80%] flex gap-6 lg:gap-16 sm:gap-8 justify-center items-center flex-wrap'>
+        <section className='sm:min-h-[500px] max-sm:py-3 flex items-start justify-center lg:min-h-[280px] py-[3%] lg:pt-[1%] lg:pb-[10%]'>
+          <ul className='w-full h-[80%] flex gap-6 lg:gap-16 sm:gap-8 justify-center items-start flex-wrap'>
             {(window.location.hash == "#masjid" ? dataMasjid : window.location.hash == "#restoran" ? dataResto : window.location.hash == "#tpq" ? dataTpq : data ).map((card, y)=>{
               return(
-                <li key={y} className={`aspect-[4/2.5] relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] shadow-[1px_2px_3px_0px] shadow-black/70 rounded-xl`}>
+                <li key={y} className={`aspect-[4/2.5] relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] shadow-[1px_2px_6px_0px] shadow-black/70 rounded-xl`}>
                   <img src={card.photo} alt="" className='h-full w-full rounded-xl '/>
-                  <Link target='_blank' to={`https://www.google.com/maps/@${card.lat},${card.long},19z?entry=ttu`} id='images' className='overflow-hidden absolute top-0 h-full w-full flex flex-col justify-between rounded-xl text-white opacity-80 [&:hover_div:first-child]:!translate-y-0 after:bg-black after:bg-opacity-0 after:w-full after:h-full after:absolute after:top-0 after:backdrop-blur-2xl hover:after:bg-opacity-80 after:duration-500 [&:hover_div:last-child]:!translate-y-0'>
+                  <Link target='_blank' to={`https://www.google.com/maps/search/${card.lat},${card.long}`} id='images' className='overflow-hidden absolute top-0 h-full w-full flex flex-col justify-between rounded-xl text-white opacity-80 [&:hover_div:first-child]:!translate-y-0 after:bg-black after:bg-opacity-0 after:w-full after:h-full after:absolute after:top-0 after:backdrop-blur-2xl hover:after:bg-opacity-80 after:duration-500 [&:hover_div:last-child]:!translate-y-0'>
                     <div className='absolute max-w-[78%] overflow-hidden max-h-[35%] z-20 p-2 h-[32%] bg-gradient-to-b duration-500 ease-out translate-y-[-100%]'>
                       <h4 className='lg:text-[20px] text-sari font-bold'>{card.place_name}</h4>
                       <h5 className='text-[14px] lg:text-[15px]'>{card.regency}</h5>
