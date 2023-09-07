@@ -7,21 +7,21 @@ const About = () => {
 
   return (
     <div>
-      <section id='about' className='sm:min-h-[144vh] lg:py-[2%] flex flex-col items-center justify-start text-center '>
-         <article className=' sm:h-[20vh] p-3.5 lg:h-[15%] flex flex-col '>
-         <h1 className='text-[24px] sm:text-[27px] sm:h-[36%] lg:text-[38px] text-kryptonite font-bold'>About Us</h1>
-         <p className='flex-1 lg:py-[2%]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium odit nemo accusantium, odio a?</p>  
+      <section id='about' className='sm:min-h-[144vh] lg:py-[2%] flex flex-col items-center justify-start text-center bg-white'>
+         <article id='About-article' className={` sm:h-[20vh] p-3.5 sm:py-[1.7%] lg:h-[15%] flex flex-col min-h-[${document.getElementById("About-article")?.nextElementSibling.clientHeight}px] `}>
+            <h1 className='text-[24px] sm:text-[27px] sm:py-[0.6%] lg:text-[38px] text-kryptonite font-bold'>About Us</h1>
+            <p className='flex-1 lg:py-[2%]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium odit nemo accusantium, odio a?</p>  
          </article>
-         <article className='p-3.5 sm:h-[22vh] lg:h-[15%] flex flex-col bg-zinc-200'>
-         <h2 className='text-[23px] sm:text-[24px] lg:text-[33px] text-kryptonite'>Motivasi</h2>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam quos animi dicta blanditiis aspernatur impedit reiciendis a sit. Atque nemo, perspiciatis dolorum id animi dolorem eveniet hic adipisci quas. Officia dicta optio cupiditate odit dolorum omnis sequi modi, architecto, tempore placeat ipsum quis maiores commodi porro nobis voluptatum adipisci recusandae!</p>
+         <article className='p-3.5 sm:h-max lg:h-[15%] flex flex-col bg-zinc-200'>
+            <h2 className='text-[23px] sm:text-[24px] lg:text-[33px] text-kryptonite'>Motivasi</h2>
+            <p className='sm:py-[1%]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam quos animi dicta blanditiis aspernatur impedit reiciendis a sit. Atque nemo, perspiciatis dolorum id animi dolorem eveniet hic adipisci quas. Officia dicta optio cupiditate odit dolorum omnis sequi modi, architecto, tempore placeat ipsum quis maiores commodi porro nobis voluptatum adipisci recusandae!</p>
          </article>
-         <div className='p-10 sm:min-h-[54vh] lg:min-h-[26%] w-full flex max-sm:flex-col max-sm:gap-10 sm:py-9 sm:gap-[2vw] px-12 sm:justify-around lg:justify-evenly lg:px-8 lg:py-10 '>
+         <div className='p-10 sm:min-h-[51vh] lg:min-h-[26%] w-full flex sm:justify-evenly max-sm:flex-col max-sm:gap-10 sm:py-9 px-12 sm:px-0 lg:justify-evenly lg:px-8 lg:py-10 '>
          {
             [...Array(2)].map((x, index)=>{
                return(
                // <section className='flex-col sm:aspect-[4/4.7] sm:h-[43vh] lg:max-w-[43vw] bg-red-600 lg:aspect-[3/1] flex lg:flex-row'>
-               <section key={index} className='flex-col rounded-md sm:aspect-[4/4.7] sm:max-h-[42vh] sm:max-w-[44vw] lg:max-h-[38vh] lg:max-w-[44vw] lg:w-full overflow-hidden flex lg:flex-row'>
+               <section key={index} className='flex-col rounded-2xl sm:aspect-[4/4.7] sm:max-h-[42vh] sm:max-w-[44vw] lg:max-h-[38vh] lg:max-w-[44vw] lg:w-full overflow-hidden flex lg:flex-row'>
                   <div className='flex-1 overflow-hidden'>
                      <img src={masjidImage} alt="" className='h-full w-full object-cover'/>
                   </div>
@@ -43,9 +43,9 @@ const About = () => {
             </article>
          </section> */}
          </div>
-         <article className='flex flex-col p-3.5 items-center justify-center text-center lg:h-[100px]'>
-         <h3 className='text-kryptonite text-[24px] sm:text-[25px]'>Prinsip</h3>
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim aliquid at quas sint libero maxime. Dolores numquam aliquam non exercitationem ut similique natus accusantium dolorem pariatur sit, deserunt in dolore fuga? Voluptatem pariatur at amet, fuga esse soluta voluptates eligendi?</p>
+         <article className='p-3.5 sm:h-max lg:h-[15%] flex flex-col'>
+            <h3 className='text-kryptonite text-[23px] sm:text-[24px] lg:text-[33px]'>Prinsip</h3>
+            <p className='sm:py-[1%]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim aliquid at quas sint libero maxime. Dolores numquam aliquam non exercitationem ut similique natus accusantium dolorem pariatur sit, deserunt in dolore fuga? Voluptatem pariatur at amet, fuga esse soluta voluptates eligendi?</p>
          </article>
       </section>
     </div>

@@ -1,33 +1,36 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
-import { SignIn, SignUp, Home, Masjid, Profile, About, Events } from "../pages"
+import {  Home, Profile, About, Events } from "../pages"
 import NotFound from "../pages/not-found/NotFound"
 import { BsArrowUp, BsBell, BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs"
 // import Navbar from "../components/Navbar"
 import { useContext } from 'react'
 import { Context } from "../context/StateContext"
-import { PiIntersectThree, PiUserCircleFill } from "react-icons/pi"
-import { AiOutlineMenu } from "react-icons/ai"
 // import Masjid from "../pages/main/Masjid"
 import DetailMasjid from "../pages/details/DetailMasjid"
 import Navbar from "../components/nav/Navbar"
+import AdminCreate from "../pages/main/AdminCreate"
+import Admin from "../pages/main/Admin"
+import AdminEdit from "../pages/main/AdminEdit"
 
 const Routing = () => {
 
-    const {masjidSource} = useContext(Context)
+    const {masjidSource, token} = useContext(Context)
 
     return (
         <>
-        {/* <Navbar/> */}
-            <button className='bell fixed bottom-10 bg-white text-lime-700 right-6 rounded-full p-3 z-10'>
-                <BsBell className="text-[28px]"/>
-            </button>
-            <Navbar></Navbar>
+            
+            <Navbar/>
             <Routes>
-                <Route path='/home' element={<Home/>} />
-                <Route path='/masjid' element={<Masjid/>} />
+                <Route path='/' element={token.toLowerCase() == "admin" ? <Admin/> : <Home/>} />
+                {token.toLowerCase() == "admin" && 
+                <>
+                    <Route path='/create' element={<AdminCreate/>} />
+                    <Route path='/edit/:id' element={<AdminEdit/>} />
+                </>
+                }
                 <Route path='/about' element={<About/>} />
                 <Route path='/event' element={<Events/>} />
-                <Route path='/user' element={<Profile/>} />
+                <Route path='/user/:username' element={<Profile/>} />
                 <Route path='/detail/masjid' element={<DetailMasjid/>} />
                 <Route path='*' element={<NotFound/>} />
             </Routes>
