@@ -1,10 +1,11 @@
 import { PiMagnifyingGlass }  from 'react-icons/pi'
 import masjidImage from "../../assets/example/masjid.png"
-import { BsArrowDown} from 'react-icons/bs';
+import { BsArrowDown } from 'react-icons/bs';
+import { MdGpsFixed } from 'react-icons/md';
 import { BiSolidBookmark, BiSolidBookmarkPlus } from 'react-icons/bi';
 import { useContext, useEffect, useState } from 'react'
 import { Context } from '../../context/StateContext';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { instance } from '../../services/api/api';
 import ListDropdown from '../../components/ui/ListDropdown';
 
@@ -18,23 +19,54 @@ const Home = () => {
   const [notif, setNotif] = useState(false)
   const namaUser = localStorage.getItem("name")
   const [userInfo, setUserInfo] = useState([])
-  const [baseData, setBaseData] = useState([])
+  const [baseData, setBaseData] = useState([
+    {
+    photo:masjidImage,
+    place_name:"Masjid Istiqlal",
+    lokasi:"Jakarta",
+    lat: 12,
+    long: 12,
+    detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
+  },
+  {
+    photo:masjidImage,
+    place_name:"Resto Istiqlal",
+    long: 16,
+    lat: 16,
+    lokasi:"Jakarta",
+    detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
+  },
+  {
+    photo:masjidImage,
+    place_name:"TPQ Istiqlal",
+    lat: 13,
+    long: 13,
+    lokasi:"Jakarta",
+    detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
+  }
+])
   const [data, setData] = useState([
     {
     photo:masjidImage,
-    nama:"Masjid Istiqlal",
+    place_name:"Masjid Istiqlal",
+    lokasi:"Jakarta",
+    lat: 12,
+    long: 12,
+    detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
+  },
+  {
+    photo:masjidImage,
+    place_name:"Resto Istiqlal",
+    long: 16,
+    lat: 16,
     lokasi:"Jakarta",
     detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
   },
   {
     photo:masjidImage,
-    nama:"Masjid Istiqlal",
-    lokasi:"Jakarta",
-    detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
-  },
-  {
-    photo:masjidImage,
-    nama:"Masjid Istiqlal",
+    place_name:"TPQ Istiqlal",
+    lat: 13,
+    long: 13,
     lokasi:"Jakarta",
     detail:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos blanditiis quae dolorum earum asperiores similique sunt porro quam molestiae illum.",
   }
@@ -43,10 +75,6 @@ const [tag, setTag] = useState("")
 let dataMasjid = data.filter((content)=>content.categories?.toLowerCase() == "masjid")
 let dataResto = data.filter((content)=>content.categories?.toLowerCase() == "restoran")
 let dataTpq = data.filter((content)=>content.categories?.toLowerCase() == "tpq")
-const [masjid, setMasjid] = useState([])
-const [restoran, setRestoran] = useState([])
-const [tpq, setTpq] = useState([])
-const listMasjid = ["Istiqlal", "An-nadia", "Al-masjid"]
 
 const searchHandler = (input) => {
   let filtered = baseData.filter((card)=>
@@ -69,6 +97,20 @@ const searchHandler = (input) => {
     console.log(3);
     setData(baseData)
   }
+}
+
+const closeLocationHandler = () => {
+  navigator.geolocation.getCurrentPosition((myLocation)=>{
+    setData(()=>{
+      let closest = baseData.sort((a , b)=>{
+        let squared1 = Math.sqrt(Math.pow(a.lat - myLocation.coords.latitude,2) + (Math.pow(a.long - myLocation.coords.longitude,2)))
+        let squared2 = Math.sqrt(Math.pow(b.lat - myLocation.coords.latitude,2) + (Math.pow(b.long - myLocation.coords.longitude,2)))
+
+        return  (squared2 - squared1)
+      })
+      return closest
+    })
+  },(error)=>{alert(error)});
 }
 
 const handleBookmark = (id) => {
@@ -139,9 +181,7 @@ const token = localStorage.getItem("token")
       <header>
         <section className='text-white bg-kryptonite '>
           <div className='w-full flex bg-kryptonite justify-center flex-col items-center lg:py-3'>
-            <Link to={"/admin"}>
             <h1 className='sm:text-[23px] lg:text-[25px] font-bold'>{tanggal}</h1>
-            </Link>
             <h3 className='text-sari max-sm:text-[14px] lg:text-[17px]'>{tanggalIslam}</h3>
           </div>
           {/* <div className='flex justify-center items-center bg-gradient-to-b from-kryptonite to-white from-[50%] to-[50%] py-3'>
@@ -155,11 +195,19 @@ const token = localStorage.getItem("token")
           <div className='h-[2.3rem]'></div>
         </section>
         <section className='bg-white'>
-          <div className='w-[80vw]  sm:w-[72vw] h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[50px] border flex border-gray-400 rounded-[10rem] overflow-hidden -translate-x-[50%] '>
-            <input type="search" name="" id="search-bar" className='flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e.target.value)}} autoComplete={!token ? "off" : "on"} onFocus={()=>{!token && setShowModal("login")}} value={!token ? "" : undefined}/>
-            <button className='rounded-r-full bg-white'>
-              <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] pl-1 pr-2 py-1 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
-            </button>
+          <div>
+            <div className='w-[80vw] sm:w-[72vw] z-10 min-w-max h-[40px] absolute -translate-y-[50%] left-[50%] lg:w-[44vw] sm:h-[52px] lg:h-[50px] border flex border-gray-400 -translate-x-[50%] rounded-full group focus-within:rounded-3xl focus-within:rounded-b-none  '>
+              <input type="search" name="" id="search-bar" className='border-r group border-black rounded-l-3xl group-focus-within:rounded-tl-3xl flex-1 text-[15px] lg:text-[18px] pl-3 text-black focus-visible:outline-none ' onChange={(e)=>{searchHandler(e.target.value)}} autoComplete={!token ? "off" : "on"} onFocus={()=>{!token && setShowModal("login")}} value={!token ? "" : undefined}/>
+              <button className='group-focus-within:rounded-tr-3xl rounded-r-3xl bg-white'>
+                <PiMagnifyingGlass type='label' className='w-[45px] sm:w-[60px] pl-1 pr-2 py-1 sm:p-2 text-black text-opacity-50 flex justify-center items-center h-full'/>
+              </button>
+              <div onClick={()=>{closeLocationHandler()}} className='absolute group-focus-within:h-12 overflow-hidden duration-300 cursor-pointer border-black/30 group-focus-within:w-[100.3%] w-[65%] flex h-0 text-[15px] justify-center items-center bg-white border rounded-b-3xl left-1/2 gap-1 px-[2%] bottom-0 translate-y-full -translate-x-1/2'>
+                <span className='whitespace-nowrap w-max'>Cari Masjid terdekat </span>
+                <div>
+                  <MdGpsFixed className=''/>
+                </div>
+              </div>
+            </div>
           </div>
           <div className='h-[2.3rem]'></div>
           <div className='w-full flex items-center justify-center sm:justify-end px-4'>
@@ -191,7 +239,7 @@ const token = localStorage.getItem("token")
           <ul className='w-full h-[80%] flex gap-6 lg:gap-16 sm:gap-8 justify-center items-start flex-wrap'>
             {(window.location.hash == "#masjid" ? dataMasjid : window.location.hash == "#restoran" ? dataResto : window.location.hash == "#tpq" ? dataTpq : data ).map((card, y)=>{
               return(
-                <li key={y} className={`aspect-[4/2.5] relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] shadow-[1px_2px_6px_0px] shadow-black/70 rounded-xl`}>
+                <li key={y} className={`aspect-[4/2.5] flex relative w-[270px] lg:w-[54vh] lg:max-w-[400px] sm:w-[320px] shadow-[1px_2px_6px_0px] shadow-black/70 rounded-xl`}>
                   <img src={card.photo} alt="" className='h-full w-full rounded-xl '/>
                   <Link target='_blank' to={`https://www.google.com/maps/search/${card.lat},${card.long}`} id='images' className='overflow-hidden absolute top-0 h-full w-full flex flex-col justify-between rounded-xl text-white opacity-80 [&:hover_div:first-child]:!translate-y-0 after:bg-black after:bg-opacity-0 after:w-full after:h-full after:absolute after:top-0 after:backdrop-blur-2xl hover:after:bg-opacity-80 after:duration-500 [&:hover_div:last-child]:!translate-y-0'>
                     <div className='absolute max-w-[78%] overflow-hidden max-h-[35%] z-20 p-2 h-[32%] bg-gradient-to-b duration-500 ease-out translate-y-[-100%]'>

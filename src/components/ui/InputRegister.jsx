@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs'
 
-const InputRegister = ({type, modifierFunction, text}) => {
+// eslint-disable-next-line react/prop-types
+const InputRegister = ({type, modifierFunction, text, capitalize}) => {
   const [isShow, setIsShow] = useState(false)
 
    if (type == "password") {
       return (
       <div className={`flex relative items-center max-lg:items-start max-sm:items-center border-b-[1.7px] border-[#fff]`}>
-         <input type={'password'} placeholder=' ' autoComplete='on' className={`[&:focus_+_label]:!translate-y-[-83%] text-[19px] md:text-[2.3vh] lg:text-[20px] peer duration-300 [&:focus_+_label]:!text-[12px] focus:ring-0 border-none outline-none w-full px-3 pb-2 pt-2 lg:pb-0 lg:pt-2 bg-transparent text-[#fff] `} onChange={(e)=>{modifierFunction(e.target.value)}}/>
+         <input autoCapitalize={capitalize} type={'password'} placeholder=' ' autoComplete='on' className={`[&:focus_+_label]:!translate-y-[-83%] text-[19px] md:text-[2.3vh] lg:text-[20px] peer duration-300 [&:focus_+_label]:!text-[12px] focus:ring-0 border-none outline-none w-full px-3 pb-2 pt-2 lg:pb-0 lg:pt-2 bg-transparent text-[#fff] `} onChange={(e)=>{modifierFunction(e.target.value)}}/>
          <div onClick={(e)=>{setIsShow(!isShow);(isShow ? e.currentTarget.previousSibling.setAttribute("type", "password") : e.currentTarget.previousSibling.setAttribute("type", "text"))}}>
             {isShow ? <BsEyeSlashFill className='text-2xl md:text-[25px] lg:text-2xl text-[#fff] cursor-pointer' /> : <BsEyeFill  className='text-2xl md:text-[25px] lg:text-2xl text-[#fff] cursor-pointer'/>}
          </div>

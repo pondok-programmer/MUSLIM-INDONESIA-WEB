@@ -5,13 +5,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { BsArrowDown, BsPencilSquare, BsPlus, BsTrash} from 'react-icons/bs';
 import { useContext, useEffect, useState } from 'react'
 import { Context } from '../../context/StateContext';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { instance } from '../../services/api/api';
 import ListDropdown from '../../components/ui/ListDropdown';
 
 const Admin = () => {
 
-  const {masjidSource, showModal, setShowModal} = useContext(Context)
+  const { setShowModal } = useContext(Context)
   const [notif, setNotif] = useState(false)
   const [baseData, setBaseData] = useState([])
   const [data, setData] = useState([
@@ -106,7 +106,7 @@ useEffect(() => {
    .then((response)=>
    {
      console.log(response)
-     setUserInfo(response.data.login)
+    //  setUserInfo(response.data.login)
      setBaseData(response.data.user?.reverse())
      setData(response.data.user.reverse())
    })

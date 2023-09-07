@@ -63,7 +63,7 @@ const Navbar = () => {
       <div className="flex sm:h-full lg:w-1/2 w-full lg:justify-between justify-end">
           <ul className="h-full hidden lg:flex justify-center flex-1 [&_li]:flex-[0_9vw] [&_li]:text-[1.4vw] lg:[&_li]:text-[17px] [&_a]:flex [&_a]:justify-center [&_a]:items-center">
               <li className="h-full">
-                <NavLink to="/" className=' hover:text-sari h-full w-full font-bold' tabIndex={(window.innerWidth < 1024) ? -1 : ""}>HOME</NavLink>
+                <NavLink to="/" className=' hover:text-sari h-full w-full font-bold' tabIndex={(window.innerWidth < 1024) ? -1 : ""} >HOME</NavLink>
               </li>
               <li className="h-full">
                 <NavLink to="/about" className='hover:text-sari h-full font-bold' tabIndex={(window.innerWidth < 1024) ? -1 : ""}>ABOUT US</NavLink>
@@ -146,16 +146,16 @@ const Navbar = () => {
             <div id="nav-menu" className={`w-full h-[14rem] sm:h-[16rem] absolute bottom-1 translate-y-[99.8%] overflow-hidden left-0 duration-500 ${!mobileMenu ? `!h-0` : "py-1"}`}>
               <ul className="h-full flex flex-col items-center bg-kryptonite [&_a]:justify-center [&_a]:flex [&_a]:items-center [&_a]:h-full [&_a]:w-full [&_a:hover]:text-sari [&_li]:flex-1 [&_li]:w-full [&_a:hover]:bg-lime-500 [&_a:hover]:bg-opacity-60 " >
                 <li className="">
-                  <NavLink to="/" className='hover:text-sari font-bold' tabIndex={(window.innerWidth > 1024) ? -1 : ""} onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}}>HOME</NavLink>
+                  <NavLink to="/" className='hover:text-sari font-bold' tabIndex={(window.innerWidth > 1024) ? -1 : ""} onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}} onClick={()=>{setmobileMenu(false)}}>HOME</NavLink>
                 </li>
                 <li className="">
-                  <NavLink to="/about" tabIndex={(window.innerWidth > 1024) ? -1 : ""} className='hover:text-sari font-bold' onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}}>ABOUT US</NavLink>
+                  <NavLink to="/about" tabIndex={(window.innerWidth > 1024) ? -1 : ""} className='hover:text-sari font-bold' onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}} onClick={()=>{setmobileMenu(false)}}>ABOUT US</NavLink>
                 </li>
                 <li className="">
-                  <NavLink to="/event" className='hover:text-sari font-bold' tabIndex={(window.innerWidth > 1024) ? -1 : ""} onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}}>EVENT</NavLink>
+                  <NavLink to="/event" className='hover:text-sari font-bold' tabIndex={(window.innerWidth > 1024) ? -1 : ""} onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}} onClick={()=>{setmobileMenu(false)}}>EVENT</NavLink>
                 </li>
                 <li className="flex">
-                  <NavLink to={`/user/${localStorage.getItem("username")}`} className="hover:text-sari font-bold flex-1 flex !justify-between" tabIndex={(window.innerWidth > 1024) ? -1 : ""} onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}}>
+                  <NavLink to={`/user/${localStorage.getItem("username")}`} className="hover:text-sari font-bold flex-1 flex !justify-between" tabIndex={(window.innerWidth > 1024) ? -1 : ""} onFocus={()=>{setmobileMenu(true)}} onBlur={()=>{setmobileMenu(false)}} onClick={()=>{setmobileMenu(false)}}>
                     <div className="h-full aspect-square"></div>
                     <span className="flex-1 text-center">PROFILE</span>
                   </NavLink>

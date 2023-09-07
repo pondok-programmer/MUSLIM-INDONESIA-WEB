@@ -15,6 +15,7 @@ const SignIn = () => {
   const [hMax, setHMax] = useState(Math.max(document.documentElement.clientHeight, window.innerHeight || 0))
 
   const [responseText, setResponseText] = useState("")
+  const [notif, setNotif] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const [email, setEmail] = useState("")
@@ -57,7 +58,11 @@ const SignIn = () => {
     .catch((error)=>
     {
       setLoading(false)
-      console.log(error)
+      console.log(error)      
+      setNotif(true)
+      setTimeout(() => {
+        setNotif(false)
+      }, 5000);
       setResponseText(error.response.data.message)
     })
   }
@@ -91,6 +96,9 @@ const SignIn = () => {
   
   return (
     <div className='min-h-screen lg:h-screen h-full flex flex-col w-full text-white bg-kryptonite' style={{height:`${hMax}px`}}>
+      {notif &&
+        <div className={`absolute quick-notification bottom-[10vh] peer right-1/2 translate-x-1/2 lg:text-[11px] px-[1%] bg-black/60 opacity-80 text-white rounded-2xl`}>Login Gagal</div>
+      }
       <main className='flex h-full w-full flex-col items-center [&_input]:placeholder:text-white sm:gap-4 lg:flex-row lg:gap-0'>
         <section className='w-full flex items-center justify-center lg:h-full lg:w-auto lg:flex-[0.97]' style={{minHeight:`${h*(0.25)}px`}}>
           <figure className='flex w-[64%] items-center justify-center gap-1 sm:flex-col sm:gap-0 lg:flex-col-reverse'>
